@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIxEd Fall 2026 — Workforce Summit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --indigo:   #2D2A8F;
+      --indigo-deep: #1E1A6E;
+      --magenta:  #C41F7A;
+      --yellow:   #F5C800;
+      --lavender: #EAE8F8;
+      --lavender-dark: #B8B3E8;
+      --white:    #FFFFFF;
+      --gray-50:  #F8F8FC;
+      --gray-100: #EEECF8;
+      --gray-700: #3A3560;
+      --gray-900: #1A1830;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gray-900);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--indigo-deep);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+    }
+
+    .nav-logo {
+      color: var(--white);
+      font-weight: 900;
+      font-size: 1.35rem;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--yellow); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-cta {
+      background: var(--magenta);
+      color: var(--white) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: opacity 0.2s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      background: var(--indigo);
+      overflow: hidden;
+      padding: 80px 5%;
+    }
+
+    .hero-bg-monogram {
+      position: absolute;
+      right: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 42rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.04);
+      user-select: none;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(196,31,122,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--indigo-deep);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+
+    .hero-subhead {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      margin-bottom: 2.2rem;
+      line-height: 1.7;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--indigo-deep);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 20px rgba(245,200,0,0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(245,200,0,0.45);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.4);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .btn-outline-indigo {
+      display: inline-block;
+      background: transparent;
+      color: var(--indigo);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.8rem 1.7rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 2px solid var(--indigo);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline-indigo:hover {
+      background: var(--indigo);
+      color: var(--white);
+    }
+
+    .hero-supporting {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .hero-supporting strong { color: var(--yellow); }
+
+    /* ── KEY FACTS STRIP ── */
+    .facts-strip {
+      background: var(--yellow);
+      padding: 1.4rem 5%;
+    }
+
+    .facts-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .fact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--indigo-deep);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .fact-item .fact-icon {
+      font-size: 1.1rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 5%; }
+
+    .section-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-heading {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--gray-900);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      max-width: 680px;
+    }
+
+    .section-heading.center { text-align: center; max-width: 100%; }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--gray-700);
+      max-width: 620px;
+      margin-top: 1rem;
+      line-height: 1.75;
+    }
+
+    /* ── WHY ATTEND ── */
+    .why-attend { background: var(--gray-50); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .why-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--gray-100);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .why-card:hover {
+      box-shadow: 0 8px 32px rgba(45,42,143,0.1);
+      transform: translateY(-3px);
+    }
+
+    .why-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .why-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--indigo);
+      margin-bottom: 0.6rem;
+    }
+
+    .why-card p {
+      font-size: 0.9rem;
+      color: var(--gray-700);
+      line-height: 1.65;
+    }
+
+    /* ── PROGRAM ── */
+    .program { background: var(--white); }
+
+    .agenda-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .agenda-item {
+      border-left: 4px solid var(--magenta);
+      padding: 1.2rem 1.5rem;
+      background: var(--lavender);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .agenda-item p {
+      font-size: 0.9rem;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+
+    .agenda-note {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gray-100);
+      border-radius: 8px;
+      padding: 0.7rem 1.2rem;
+      font-size: 0.85rem;
+      color: var(--gray-700);
+      font-weight: 500;
+    }
+
+    /* ── WHO YOU'LL MEET ── */
+    .who { background: var(--lavender); }
+
+    .roles-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .role-pill {
+      background: var(--white);
+      color: var(--indigo);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--lavender-dark);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .role-pill:hover {
+      background: var(--indigo);
+      color: var(--white);
+      border-color: var(--indigo);
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--indigo);
+      padding: 80px 5%;
+      text-align: center;
+    }
+
+    .cta-band .section-heading {
+      color: var(--white);
+      max-width: 100%;
+      margin: 0 auto 1rem;
+    }
+
+    .cta-band p {
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* ── STRATEGY COLLABORATIVE ── */
+    .strategy {
+      background: var(--indigo-deep);
+      padding: 96px 5%;
+    }
+
+    .strategy .eyebrow-white {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--lavender-dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .strategy .section-heading {
+      color: var(--white);
+      max-width: 660px;
+    }
+
+    .strategy .section-lead {
+      color: rgba(255,255,255,0.75);
+      max-width: 640px;
+    }
+
+    .strategy-body {
+      max-width: 680px;
+    }
+
+    .strategy-detail {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.75;
+    }
+
+    .strategy-detail strong { color: var(--lavender-dark); }
+
+    /* ── CLOSING CTA ── */
+    .closing {
+      background: var(--magenta);
+      padding: 80px 5%;
+      text-align: center;
+    }
+
+    .closing .section-heading {
+      color: var(--white);
+      max-width: 100%;
+      margin: 0 auto 0.8rem;
+    }
+
+    .closing p {
+      color: rgba(255,255,255,0.88);
+      margin: 0 auto 2rem;
+      max-width: 500px;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--gray-900);
+      padding: 40px 5%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .footer-brand {
+      color: var(--white);
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+
+    .footer-brand span { color: var(--yellow); }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      width: 100%;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    /* ── TIE-BACK BANNER ── */
+    .tieback {
+      background: var(--gray-100);
+      border-left: 5px solid var(--indigo);
+      padding: 1.2rem 5%;
+      font-size: 0.88rem;
+      color: var(--gray-700);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .tieback a {
+      color: var(--indigo);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hero { padding: 60px 5%; min-height: auto; }
+      section { padding: 64px 5%; }
+      .facts-inner { gap: 1rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://www.aixed.org" class="nav-logo">AIx<span>Ed</span></a>
+    <ul class="nav-links">
+      <li><a href="https://www.aixed.org">Home</a></li>
+      <li><a href="#summit">Workforce Summit</a></li>
+      <li><a href="#program">Program</a></li>
+      <li><a href="#strategy">Strategy Collaborative</a></li>
+      <li><a href="https://www.aixed.org/aixed-2025">AIxEd 2025</a></li>
+      <li><a href="#register" class="nav-cta">Register</a></li>
+    </ul>
+  </nav>
+
+  <!-- TIE-BACK BANNER -->
+  <div class="tieback">
+    ℹ️ AIxEd brought the AI-in-education community together in Boston in May 2026 at AIxEd Connect and the Leadership Summit. The Workforce Summit continues that work, widening the lens to talent, work, and the economy.&nbsp;
+    <a href="https://www.aixed.org">Click here for details of our May 2026 event →</a>
+  </div>
+
+  <!-- 1. HERO -->
+  <section class="hero" id="summit">
+    <div class="hero-bg-monogram">X</div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="eyebrow">AIxEd Workforce Summit &nbsp;·&nbsp; November 10, 2026 &nbsp;·&nbsp; Boston University</span>
+      <h1>The skills and workforce<br/>the <em>AI era</em> demands.</h1>
+      <p class="hero-subhead">
+        A one-day summit following the pipeline from school to career, bringing together government, industry, and education leaders on how we prepare people for work in the age of AI.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center;">
+        <a href="#register" class="btn-primary">Register now</a>
+        <a href="#program" class="btn-secondary">See the program</a>
+      </div>
+      <p class="hero-supporting">
+        November 10 &nbsp;·&nbsp; Boston University &nbsp;·&nbsp; Tickets $350
+        &nbsp;—&nbsp; <strong>ACT NOW FOR 20% EARLY BIRD DISCOUNT</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- 2. KEY FACTS STRIP -->
+  <div class="facts-strip">
+    <div class="facts-inner">
+      <div class="fact-item"><span class="fact-icon">📅</span> November 10, 2026</div>
+      <div class="fact-item"><span class="fact-icon">📍</span> Boston University, Boston</div>
+      <div class="fact-item"><span class="fact-icon">👥</span> 400 Attendees</div>
+      <div class="fact-item"><span class="fact-icon">🎤</span> Keynotes, Panels &amp; Lightning Talks</div>
+    </div>
+  </div>
+
+  <!-- 3. WHY ATTEND -->
+  <section class="why-attend">
+    <div class="section-eyebrow">Why attend</div>
+    <h2 class="section-heading">One day on the future of talent and work</h2>
+    <p class="section-lead">
+      AI is changing what skills matter, which roles exist, and how people move from school into careers. The Workforce Summit brings the whole pipeline into one room — from K-12 and higher education to employers and the workforce — to ask what each of us should be doing now.
+    </p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🔗</div>
+        <h3>Follow the full pipeline.</h3>
+        <p>From classroom to first job to lifelong reskilling, in one connected conversation.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏛️</div>
+        <h3>Hear from leaders who decide.</h3>
+        <p>Policy and academic leaders, CEOs, Chief Learning Officers, and the researchers mapping where jobs are heading.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🧭</div>
+        <h3>Leave with direction.</h3>
+        <p>Actionable signals for educators, employers, and leaders on what to build and change next.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. PROGRAM PREVIEW -->
+  <section class="program" id="program">
+    <div class="section-eyebrow">What to expect</div>
+    <h2 class="section-heading">The full spectrum, from workforce policy to the student journey</h2>
+    <p class="section-lead">
+      The day opens with academic and economic framing, moves through the changing shape of work and corporate learning, and returns to the student journey from school to career before closing. Expect keynotes, panels, and fast-moving lightning talks across the day.
+    </p>
+    <div class="agenda-grid">
+      <div class="agenda-item">
+        <p>Build shared understanding across K-12, higher education, and employers about what the AI-era workforce needs and how education can deliver it.</p>
+      </div>
+      <div class="agenda-item">
+        <p>Examine how existing roles are changing — from marketer to programmer, teacher to lawyer, designer to consultant — and the new skills each demands.</p>
+      </div>
+      <div class="agenda-item">
+        <p>Surface the new roles AI is creating, and what training and credentialing they require.</p>
+      </div>
+      <div class="agenda-item">
+        <p>Examine how to upskill and reskill the existing workforce as AI changes the work itself, across different models and partnerships.</p>
+      </div>
+      <div class="agenda-item">
+        <p>Consider the student journey: from high school guidance to the hiring manager's desk.</p>
+      </div>
+    </div>
+    <div class="agenda-note">
+      🗓️ Full agenda and speaker announcements coming soon.
+    </div>
+  </section>
+
+  <!-- 5. WHO YOU'LL MEET -->
+  <section class="who">
+    <div class="section-eyebrow">Who you'll meet</div>
+    <h2 class="section-heading">The people shaping what comes next</h2>
+    <p class="section-lead">
+      K-12 and university leaders. CEOs, Chief AI and Chief Learning Officers. Non-profit leaders, labor-market researchers, edtech founders, and the educators and hiring managers who see the school-to-work transition first-hand.
+    </p>
+    <div class="roles-grid">
+      <span class="role-pill">K-12 Leaders</span>
+      <span class="role-pill">University Presidents &amp; Deans</span>
+      <span class="role-pill">CEOs</span>
+      <span class="role-pill">Chief AI Officers</span>
+      <span class="role-pill">Chief Learning Officers</span>
+      <span class="role-pill">Labor-Market Researchers</span>
+      <span class="role-pill">Edtech Founders</span>
+      <span class="role-pill">Non-Profit Leaders</span>
+      <span class="role-pill">Policy Makers</span>
+      <span class="role-pill">Hiring Managers</span>
+      <span class="role-pill">Educators</span>
+      <span class="role-pill">Workforce Trainers</span>
+    </div>
+  </section>
+
+  <!-- 6. MID-PAGE REGISTER CTA -->
+  <div class="cta-band" id="register">
+    <h2 class="section-heading center">Join us in Boston on November 10</h2>
+    <p>Be part of the conversation that connects education, talent, and the future of work.</p>
+    <div class="cta-buttons">
+      <a href="mailto:hello@aixed.org" class="btn-primary">Register now — 20% Early Bird</a>
+      <a href="mailto:hello@aixed.org" class="btn-secondary">Explore sponsorship</a>
+    </div>
+  </div>
+
+  <!-- 7. STRATEGY COLLABORATIVE -->
+  <section class="strategy" id="strategy">
+    <div class="strategy-body">
+      <div class="eyebrow-white">The day before the Summit &nbsp;·&nbsp; November 9 &nbsp;·&nbsp; By invitation</div>
+      <h2 class="section-heading">AIxEd doesn't just convene the field. It helps set its direction.</h2>
+      <p class="strategy-detail">
+        The day before the Summit, AIxEd hosts the <strong>Strategy Collaborative</strong>: an invite-only working day that brings around 120 leaders from across education to take stock of where AI in education stands and where it is heading.
+      </p>
+      <p class="strategy-detail">
+        The insights carry forward with articles in collaboration with <strong>Harvard Data Science Review</strong>, and they shape the conversation at the Summit the next day.
+      </p>
+      <p class="strategy-detail">
+        It is part of what makes AIxEd more than an event: a driving platform of strategy for AI in education.
+      </p>
+      <div style="margin-top: 2rem;">
+        <a href="mailto:hello@aixed.org" class="btn-secondary">Request an invitation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CLOSING CTA -->
+  <section class="closing">
+    <h2 class="section-heading">Be part of AIxEd Fall 2026</h2>
+    <p>Register for the Workforce Summit, explore sponsorship, or request an invitation to the Strategy Collaborative.</p>
+    <div class="cta-buttons">
+      <a href="mailto:hello@aixed.org" class="btn-primary" style="background:var(--yellow);color:var(--indigo-deep);">Register for the Summit</a>
+      <a href="mailto:hello@aixed.org" class="btn-outline-indigo" style="border-color:rgba(255,255,255,0.6);color:var(--white);">Explore sponsorship</a>
+      <a href="mailto:hello@aixed.org" class="btn-outline-indigo" style="border-color:rgba(255,255,255,0.6);color:var(--white);">Request an invitation — Strategy Collaborative</a>
+    </div>
+    <p style="margin-top:2rem; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+      <a href="mailto:hello@aixed.org" style="color:rgba(255,255,255,0.9);">hello@aixed.org</a> &nbsp;·&nbsp; aixed.org
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">AIx<span>Ed</span></div>
+    <ul class="footer-links">
+      <li><a href="https://www.aixed.org">Home</a></li>
+      <li><a href="#summit">Workforce Summit</a></li>
+      <li><a href="#strategy">Strategy Collaborative</a></li>
+      <li><a href="https://www.aixed.org/aixed-2025">AIxEd 2025</a></li>
+      <li><a href="https://www.linkedin.com/company/aixed">LinkedIn</a></li>
+      <li><a href="mailto:hello@aixed.org">Contact</a></li>
+    </ul>
+    <p class="footer-copy">©2026 AIxED — All rights reserved</p>
+  </footer>
+
+</body>
+</html>
