@@ -10,668 +10,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --indigo:      #2D2A8F;
-      --indigo-deep: #1E1A6E;
-      --magenta:     #C41F7A;
-      --yellow:      #F5C800;
-      --lavender:    #EAE8F8;
-      --lavender-dark: #B8B3E8;
-      --white:       #FFFFFF;
-      --gray-50:     #F8F8FC;
-      --gray-100:    #EEECF8;
-      --gray-700:    #3A3560;
-      --gray-900:    #1A1830;
-    }
-
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: var(--gray-900); background: var(--white); line-height: 1.6; }
-
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 200;
-      background: var(--indigo-deep);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; height: 124px;
-    }
-    .nav-logo {
-      display: inline-flex; align-items: center; gap: 0;
-      color: var(--white); font-weight: 900; font-size: 2.5rem;
-      letter-spacing: -0.04em; text-decoration: none;
-      line-height: 1; white-space: nowrap; user-select: none;
-    }
-    .nav-logo img { height: 100px; width: auto; display: block; margin-right: -0.55rem; }
-    .nav-logo .x { color: var(--yellow); }
-
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
-    .nav-links > li { position: relative; }
-    .nav-links a {
-      color: rgba(255,255,255,0.8); text-decoration: none;
-      font-size: 0.875rem; font-weight: 500; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--yellow); }
-    .nav-cta {
-      background: var(--magenta); color: var(--white) !important;
-      padding: 0.5rem 1.2rem; border-radius: 6px;
-      font-weight: 700 !important; transition: opacity 0.2s !important;
-    }
-    .nav-cta:hover { opacity: 0.88; }
-
-    /* ── HAMBURGER + MOBILE MENU ── */
-    .nav-hamburger {
-      display: none; flex-direction: column; justify-content: center; gap: 5px;
-      width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: 8px;
-      z-index: 320;
-    }
-    .nav-hamburger span {
-      display: block; height: 3px; width: 100%; background: var(--white);
-      border-radius: 2px; transition: transform 0.25s, opacity 0.25s;
-    }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-    .mobile-menu {
-      position: fixed; top: 0; right: 0; bottom: 0; width: min(82vw, 340px);
-      background: var(--indigo-deep); z-index: 310;
-      padding: 96px 1.4rem 2rem; overflow-y: auto;
-      transform: translateX(100%); transition: transform 0.3s ease;
-      box-shadow: -12px 0 40px rgba(0,0,0,0.4);
-    }
-    .mobile-menu.open { transform: translateX(0); }
-    .mobile-menu a {
-      display: block; color: rgba(255,255,255,0.88); text-decoration: none;
-      font-size: 1.05rem; font-weight: 600; padding: 0.85rem 0.6rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .mobile-menu a:hover { color: var(--yellow); }
-    .mobile-menu-group {
-      color: rgba(255,255,255,0.4); font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 1.2rem 0.6rem 0.3rem; margin: 0;
-    }
-    .mobile-menu a.mobile-menu-sub { padding-left: 1.4rem; font-size: 0.98rem; font-weight: 500; color: rgba(255,255,255,0.7); }
-    .mobile-menu a.mobile-menu-cta {
-      background: var(--magenta); color: var(--white); text-align: center;
-      border-radius: 8px; margin-top: 1.4rem; border: none; font-weight: 800;
-    }
-    .menu-backdrop {
-      display: none; position: fixed; inset: 0; z-index: 305;
-      background: rgba(10,8,40,0.5); opacity: 0; transition: opacity 0.3s;
-    }
-    .menu-backdrop.open { display: block; opacity: 1; }
-
-    /* ── NAV DROPDOWN ── */
-    .nav-dropdown-toggle { display: inline-flex; align-items: center; gap: 0.3rem; }
-    .nav-dropdown-toggle .caret { font-size: 0.7rem; transition: transform 0.2s; }
-    .nav-dropdown:hover .caret { transform: rotate(180deg); }
-    .nav-dropdown-menu {
-      position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
-      background: var(--white); border-radius: 10px; list-style: none;
-      padding: 0.5rem; min-width: 220px;
-      box-shadow: 0 16px 40px rgba(10,8,40,0.28);
-      opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s;
-      z-index: 300;
-    }
-    .nav-dropdown:hover .nav-dropdown-menu {
-      opacity: 1; visibility: visible; transform: translateX(-50%) translateY(2px);
-    }
-    .nav-dropdown-menu::before {
-      content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px;
-    }
-    .nav-dropdown-menu li { width: 100%; }
-    .nav-dropdown-menu a {
-      display: block; padding: 0.6rem 0.9rem; border-radius: 7px;
-      color: var(--gray-900) !important; font-size: 0.85rem; font-weight: 600;
-      transition: background 0.15s, color 0.15s;
-    }
-    .nav-dropdown-menu a:hover { background: var(--lavender); color: var(--indigo) !important; }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative; min-height: 88vh;
-      display: flex; align-items: center;
-      background: var(--indigo); overflow: hidden; padding: 80px 6%;
-    }
-    .hero-bg-x {
-      position: absolute; right: -80px; top: 50%;
-      transform: translateY(-50%);
-      width: 620px; height: auto; opacity: 0.07;
-      user-select: none; pointer-events: none;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(196,31,122,0.18) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .hero-content { position: relative; max-width: 780px; }
-
-    .eyebrow {
-      display: inline-block;
-      background: var(--yellow); color: var(--indigo-deep);
-      font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em;
-      text-transform: uppercase; padding: 0.3rem 0.85rem;
-      border-radius: 4px; margin-bottom: 1.4rem;
-    }
-    .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 3.9rem); font-weight: 900;
-      color: var(--white); line-height: 1.1; margin-bottom: 1.2rem;
-      letter-spacing: -1.5px;
-    }
-    .hero h1 em { font-style: normal; color: var(--yellow); }
-    .hero-subhead {
-      font-size: 1.15rem; color: rgba(255,255,255,0.85);
-      max-width: 600px; margin-bottom: 2rem; line-height: 1.7;
-    }
-    .hero-buttons { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 2rem; }
-
-    /* Key info line — big and clear */
-    .hero-keyinfo {
-      display: flex; flex-wrap: wrap; gap: 0.7rem;
-      align-items: stretch; margin-top: 0.5rem;
-    }
-    .hero-keyinfo-item {
-      display: flex; align-items: center; gap: 0.5rem;
-      flex: 1 1 auto; justify-content: center; white-space: nowrap;
-      font-size: 1.05rem; font-weight: 800; color: var(--white);
-      background: rgba(255,255,255,0.1);
-      border: 1.5px solid rgba(255,255,255,0.2);
-      padding: 0.7rem 1rem; border-radius: 10px;
-      backdrop-filter: blur(4px); text-decoration: none;
-    }
-    .hero-keyinfo-item .ki-icon { font-size: 1.3rem; }
-    a.hero-keyinfo-item { cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
-    a.hero-keyinfo-item.highlight:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,200,0,0.5); }
-    .hero-keyinfo-item.highlight {
-      color: var(--indigo-deep); background: var(--yellow);
-      border-color: var(--yellow);
-      box-shadow: 0 4px 18px rgba(245,200,0,0.4);
-    }
-
-    /* ── BUTTONS ── */
-    .btn-primary {
-      display: inline-block; background: var(--yellow); color: var(--indigo-deep);
-      font-weight: 800; font-size: 1rem; padding: 0.95rem 2.1rem;
-      border-radius: 8px; text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 4px 20px rgba(245,200,0,0.35);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,200,0,0.45); }
-
-    .btn-secondary {
-      display: inline-block; background: transparent; color: var(--white);
-      font-weight: 600; font-size: 0.95rem; padding: 0.9rem 1.8rem;
-      border-radius: 8px; text-decoration: none;
-      border: 2px solid rgba(255,255,255,0.4);
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
-
-    .btn-ghost-white {
-      display: inline-block; background: transparent; color: rgba(255,255,255,0.8);
-      font-weight: 600; font-size: 0.9rem; padding: 0.75rem 1.5rem;
-      border-radius: 8px; text-decoration: none;
-      border: 1.5px solid rgba(255,255,255,0.3);
-      transition: border-color 0.2s, color 0.2s;
-      cursor: pointer;
-    }
-    .btn-ghost-white:hover { border-color: rgba(255,255,255,0.7); color: var(--white); }
-
-    /* ── FACTS STRIP ── */
-    .facts-strip {
-      background: var(--yellow);
-      padding: 2.4rem 6% 3rem;
-      margin-top: 0;
-      position: relative;
-      border-top: 6px solid var(--indigo-deep);
-      border-bottom: 6px solid var(--indigo-deep);
-    }
-    .facts-banner-label {
-      text-align: center; font-size: 0.82rem; font-weight: 800;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--indigo-deep); margin-bottom: 1.8rem;
-    }
-    .facts-banner-label::after {
-      content: ''; display: block; width: 48px; height: 3px;
-      background: var(--indigo-deep); margin: 0.7rem auto 0; border-radius: 2px;
-    }
-    .facts-inner {
-      display: flex; flex-wrap: wrap; gap: 1.5rem;
-      justify-content: center; align-items: stretch;
-      max-width: 1150px; margin: 0 auto;
-    }
-    .fact-item {
-      display: flex; align-items: center; gap: 1rem;
-      text-align: left;
-      padding: 0.4rem 1.8rem; flex: 1 1 auto; min-width: 220px;
-      position: relative;
-    }
-    .fact-item + .fact-item::before {
-      content: ''; position: absolute; left: 0; top: 8%; height: 84%;
-      width: 2px; background: rgba(30,26,110,0.22);
-    }
-    .fact-item .fi {
-      display: flex; align-items: center; justify-content: center;
-      width: 58px; height: 58px; flex-shrink: 0;
-      background: var(--indigo-deep); border-radius: 14px;
-      font-size: 1.7rem; line-height: 1;
-      box-shadow: 0 4px 14px rgba(30,26,110,0.25);
-    }
-    .fact-text { display: flex; flex-direction: column; gap: 0.15rem; }
-    .fact-item .fact-value {
-      color: var(--indigo-deep); font-weight: 900;
-      font-size: 1.55rem; letter-spacing: -0.03em; line-height: 1.1;
-    }
-    .fact-item .fact-label {
-      color: rgba(30,26,110,0.6); font-weight: 700;
-      font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
-    }
-
-    /* ── PAST SPEAKERS ── */
-    .past-speakers-section {
-      background: var(--indigo-deep);
-      padding: 3rem 0 2.5rem;
-      overflow: hidden;
-      border-top: 1px solid rgba(255,255,255,0.07);
-    }
-    .section-tag {
-      text-align: center; font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.13em; text-transform: uppercase;
-      color: rgba(255,255,255,0.35); margin-bottom: 1.6rem;
-    }
-
-    .speakers-marquee-track { overflow: hidden; width: 100%; }
-    .speakers-marquee-inner {
-      display: flex; gap: 1rem; width: max-content;
-      animation: scroll-speakers 52s linear infinite;
-    }
-    .speakers-marquee-track:hover .speakers-marquee-inner { animation-play-state: paused; }
-    @keyframes scroll-speakers {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    .speaker-card {
-      display: flex; align-items: center; gap: 1.3rem;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px; padding: 1.3rem 1.8rem;
-      min-width: 360px; cursor: default;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .speaker-card:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.25); }
-    .speaker-photo {
-      width: 84px; height: 84px; border-radius: 50%;
-      object-fit: cover; object-position: top center;
-      flex-shrink: 0;
-      border: 3px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.08);
-    }
-    .speaker-card:hover .speaker-photo { border-color: var(--yellow); }
-    .speaker-info { display: flex; flex-direction: column; gap: 0.22rem; }
-    .speaker-info strong { font-size: 1.18rem; font-weight: 800; color: var(--white); line-height: 1.2; }
-    .speaker-info .sp-title { font-size: 0.92rem; color: rgba(255,255,255,0.6); line-height: 1.3; }
-    .speaker-info .sp-org { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
-
-    /* ── COMBINED COMMUNITY — two scrolling rows, one category ── */
-    .community-section {
-      background: var(--indigo-deep);
-      padding: 3.5rem 0 3.5rem;
-      overflow: hidden;
-      border-top: 1px solid rgba(255,255,255,0.07);
-    }
-    .community-heading {
-      text-align: center; font-size: 1.7rem; font-weight: 900;
-      color: var(--white); letter-spacing: -0.02em;
-    }
-    .community-sub {
-      text-align: center; font-size: 0.9rem; font-weight: 500;
-      color: rgba(255,255,255,0.45); margin-top: 0.3rem; margin-bottom: 2.4rem;
-    }
-    .marquee-track { overflow: hidden; width: 100%; padding: 0.6rem 0; }
-    .marquee-inner {
-      display: flex; gap: 1.2rem; align-items: center;
-      width: max-content;
-      animation: scroll-logos 42s linear infinite;
-    }
-    .marquee-inner.reverse { animation-direction: reverse; }
-    .marquee-track:hover .marquee-inner { animation-play-state: paused; }
-    @keyframes scroll-logos {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    /* unified logo chip — used for both companies and institutions */
-    .logo-chip {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0.65rem; flex-shrink: 0;
-      background: var(--white); border-radius: 12px;
-      padding: 0.85rem 1.5rem; height: 76px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.18);
-      transition: transform 0.2s;
-    }
-    .logo-chip:hover { transform: translateY(-3px); }
-    .chip-logo {
-      max-height: 44px; max-width: 190px; width: auto; object-fit: contain;
-    }
-    .chip-icon {
-      height: 38px; width: 38px; object-fit: contain; border-radius: 6px; flex-shrink: 0;
-    }
-    .chip-name {
-      font-size: 1rem; font-weight: 800; color: var(--indigo-deep);
-      white-space: nowrap; letter-spacing: -0.01em;
-    }
-
-    /* ── SECTIONS ── */
-    section { padding: 96px 6%; }
-    .section-eyebrow {
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--magenta); margin-bottom: 0.8rem;
-    }
-    .section-heading {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800;
-      color: var(--gray-900); line-height: 1.2; letter-spacing: -0.5px; max-width: 700px;
-    }
-    .section-heading.center { text-align: center; max-width: 100%; }
-    .section-lead {
-      font-size: 1.05rem; color: var(--gray-700);
-      max-width: 640px; margin-top: 1rem; line-height: 1.75;
-    }
-
-    /* ── WHY ATTEND ── */
-    .why-attend { background: var(--gray-50); }
-    .why-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem; margin-top: 3rem;
-    }
-    .why-card {
-      background: var(--white); border-radius: 12px; padding: 2rem;
-      border: 1px solid var(--gray-100);
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .why-card:hover { box-shadow: 0 8px 32px rgba(45,42,143,0.1); transform: translateY(-3px); }
-    .why-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .why-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--indigo); margin-bottom: 0.6rem; }
-    .why-card p { font-size: 0.9rem; color: var(--gray-700); line-height: 1.65; }
-
-    /* ── PROGRAM ── */
-    .program { background: var(--white); }
-    .agenda-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem; margin-top: 2.5rem;
-    }
-    .agenda-item {
-      border-left: 4px solid var(--magenta); padding: 1.2rem 1.5rem;
-      background: var(--lavender); border-radius: 0 10px 10px 0;
-    }
-    .agenda-item p { font-size: 0.9rem; color: var(--gray-700); line-height: 1.6; }
-    .agenda-note {
-      margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--gray-100); border-radius: 8px; padding: 0.7rem 1.2rem;
-      font-size: 0.85rem; color: var(--gray-700); font-weight: 500;
-    }
-
-    /* ── WHO ── */
-    .who { background: var(--lavender); }
-    .roles-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem; }
-    .role-pill {
-      background: var(--white); color: var(--indigo); font-weight: 600;
-      font-size: 0.85rem; padding: 0.5rem 1.1rem; border-radius: 999px;
-      border: 1.5px solid var(--lavender-dark);
-      transition: background 0.2s, color 0.2s;
-    }
-    .role-pill:hover { background: var(--indigo); color: var(--white); border-color: var(--indigo); }
-
-    /* ── MID CTA ── */
-    .cta-band { background: var(--indigo); padding: 88px 6%; text-align: center; }
-    .cta-band .section-heading { color: var(--white); max-width: 100%; margin: 0 auto 1rem; }
-    .cta-band p { color: rgba(255,255,255,0.8); max-width: 520px; margin: 0 auto 2rem; font-size: 1rem; line-height: 1.7; }
-    .cta-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-
-    /* ── STRATEGY COLLABORATIVE ── */
-    .strategy { background: var(--indigo-deep); padding: 96px 6%; }
-    .strategy-eyebrow {
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--lavender-dark); margin-bottom: 0.8rem;
-    }
-    .strategy-title {
-      font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 900;
-      color: var(--white); line-height: 1.15; letter-spacing: -0.5px;
-      max-width: 660px; margin-bottom: 0.6rem;
-    }
-    .strategy-title .sc-name { color: var(--yellow); display: block; }
-    .strategy-subtitle {
-      font-size: 1rem; color: rgba(255,255,255,0.6);
-      max-width: 620px; margin-bottom: 1.8rem; line-height: 1.7;
-    }
-    .strategy-detail {
-      font-size: 0.95rem; color: rgba(255,255,255,0.65);
-      line-height: 1.75; max-width: 640px; margin-top: 1rem;
-    }
-    .strategy-detail strong { color: var(--lavender-dark); }
-
-    /* ── PAST EVENT GALLERY ── */
-    .gallery-section {
-      background: var(--indigo-deep);
-      padding: 0 6% 3.5rem;
-      border-top: 1px solid rgba(255,255,255,0.07);
-    }
-    .gallery-section .section-tag { padding-top: 3rem; }
-    .gallery-grid {
-      display: grid; grid-template-columns: repeat(5, 1fr);
-      gap: 0.7rem; max-width: 1200px; margin: 1.4rem auto 0;
-    }
-    .gallery-item {
-      border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3;
-      background: rgba(255,255,255,0.06);
-    }
-    .gallery-item img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      opacity: 1; transition: opacity 0.4s ease;
-    }
-
-    /* ── VENUE & LOCATION ── */
-    .venue-section { background: var(--white); }
-    .venue-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
-      align-items: center; max-width: 1150px; margin: 0 auto;
-    }
-    .venue-photo-wrap { position: relative; }
-    .venue-photo {
-      width: 100%; height: 100%; max-height: 420px; object-fit: cover;
-      border-radius: 16px; display: block;
-      box-shadow: 0 16px 48px rgba(45,42,143,0.18);
-      opacity: 1; transition: opacity 0.45s ease;
-    }
-    .venue-host-badge {
-      position: absolute; bottom: 1rem; left: 1rem;
-      background: var(--yellow); color: var(--indigo-deep);
-      font-weight: 800; font-size: 0.82rem; padding: 0.5rem 1rem;
-      border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-    }
-    .venue-days { display: flex; flex-direction: column; gap: 1rem; margin: 1.8rem 0; }
-    .venue-day {
-      display: flex; flex-direction: column; gap: 0.25rem;
-      border-left: 4px solid var(--magenta); padding: 0.6rem 0 0.6rem 1rem;
-      text-decoration: none; transition: border-color 0.2s, transform 0.2s;
-    }
-    .venue-day:hover { border-left-color: var(--indigo); transform: translateX(3px); }
-    .venue-day:hover .vd-addr { color: var(--indigo); }
-    .vd-label { font-weight: 800; font-size: 0.92rem; color: var(--indigo); }
-    .vd-addr { font-size: 0.9rem; color: var(--gray-700); }
-
-    /* ── ABOUT + FOUNDER ── */
-    .about-section { background: var(--gray-50); }
-    .about-note { font-size: 0.78rem; color: var(--lavender-dark); font-style: italic; margin-top: 0.6rem; }
-    .about-links {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem; margin-top: 2.4rem;
-    }
-    .about-link-card {
-      display: flex; flex-direction: column; gap: 0.3rem;
-      background: var(--white); border: 1px solid var(--gray-100);
-      border-radius: 12px; padding: 1.3rem 1.5rem; text-decoration: none;
-      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
-    }
-    .about-link-card:hover { box-shadow: 0 8px 28px rgba(45,42,143,0.12); transform: translateY(-3px); border-color: var(--lavender-dark); }
-    .about-link-card .al-title { font-size: 1rem; font-weight: 800; color: var(--indigo); }
-    .about-link-card .al-sub { font-size: 0.82rem; color: var(--gray-700); }
-
-    .founder-card {
-      display: flex; align-items: center; gap: 1.8rem;
-      background: var(--white); border: 1px solid var(--gray-100);
-      border-radius: 16px; padding: 2rem; margin-top: 2.5rem; max-width: 720px;
-    }
-    .founder-photo {
-      width: 110px; height: 110px; border-radius: 50%;
-      object-fit: cover; flex-shrink: 0;
-      border: 4px solid var(--lavender);
-    }
-    .founder-label {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--magenta);
-    }
-    .founder-name { font-size: 1.5rem; font-weight: 800; color: var(--gray-900); margin: 0.2rem 0 0.5rem; }
-    .founder-bio { font-size: 0.95rem; color: var(--gray-700); line-height: 1.65; }
-    .founder-bio em { color: var(--lavender-dark); }
-
-    /* ── CLOSING CTA ── */
-    .closing { background: var(--magenta); padding: 80px 6%; text-align: center; }
-    .closing .section-heading { color: var(--white); max-width: 100%; margin: 0 auto 0.8rem; }
-    .closing p { color: rgba(255,255,255,0.88); margin: 0 auto 2rem; max-width: 500px; font-size: 1rem; line-height: 1.7; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--gray-900); padding: 48px 6%;
-      display: flex; flex-wrap: wrap; align-items: flex-start;
-      justify-content: space-between; gap: 2rem;
-    }
-    .footer-brand-block { display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-logo-main {
-      display: flex; align-items: center; gap: 0;
-      color: var(--white); font-weight: 900; font-size: 2.6rem;
-      letter-spacing: -0.05em; line-height: 1; white-space: nowrap;
-    }
-    .footer-logo-main img { height: 56px; width: auto; display: block; margin-right: -0.3rem; }
-    .footer-logo-main .x { color: var(--yellow); }
-    .footer-logo-bracket {
-      color: rgba(255,255,255,0.35); font-weight: 700;
-      font-size: 0.85rem; letter-spacing: 0.06em;
-    }
-    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; align-items: center; }
-    .footer-links a {
-      color: rgba(255,255,255,0.5); text-decoration: none;
-      font-size: 0.85rem; transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--white); }
-    .footer-copy {
-      color: rgba(255,255,255,0.3); font-size: 0.78rem;
-      width: 100%; text-align: center; margin-top: 0.5rem;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .nav-links { gap: 1.2rem; }
-      .nav-links a { font-size: 0.8rem; }
-    }
-
-    @media (max-width: 768px) {
-      /* Nav */
-      nav { height: 72px; padding: 0 5%; }
-      .nav-logo { font-size: 1.5rem; gap: 0.45rem; }
-      .nav-logo img { height: 52px; }
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-
-      /* Hero */
-      .hero { padding: 48px 6% 52px; min-height: auto; }
-      .hero h1 { font-size: 2rem; letter-spacing: -0.5px; }
-      .hero-subhead { font-size: 0.95rem; }
-      .hero-bg-x { display: none; }
-      .hero-buttons { gap: 0.7rem; }
-      .hero-buttons a { flex: 1 1 auto; text-align: center; }
-      .hero-keyinfo { gap: 0.6rem; }
-      .hero-keyinfo-item { flex: 1 1 100%; font-size: 0.95rem; padding: 0.65rem 0.9rem; }
-
-      /* Facts strip */
-      .facts-strip { padding: 2rem 5%; border-top-width: 4px; border-bottom-width: 4px; }
-      .facts-banner-label { font-size: 0.74rem; margin-bottom: 1.4rem; }
-      .facts-inner { gap: 1.3rem; }
-      .fact-item { flex: 1 1 100%; min-width: 100%; padding: 0 0.5rem; gap: 0.9rem; }
-      .fact-item .fact-value { font-size: 1.2rem; }
-      .fact-item .fi { width: 48px; height: 48px; font-size: 1.4rem; }
-      .fact-item + .fact-item::before { display: none; }
-
-      /* Community — logo chips + speaker cards */
-      .community-section { padding: 2.6rem 0; }
-      .community-heading { font-size: 1.35rem; }
-      .community-sub { font-size: 0.82rem; margin-bottom: 1.8rem; padding: 0 5%; }
-      .logo-chip { height: 60px; padding: 0.6rem 1.1rem; gap: 0.5rem; }
-      .chip-logo { max-height: 34px; max-width: 140px; }
-      .chip-icon { height: 30px; width: 30px; }
-      .chip-name { font-size: 0.88rem; }
-      .marquee-inner { animation-duration: 32s; gap: 0.9rem; }
-
-      .speaker-card { min-width: 280px; padding: 1rem 1.3rem; gap: 1rem; }
-      .speaker-photo { width: 64px; height: 64px; }
-      .speaker-info strong { font-size: 1.02rem; }
-      .speaker-info .sp-title { font-size: 0.82rem; }
-      .speakers-marquee-inner { animation-duration: 60s; }
-
-      /* Generic sections */
-      section { padding: 56px 6%; }
-      .section-heading { font-size: 1.6rem; }
-      .section-lead { font-size: 0.95rem; }
-      .why-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .agenda-grid { grid-template-columns: 1fr; }
-      .roles-grid { gap: 0.5rem; }
-
-      /* CTAs */
-      .cta-band { padding: 56px 6%; }
-      .cta-buttons { flex-direction: column; align-items: stretch; }
-      .cta-buttons a, .cta-buttons button { text-align: center; }
-      .strategy { padding: 56px 6%; }
-      .strategy-title { font-size: 1.7rem; }
-      .closing { padding: 56px 6%; }
-      .closing .cta-buttons { flex-direction: column; align-items: stretch; }
-
-      /* Footer */
-      footer { padding: 36px 6%; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-      .footer-logo-main { font-size: 2rem; }
-      .footer-logo-main img { height: 44px; }
-      .footer-links { gap: 1rem 1.4rem; }
-
-      /* Gallery + Venue */
-      .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-      .gallery-section { padding: 0 5% 2.6rem; }
-      .venue-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-      .venue-photo { max-height: 280px; }
-
-      /* About + Founder */
-      .about-links { grid-template-columns: 1fr; }
-      .founder-card { flex-direction: column; text-align: center; padding: 1.6rem; gap: 1.1rem; }
-      .founder-name { font-size: 1.3rem; }
-
-      .nav-logo img { margin-right: -0.3rem; }
-    }
-
-    @media (max-width: 420px) {
-      .hero h1 { font-size: 1.7rem; }
-      .hero .eyebrow { font-size: 0.68rem; }
-      .nav-logo span, .nav-logo { font-size: 1.3rem; }
-      .nav-logo img { height: 46px; }
-      .footer-logo-main { font-size: 1.7rem; }
-      .footer-logo-main img { height: 38px; }
-      .community-heading { font-size: 1.2rem; }
-      .section-heading { font-size: 1.4rem; }
-      .strategy-title { font-size: 1.45rem; }
-      .speaker-card { min-width: 250px; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/site.css" />
 </head>
 <body>
+
+<!-- ── ANNOUNCEMENT BAR (early bird) ── -->
+<a class="announce-bar" href="https://luma.com/57fpsxku" target="_blank" rel="noopener">
+  🎟 <strong>Early Bird</strong> — save <strong>20%</strong> on Workforce Summit tickets. <span class="announce-cta">Register now →</span>
+</a>
 
 <!-- ── NAV ── -->
 <nav>
@@ -690,7 +36,7 @@
         <li><a href="https://www.aixed.org/advisory-board" target="_blank" rel="noopener">Advisory Board</a></li>
       </ul>
     </li>
-    <li><a href="https://luma.com/zp86bilc" target="_blank" rel="noopener" class="nav-cta">Register</a></li>
+    <li><a href="https://luma.com/57fpsxku" target="_blank" rel="noopener" class="nav-cta">Register</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -708,14 +54,15 @@
   <a href="https://www.aixed.org/2025" class="mobile-menu-sub" target="_blank" rel="noopener" onclick="closeMenu()">AIxEd November 2025</a>
   <a href="https://www.aixed.org/connect2026" class="mobile-menu-sub" target="_blank" rel="noopener" onclick="closeMenu()">AIxEd May 2026</a>
   <a href="https://www.aixed.org/advisory-board" class="mobile-menu-sub" target="_blank" rel="noopener" onclick="closeMenu()">Advisory Board</a>
-  <a href="https://luma.com/zp86bilc" class="mobile-menu-cta" target="_blank" rel="noopener" onclick="closeMenu()">Register</a>
+  <a href="https://luma.com/57fpsxku" class="mobile-menu-cta" target="_blank" rel="noopener" onclick="closeMenu()">Register</a>
 </div>
 <div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
 
 <!-- ── 1. HERO ── -->
 <section class="hero" id="summit">
-  <img class="hero-bg-x" src="assets/logos/aixed-x.png" alt="" aria-hidden="true" />
+  <img class="hero-photo" src="assets/photos/venue/bu-cds.jpg" alt="Boston University Center for Computing &amp; Data Sciences" />
   <div class="hero-overlay"></div>
+  <span class="hero-photo-credit">Hosted by Boston University</span>
   <div class="hero-content">
     <span class="eyebrow">AIxEd Workforce Summit &nbsp;·&nbsp; November 10, 2026 &nbsp;·&nbsp; Hosted by Boston University</span>
     <h1>The skills and workforce<br/>the <em>AI era</em> demands.</h1>
@@ -723,13 +70,14 @@
       A one-day summit following the pipeline from school to career, bringing together government, industry, and education leaders on how we prepare people for work in the age of AI. Hosted by Boston University.
     </p>
     <div class="hero-buttons">
-      <a href="https://luma.com/zp86bilc" target="_blank" rel="noopener" class="btn-primary">Register now</a>
+      <a href="https://luma.com/57fpsxku" target="_blank" rel="noopener" class="btn-primary btn-earlybird">
+        Register Now <span class="eb-tag">20% Off · Early Bird</span>
+      </a>
       <a href="#program" class="btn-secondary">See the program</a>
     </div>
     <div class="hero-keyinfo">
       <div class="hero-keyinfo-item"><span class="ki-icon">📅</span> November 10, 2026</div>
-      <div class="hero-keyinfo-item"><span class="ki-icon">📍</span> Boston University</div>
-      <a href="https://luma.com/zp86bilc" target="_blank" rel="noopener" class="hero-keyinfo-item highlight"><span class="ki-icon">🎟</span> $350 — 20% Off</a>
+      <div class="hero-keyinfo-item"><span class="ki-icon">🎟</span> Tickets $350</div>
     </div>
   </div>
 </section>
@@ -782,7 +130,7 @@
     <div class="speakers-marquee-inner">
 
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_e1b73c50b6414c3b8f96cc8db72c1663~mv2.jpg" alt="Stephen Zrike Jr." />
+        <img class="speaker-photo" src="assets/speakers/sp-zrike.jpg" alt="Stephen Zrike Jr." />
         <div class="speaker-info">
           <strong>Stephen Zrike Jr.</strong>
           <span class="sp-title">Secretary of Education</span>
@@ -791,7 +139,7 @@
       </div>
 
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_4ec54a4863b74802bb48fa802e7da232~mv2.jpg" alt="Daniela Rus" />
+        <img class="speaker-photo" src="assets/speakers/sp-rus.jpg" alt="Daniela Rus" />
         <div class="speaker-info">
           <strong>Daniela Rus</strong>
           <span class="sp-title">Director, CSAIL</span>
@@ -800,7 +148,7 @@
       </div>
 
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_60d537e0d8c74aae942d6d8e272763da~mv2.jpg" alt="Ken Henderson" />
+        <img class="speaker-photo" src="assets/speakers/sp-henderson.jpg" alt="Ken Henderson" />
         <div class="speaker-info">
           <strong>Ken Henderson</strong>
           <span class="sp-title">Chancellor</span>
@@ -809,7 +157,7 @@
       </div>
 
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_b0a98b9667ce4e5891482b443143e698~mv2.jpg" alt="Noe Ortega" />
+        <img class="speaker-photo" src="assets/speakers/sp-ortega.jpg" alt="Noe Ortega" />
         <div class="speaker-info">
           <strong>Noe Ortega</strong>
           <span class="sp-title">Commissioner of Higher Education</span>
@@ -818,7 +166,7 @@
       </div>
 
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_51efe9ef6c2941cea0b77bf4b65a3e8d~mv2.jpg" alt="Michael Littman" />
+        <img class="speaker-photo" src="assets/speakers/sp-littman.jpg" alt="Michael Littman" />
         <div class="speaker-info">
           <strong>Michael Littman</strong>
           <span class="sp-title">Assoc. Provost for AI</span>
@@ -827,7 +175,7 @@
       </div>
 
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_14f2d3d41a44446badd51ffcc282ef58~mv2.jpg" alt="Michael O. Moore" />
+        <img class="speaker-photo" src="assets/speakers/sp-moore.jpg" alt="Michael O. Moore" />
         <div class="speaker-info">
           <strong>Michael O. Moore</strong>
           <span class="sp-title">State Senator</span>
@@ -836,7 +184,7 @@
       </div>
 
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_89699a930cf0463fa5c0561167e539c1~mv2.jpg" alt="Usama Fayyad" />
+        <img class="speaker-photo" src="assets/speakers/sp-fayyad.jpg" alt="Usama Fayyad" />
         <div class="speaker-info">
           <strong>Usama Fayyad</strong>
           <span class="sp-title">Senior Vice Provost</span>
@@ -845,7 +193,7 @@
       </div>
 
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_78235f4760104be0b0616126b0eb86ef~mv2.jpeg" alt="Ola Ozernov-Palchik" />
+        <img class="speaker-photo" src="assets/speakers/sp-ola.jpg" alt="Ola Ozernov-Palchik" />
         <div class="speaker-info">
           <strong>Ola Ozernov-Palchik</strong>
           <span class="sp-title">Research Scientist</span>
@@ -854,7 +202,7 @@
       </div>
 
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_35e3df32b6a4451c9b33d359dcf6b0f0~mv2.jpeg" alt="Cansu Canca" />
+        <img class="speaker-photo" src="assets/speakers/sp-canca.jpg" alt="Cansu Canca" />
         <div class="speaker-info">
           <strong>Cansu Canca</strong>
           <span class="sp-title">Head of Responsible AI</span>
@@ -863,7 +211,7 @@
       </div>
 
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_e0f9bda18e164c5493df6b2b3c9caef9~mv2.png" alt="Gaurav Vazirani" />
+        <img class="speaker-photo" src="assets/speakers/sp-vazirani.jpg" alt="Gaurav Vazirani" />
         <div class="speaker-info">
           <strong>Gaurav Vazirani</strong>
           <span class="sp-title">Managing Director</span>
@@ -873,7 +221,7 @@
 
       <!-- duplicate for seamless loop -->
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_e1b73c50b6414c3b8f96cc8db72c1663~mv2.jpg" alt="Stephen Zrike Jr." />
+        <img class="speaker-photo" src="assets/speakers/sp-zrike.jpg" alt="Stephen Zrike Jr." />
         <div class="speaker-info">
           <strong>Stephen Zrike Jr.</strong>
           <span class="sp-title">Secretary of Education</span>
@@ -881,7 +229,7 @@
         </div>
       </div>
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_4ec54a4863b74802bb48fa802e7da232~mv2.jpg" alt="Daniela Rus" />
+        <img class="speaker-photo" src="assets/speakers/sp-rus.jpg" alt="Daniela Rus" />
         <div class="speaker-info">
           <strong>Daniela Rus</strong>
           <span class="sp-title">Director, CSAIL</span>
@@ -889,7 +237,7 @@
         </div>
       </div>
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_60d537e0d8c74aae942d6d8e272763da~mv2.jpg" alt="Ken Henderson" />
+        <img class="speaker-photo" src="assets/speakers/sp-henderson.jpg" alt="Ken Henderson" />
         <div class="speaker-info">
           <strong>Ken Henderson</strong>
           <span class="sp-title">Chancellor</span>
@@ -897,7 +245,7 @@
         </div>
       </div>
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_b0a98b9667ce4e5891482b443143e698~mv2.jpg" alt="Noe Ortega" />
+        <img class="speaker-photo" src="assets/speakers/sp-ortega.jpg" alt="Noe Ortega" />
         <div class="speaker-info">
           <strong>Noe Ortega</strong>
           <span class="sp-title">Commissioner of Higher Education</span>
@@ -905,7 +253,7 @@
         </div>
       </div>
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_51efe9ef6c2941cea0b77bf4b65a3e8d~mv2.jpg" alt="Michael Littman" />
+        <img class="speaker-photo" src="assets/speakers/sp-littman.jpg" alt="Michael Littman" />
         <div class="speaker-info">
           <strong>Michael Littman</strong>
           <span class="sp-title">Assoc. Provost for AI</span>
@@ -913,7 +261,7 @@
         </div>
       </div>
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_14f2d3d41a44446badd51ffcc282ef58~mv2.jpg" alt="Michael O. Moore" />
+        <img class="speaker-photo" src="assets/speakers/sp-moore.jpg" alt="Michael O. Moore" />
         <div class="speaker-info">
           <strong>Michael O. Moore</strong>
           <span class="sp-title">State Senator</span>
@@ -921,7 +269,7 @@
         </div>
       </div>
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_89699a930cf0463fa5c0561167e539c1~mv2.jpg" alt="Usama Fayyad" />
+        <img class="speaker-photo" src="assets/speakers/sp-fayyad.jpg" alt="Usama Fayyad" />
         <div class="speaker-info">
           <strong>Usama Fayyad</strong>
           <span class="sp-title">Senior Vice Provost</span>
@@ -929,7 +277,7 @@
         </div>
       </div>
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_78235f4760104be0b0616126b0eb86ef~mv2.jpeg" alt="Ola Ozernov-Palchik" />
+        <img class="speaker-photo" src="assets/speakers/sp-ola.jpg" alt="Ola Ozernov-Palchik" />
         <div class="speaker-info">
           <strong>Ola Ozernov-Palchik</strong>
           <span class="sp-title">Research Scientist</span>
@@ -937,7 +285,7 @@
         </div>
       </div>
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_35e3df32b6a4451c9b33d359dcf6b0f0~mv2.jpeg" alt="Cansu Canca" />
+        <img class="speaker-photo" src="assets/speakers/sp-canca.jpg" alt="Cansu Canca" />
         <div class="speaker-info">
           <strong>Cansu Canca</strong>
           <span class="sp-title">Head of Responsible AI</span>
@@ -945,7 +293,7 @@
         </div>
       </div>
       <div class="speaker-card">
-        <img class="speaker-photo" src="https://static.wixstatic.com/media/808514_e0f9bda18e164c5493df6b2b3c9caef9~mv2.png" alt="Gaurav Vazirani" />
+        <img class="speaker-photo" src="assets/speakers/sp-vazirani.jpg" alt="Gaurav Vazirani" />
         <div class="speaker-info">
           <strong>Gaurav Vazirani</strong>
           <span class="sp-title">Managing Director</span>
@@ -1068,7 +416,7 @@
   <h2 class="section-heading center">Join us at AIxEd Workforce Summit<br/>on November 10</h2>
   <p>Be part of the conversation that connects education, talent, and the future of work.</p>
   <div class="cta-buttons">
-    <a href="https://luma.com/zp86bilc" target="_blank" rel="noopener" class="btn-primary">Register now — 20% Off</a>
+    <a href="https://luma.com/57fpsxku" target="_blank" rel="noopener" class="btn-primary">Register now — 20% Off Early Bird</a>
     <a href="mailto:hello@aixed.org" class="btn-secondary">Explore sponsorship</a>
   </div>
 </div>
@@ -1126,7 +474,7 @@
       <span class="founder-label">Founder</span>
       <h3 class="founder-name">Hamit Hamutcu</h3>
       <p class="founder-bio">
-        Founder of AIxEd. <em>[Placeholder bio — to be replaced with final text and any updates.]</em>
+        Hamit Hamutcu is the founder of AIxEd, bringing 30 years of experience in data and AI across industry and consulting. He is co-founder of the Initiative for Analytics and Data Science Standards (IADSS), a nonprofit developing industry standards for data and AI literacy, and has served as a Senior Advisor at Northeastern University's Institute for Experiential AI, leading strategy and AI upskilling programs. Earlier, he was a founding partner of Peppers &amp; Rogers Group's EMEA offices and held marketing-analytics and technology leadership roles at FedEx. He holds a B.S. in electronics engineering from Boğaziçi University and an MBA from the University of Florida.
       </p>
     </div>
   </div>
@@ -1137,7 +485,7 @@
   <h2 class="section-heading">Be part of AIxEd Fall 2026</h2>
   <p>Register for the Workforce Summit, explore sponsorship, or request an invitation to the Strategy Collaborative.</p>
   <div class="cta-buttons">
-    <a href="https://luma.com/zp86bilc" target="_blank" rel="noopener" class="btn-primary" style="background:var(--yellow);color:var(--indigo-deep);">Register for the Summit</a>
+    <a href="https://luma.com/57fpsxku" target="_blank" rel="noopener" class="btn-primary" style="background:var(--yellow);color:var(--indigo-deep);">Register for the Summit</a>
     <a href="mailto:hello@aixed.org" class="btn-ghost-white">Explore sponsorship</a>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSeh8BuJDRsr8WVuIP3DDKWyzjT6YNeSSowMYDCJRyyPg9nwSA/viewform" target="_blank" rel="noopener" class="btn-ghost-white">Request a Strategy Collaborative invitation</a>
   </div>
@@ -1165,51 +513,27 @@
 </footer>
 
 <script>
-  /* Rotating past-event gallery — pool of web-optimized photos in assets/photos/events-web/.
-     Shows TILE_COUNT tiles that cross-fade to fresh random photos on a stagger. */
-  (function rotatingGallery() {
+  /* Past-event gallery — static 3×3 of the 9 photos in assets/photos/events-web/ */
+  (function buildGallery() {
     const grid = document.getElementById('galleryGrid');
-    const POOL_SIZE = 40, TILE_COUNT = 10;
-    const pool = [];
-    for (let i = 1; i <= POOL_SIZE; i++) pool.push(`assets/photos/events-web/ev-${String(i).padStart(2,'0')}.jpg`);
-    // shuffle
-    for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
-    let cursor = 0;
-    const next = () => { const s = pool[cursor % pool.length]; cursor++; return s; };
-    const current = [];   // tracks the relative src shown in each tile
-    const tiles = [];
-    for (let i = 0; i < TILE_COUNT; i++) {
-      const fig = document.createElement('div');
-      fig.className = 'gallery-item';
-      const img = document.createElement('img');
-      img.loading = 'lazy'; img.alt = 'AIxEd event';
-      const src = next(); img.src = src;
-      current.push(src);
-      fig.appendChild(img); grid.appendChild(fig); tiles.push(img);
+    if (!grid) return;
+    let html = '';
+    for (let i = 1; i <= 9; i++) {
+      html += `<div class="gallery-item"><img loading="lazy" alt="AIxEd event" src="assets/photos/events-web/event-${i}.jpg" /></div>`;
     }
-    // periodically swap a random tile with a fresh photo not currently visible
-    let tick = 0;
-    setInterval(() => {
-      const idx = tick % TILE_COUNT; tick++;
-      let src = next(); let guard = 0;
-      while (current.includes(src) && guard++ < POOL_SIZE) src = next();
-      const img = tiles[idx];
-      const pre = new Image();
-      pre.onload = () => {
-        img.style.opacity = '0';
-        setTimeout(() => { img.src = src; current[idx] = src; img.style.opacity = '1'; }, 280);
-      };
-      pre.src = src;
-    }, 2200);
+    grid.innerHTML = html;
   })();
 
-  /* Rotating venue photo — cycles through assets/photos/venue/gsu-1..6.jpg */
+  /* Rotating venue photo — cycles through the available venue shots */
   (function rotatingVenue() {
     const el = document.getElementById('venuePhoto');
     if (!el) return;
-    const imgs = [];
-    for (let i = 1; i <= 6; i++) imgs.push(`assets/photos/venue/gsu-${i}.jpg`);
-    let i = imgs.indexOf('assets/photos/venue/gsu-2.jpg'); if (i < 0) i = 0;
+    const imgs = [
+      'assets/photos/venue/gsu-2.jpg',
+      'assets/photos/venue/gsu-1.jpg',
+      'assets/photos/venue/gsu-3.jpg',
+    ];
+    let i = 0;
     setInterval(() => {
       i = (i + 1) % imgs.length;
       const pre = new Image();
@@ -1252,30 +576,30 @@
     { name: 'Muzzy Lane',       logo: 'assets/logos/muzzylane.png' },
     { name: 'MIT',              icon: 'assets/logos/org-mit.png' },
     { name: 'Skillwell',        logo: 'assets/logos/skillwell.png' },
-    { name: 'Harvard',          icon: 'assets/logos/org-harvard.png' },
+    { name: 'Harvard University',          icon: 'assets/logos/org-harvard.png' },
     { name: 'Playlab.ai',       icon: 'assets/logos/sp-playlab.png' },
-    { name: 'Northeastern',     icon: 'assets/logos/org-northeastern.png' },
-    { name: 'Video Notebook',   logo: 'assets/logos/videonotebook.png' },
+    { name: 'Northeastern University',     icon: 'assets/logos/org-northeastern.png' },
+    { name: 'NotebookLM',   logo: 'assets/logos/videonotebook.png' },
     { name: 'Boston University', icon: 'assets/logos/org-bu.png' },
     { name: 'LabXchange',       icon: 'assets/logos/sp-labxchange.png' },
-    { name: 'Cornell',          icon: 'assets/logos/org-cornell.png' },
+    { name: 'Cornell University',          icon: 'assets/logos/org-cornell.png' },
     { name: 'Doowii',           logo: 'assets/logos/doowii.png' },
-    { name: 'Brown',            icon: 'assets/logos/org-brown.png' },
+    { name: 'Brown University',            icon: 'assets/logos/org-brown.png' },
     { name: 'HelioCampus',      icon: 'assets/logos/sp-heliocampus.png' },
     { name: 'Boston College',   icon: 'assets/logos/org-bc.png' },
     { name: 'sideby.ai',        icon: 'assets/logos/sp-sideby.png' },
-    { name: 'Babson',           icon: 'assets/logos/org-babson.png' },
+    { name: 'Babson College',           icon: 'assets/logos/org-babson.png' },
     { name: 'PedagogyVentures', icon: 'assets/logos/sp-pedagogyventures.png' },
     { name: 'UMass Boston',     icon: 'assets/logos/org-umb.png' },
-    { name: 'App Inventor',     icon: 'assets/logos/sp-appinventor.png' },
+    { name: 'App Inventor Foundation',     icon: 'assets/logos/sp-appinventor.png' },
     { name: 'Indiana University', icon: 'assets/logos/org-iu.png' },
-    { name: 'Suffolk',          icon: 'assets/logos/org-suffolk.png' },
-    { name: 'Commonwealth of MA', icon: 'assets/logos/org-massgov.png' },
-    { name: 'Bridgewater State', icon: 'assets/logos/org-bridgew.png' },
-    { name: 'NYU',              icon: 'assets/logos/org-nyu.png' },
-    { name: 'Bunker Hill CC',   icon: 'assets/logos/org-bhcc.png' },
+    { name: 'Suffolk University',          icon: 'assets/logos/org-suffolk.png' },
+    { name: 'Commonwealth of Massachusetts', icon: 'assets/logos/org-massgov.png' },
+    { name: 'Bridgewater State University', icon: 'assets/logos/org-bridgew.png' },
+    { name: 'New York University',              icon: 'assets/logos/org-nyu.png' },
+    { name: 'Bunker Hill Community College',   icon: 'assets/logos/org-bhcc.png' },
     { name: 'Huron Consulting', icon: 'assets/logos/org-huron.png' },
-    { name: 'Endicott',         icon: 'assets/logos/org-endicott.png' },
+    { name: 'Endicott College',         icon: 'assets/logos/org-endicott.png' },
   ];
 
   /* Split into two rows; duplicate each row for a seamless loop */
