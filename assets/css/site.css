@@ -501,7 +501,7 @@
     .gallery-section .section-tag { padding-top: 3rem; }
     .gallery-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0.9rem; max-width: 980px; margin: 1.4rem auto 0;
+      gap: 1rem; max-width: 1200px; margin: 1.4rem auto 0;
     }
     .gallery-item {
       border-radius: 12px; overflow: hidden; aspect-ratio: 3 / 2;
