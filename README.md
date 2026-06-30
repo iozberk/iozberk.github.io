@@ -46,8 +46,8 @@ To serve at `summit.aixed.org`:
 
 ## External links (configured)
 
-- Register → Luma: https://luma.com/zp86bilc
-- Strategy Collaborative invite → Google Form
+- Register → Luma: https://luma.com/9dv2pace
+- Strategy Collaborative invite → Luma: https://luma.com/08e2wl19
 - Past events / Advisory Board → aixed.org
 
 ## TODO (owner)
