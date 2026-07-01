@@ -807,3 +807,130 @@
   .gallery-page-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
   .people-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
 }
+
+/* ── SUBPAGE CORE UTILITIES & LAYOUTS ── */
+.section-padding { padding: 80px 6%; }
+.page-container { max-width: 900px; margin: 0 auto; }
+.page-container-wide { max-width: 1050px; margin: 0 auto; }
+
+.about-mission-heading { font-size: 2.2rem; font-weight: 800; color: var(--gray-900); margin-bottom: 1.5rem; letter-spacing: -0.5px; }
+.about-mission-lead { font-size: 1.15rem; color: var(--gray-700); line-height: 1.75; margin-bottom: 2.5rem; }
+.about-initiative-heading { font-size: 1.8rem; font-weight: 800; color: var(--gray-900); text-align: center; margin-bottom: 2.5rem; letter-spacing: -0.5px; }
+
+/* Biography Layout (e.g. founder.html) */
+.bio-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+.bio-left {
+  position: sticky;
+  top: 130px;
+  text-align: center;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(10,8,40,0.04);
+}
+.bio-left .founder-photo {
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 1.5rem;
+  border: 6px solid var(--lavender);
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+.bio-social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1.8rem;
+  border-top: 1px solid var(--gray-100);
+  padding-top: 1.5rem;
+}
+.bio-link-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--indigo);
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  background: var(--gray-50);
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.bio-link-item:hover {
+  background: var(--lavender);
+  color: var(--indigo-deep);
+}
+.bio-content h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+.bio-content p {
+  font-size: 1.1rem;
+  color: var(--gray-700);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+.roles-list {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--gray-100);
+}
+.roles-list h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--indigo-deep);
+  margin-bottom: 1.2rem;
+}
+.role-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+.role-bullet {
+  background: var(--magenta);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.2rem;
+}
+.role-details {
+  display: flex;
+  flex-direction: column;
+}
+.role-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--gray-900);
+}
+.role-org {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  margin-top: 0.1rem;
+}
+@media (max-width: 992px) {
+  .bio-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .bio-left {
+    position: relative;
+    top: 0;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+}

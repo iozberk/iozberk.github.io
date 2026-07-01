@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advisory Board — AIxEd</title>
+  <meta name="description" content="Meet the members of the AIxEd Advisory Board: a cross-section of university leaders, AI researchers, and industry experts guiding the future of AI in education." />
+  <link rel="icon" type="image/png" href="assets/logos/aixed-x.png" />
+  <link rel="apple-touch-icon" href="assets/logos/aixed-x.png" />
+  <meta name="theme-color" content="#1E1A6E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <style>
+    .advisory-grid {
+      grid-template-columns: repeat(4, 1fr) !important;
+    }
+    @media (max-width: 992px) {
+      .advisory-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    @media (max-width: 576px) {
+      .advisory-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── ANNOUNCEMENT BAR (early bird) ── -->
+<a class="announce-bar" href="https://luma.com/9dv2pace" target="_blank" rel="noopener">
+  🎟 Use code <strong>NOV2026</strong> to save <strong>20%</strong> on Workforce Summit tickets (valid until July 31). <span class="announce-cta">Register now →</span>
+</a>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/logos/aixed-x.png" alt="AIxEd" />AIx<span class="x">Ed</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#summit">Workforce Summit</a></li>
+    <li><a href="index.html#strategy">Strategy Collaborative</a></li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">AIxEd 2026 <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="https://www.aixed.ai/connect2026" target="_blank" rel="noopener">AIxEd May 2026</a></li>
+        <li><a href="https://www.aixed.ai/connect" target="_blank" rel="noopener">Connect Program</a></li>
+        <li><a href="https://www.aixed.ai/leadershipsummit2026" target="_blank" rel="noopener">Leadership Summit</a></li>
+        <li><a href="https://www.aixed.ai/2026speakers" target="_blank" rel="noopener">2026 Speakers</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">AIxEd 2025 <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="https://www.aixed.ai/2025" target="_blank" rel="noopener">AIxEd November 2025</a></li>
+        <li><a href="https://www.aixed.ai/2025speakers" target="_blank" rel="noopener">2025 Speakers</a></li>
+        <li><a href="https://www.aixed.ai/2025gallery" target="_blank" rel="noopener">Gallery</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="about.html" class="nav-dropdown-toggle">About <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="about.html">About AIxEd</a></li>
+        <li><a href="founder.html">Founder</a></li>
+        <li><a href="advisory-board.html">Advisory Board</a></li>
+      </ul>
+    </li>
+    <li><a href="https://luma.com/9dv2pace" target="_blank" rel="noopener" class="nav-cta">Register</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="index.html#summit" onclick="closeMenu()">Workforce Summit</a>
+  <a href="index.html#strategy" onclick="closeMenu()">Strategy Collaborative</a>
+  <p class="mobile-menu-group">AIxEd 2026</p>
+  <a href="https://www.aixed.ai/connect2026" class="mobile-menu-sub" target="_blank" rel="noopener" onclick="closeMenu()">AIxEd May 2026</a>
+  <a href="https://www.aixed.ai/connect" class="mobile-menu-sub" target="_blank" rel="noopener" onclick="closeMenu()">Connect Program</a>
+  <a href="https://www.aixed.ai/leadershipsummit2026" class="mobile-menu-sub" target="_blank" rel="noopener" onclick="closeMenu()">Leadership Summit</a>
+  <a href="https://www.aixed.ai/2026speakers" class="mobile-menu-sub" target="_blank" rel="noopener" onclick="closeMenu()">2026 Speakers</a>
+  <p class="mobile-menu-group">AIxEd 2025</p>
+  <a href="https://www.aixed.ai/2025" class="mobile-menu-sub" target="_blank" rel="noopener" onclick="closeMenu()">AIxEd November 2025</a>
+  <a href="https://www.aixed.ai/2025speakers" class="mobile-menu-sub" target="_blank" rel="noopener" onclick="closeMenu()">2025 Speakers</a>
+  <a href="https://www.aixed.ai/2025gallery" class="mobile-menu-sub" target="_blank" rel="noopener" onclick="closeMenu()">Gallery</a>
+  <p class="mobile-menu-group">About</p>
+  <a href="about.html" class="mobile-menu-sub" onclick="closeMenu()">About AIxEd</a>
+  <a href="founder.html" class="mobile-menu-sub" onclick="closeMenu()">Founder</a>
+  <a href="advisory-board.html" class="mobile-menu-sub" onclick="closeMenu()">Advisory Board</a>
+  <a href="https://luma.com/9dv2pace" class="mobile-menu-cta" target="_blank" rel="noopener" onclick="closeMenu()">Register</a>
+</div>
+<div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+
+<!-- ── HERO ── -->
+<section class="subpage-hero">
+  <div class="eyebrow">Advisory Board</div>
+  <h1>The people guiding <em>AIxEd</em></h1>
+  <p>A cross-section of university leaders, AI researchers, and industry practitioners shaping the direction of AI in education.</p>
+</section>
+
+<!-- ── MEMBERS ── -->
+<section class="content-section alt">
+  <div class="people-grid advisory-grid" id="advisoryGrid"><!-- filled by JS --></div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand-block">
+    <div class="footer-logo-main"><img src="assets/logos/aixed-x.png" alt="AIxEd" />AIx<span class="x">Ed</span></div>
+    <div class="footer-logo-bracket">AIxEd[ Workforce Summit 2026 ]</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#summit">Workforce Summit</a></li>
+    <li><a href="index.html#strategy">Strategy Collaborative</a></li>
+    <li><a href="about.html">About AIxEd</a></li>
+    <li><a href="advisory-board.html">Advisory Board</a></li>
+    <li><a href="https://www.linkedin.com/company/aixed" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="mailto:hello@aixed.org">Contact</a></li>
+  </ul>
+  <p class="footer-copy">©2026 AIxED — All rights reserved</p>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script>
+  const ADVISORS = [
+    { name: 'Usama Fayyad', title: 'Inaugural Director, Institute for Experiential AI', org: 'Northeastern University', img: 'fayyad', li: 'https://www.linkedin.com/in/ufayyad/' },
+    { name: 'James Genone', title: 'Senior Vice Chancellor for Learning Strategy', org: 'Northeastern University', img: 'genone', li: 'https://www.linkedin.com/in/jgenone/' },
+    { name: 'Rachel Slama', title: 'Associate Director, Future of Learning Lab', org: 'Cornell University', img: 'slama', li: 'https://www.linkedin.com/in/rachel-slama/' },
+    { name: 'Can Erbil', title: 'Professor of Practice', org: 'Boston College', img: 'erbil', li: 'https://www.linkedin.com/in/canerbil/' },
+    { name: 'Wendy Colby', title: 'VP & Associate Director, BU Virtual', org: 'Boston University', img: 'colby', li: 'https://www.linkedin.com/in/wendy-colby-innovator/' },
+    { name: 'Taher Jamshidi', title: 'Managing Director', org: 'Promontory AI', img: 'jamshidi', li: 'https://www.linkedin.com/in/taher-jamshidi/' },
+    { name: 'John Fallon', title: 'Professor of Practice', org: 'Northeastern University', img: 'fallon', li: 'https://www.linkedin.com/in/johnfallonpearson/' },
+    { name: 'Kelly Cassaro', title: 'Chief of Learning', org: 'Generation', img: 'kelly_cassaro', li: 'https://www.linkedin.com/in/kellycassaro/' },
+  ];
+  document.getElementById('advisoryGrid').innerHTML = ADVISORS.map(a => `
+    <div class="person-card">
+      <img class="person-photo" src="assets/advisory/${a.img}.jpg" alt="${a.name}" loading="lazy" />
+      <div class="person-body">
+        <div class="person-name">${a.name}</div>
+        <div class="person-title">${a.title}</div>
+        <div class="person-org">${a.org}</div>
+        <a class="person-linkedin" href="${a.li}" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+    </div>`).join('');
+</script>
+</body>
+</html>
