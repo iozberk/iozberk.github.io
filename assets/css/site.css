@@ -934,3 +934,172 @@
     margin: 0 auto;
   }
 }
+
+/* ===================================================================
+   EVENT SUBPAGE COMPONENTS (tracks, sessions, timeline, search)
+   =================================================================== */
+
+/* Placeholder image mode (design review — replaced by real photos later) */
+.ph-img { object-fit: contain !important; padding: 16% !important; background: var(--lavender) !important; }
+.ph-img.ph-dark { background: var(--indigo-deep) !important; }
+
+/* Track cards (connect2026) */
+.track-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem; margin-top: 2.5rem;
+}
+.track-card {
+  background: var(--white); border: 1px solid var(--gray-100); border-radius: 16px;
+  padding: 2.2rem; display: flex; flex-direction: column; gap: 1rem;
+  box-shadow: 0 8px 30px rgba(10,8,40,0.05);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.track-card:hover { box-shadow: 0 16px 44px rgba(45,42,143,0.13); transform: translateY(-4px); }
+.track-badge {
+  align-self: flex-start; font-size: 0.72rem; font-weight: 900;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.32rem 0.8rem; border-radius: 999px;
+}
+.track-badge.free { background: var(--yellow); color: var(--indigo-deep); }
+.track-badge.paid { background: var(--magenta); color: var(--white); }
+.track-card h3 { font-size: 1.6rem; font-weight: 900; color: var(--indigo-deep); letter-spacing: -0.5px; }
+.track-card > p { font-size: 0.95rem; color: var(--gray-700); line-height: 1.7; flex-grow: 1; }
+.track-price { font-size: 1.35rem; font-weight: 900; color: var(--magenta); }
+.track-cta-row { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+.btn-indigo {
+  display: inline-block; background: var(--indigo); color: var(--white);
+  font-weight: 800; font-size: 0.95rem; padding: 0.85rem 1.7rem;
+  border-radius: 8px; text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-indigo:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,42,143,0.35); }
+.btn-ghost-indigo {
+  display: inline-block; background: transparent; color: var(--indigo);
+  font-weight: 700; font-size: 0.95rem; padding: 0.85rem 1.7rem;
+  border-radius: 8px; text-decoration: none; border: 2px solid var(--lavender-dark);
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost-indigo:hover { border-color: var(--indigo); background: var(--lavender); }
+
+/* Info banner (speakers link / PDP credits) */
+.info-banner {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1.2rem; background: var(--lavender); border: 1.5px solid var(--lavender-dark);
+  border-radius: 16px; padding: 1.8rem 2rem; margin-top: 2.5rem;
+}
+.info-banner h3 { font-size: 1.2rem; font-weight: 800; color: var(--indigo-deep); }
+.info-banner p { font-size: 0.92rem; color: var(--gray-700); max-width: 560px; margin-top: 0.3rem; line-height: 1.65; }
+
+/* Search input (connect + speakers pages) */
+.search-wrap { margin-top: 2.2rem; }
+.search-input {
+  width: 100%; max-width: 520px; font-family: inherit; font-size: 0.98rem;
+  padding: 0.95rem 1.3rem; border-radius: 12px; border: 2px solid var(--gray-100);
+  background: var(--white); color: var(--gray-900); outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--indigo); box-shadow: 0 4px 18px rgba(45,42,143,0.12); }
+.search-empty { display: none; margin-top: 2rem; font-size: 0.95rem; color: var(--gray-700); }
+
+/* Session cards (connect.html) */
+.session-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem; margin-top: 2.5rem;
+}
+.session-card {
+  background: var(--white); border: 1px solid var(--gray-100); border-radius: 14px;
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.session-card:hover { box-shadow: 0 12px 36px rgba(45,42,143,0.14); transform: translateY(-4px); }
+.session-photo {
+  width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: center;
+  display: block; background: var(--lavender); cursor: zoom-in;
+}
+.session-body { padding: 1.2rem 1.3rem 1.4rem; display: flex; flex-direction: column; gap: 0.55rem; flex-grow: 1; }
+.session-tag {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 900;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 0.25rem 0.7rem; border-radius: 999px;
+}
+.session-tag.lab { background: var(--yellow); color: var(--indigo-deep); }
+.session-tag.expert { background: var(--indigo); color: var(--white); }
+.session-title { font-size: 1.02rem; font-weight: 800; color: var(--gray-900); line-height: 1.35; }
+.session-desc {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 0.85rem; color: var(--gray-700); line-height: 1.6;
+}
+.session-card.expanded .session-desc { -webkit-line-clamp: unset; }
+.session-more {
+  font-size: 0.72rem; font-weight: 700; color: var(--indigo);
+  cursor: pointer; user-select: none;
+}
+.session-more:hover { text-decoration: underline; }
+.session-speakers { font-size: 0.85rem; color: var(--magenta); font-weight: 700; margin-top: auto; }
+
+/* Lightbox (image zoom) */
+.lightbox {
+  position: fixed; inset: 0; z-index: 400; background: rgba(10,8,40,0.88);
+  display: none; align-items: center; justify-content: center;
+  padding: 4vh 4vw; cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 24px 80px rgba(0,0,0,0.5); }
+
+/* Timeline (leadership summit + 2025 morning program) */
+.timeline { position: relative; max-width: 860px; margin: 2.5rem auto 0; }
+.timeline::before {
+  content: ''; position: absolute; left: 9px; top: 8px; bottom: 8px;
+  width: 3px; background: var(--lavender-dark); border-radius: 2px;
+}
+.timeline-item { position: relative; padding: 0 0 2.4rem 2.6rem; }
+.timeline-item:last-child { padding-bottom: 0.4rem; }
+.timeline-item::before {
+  content: ''; position: absolute; left: 2px; top: 0.35rem;
+  width: 17px; height: 17px; border-radius: 50%;
+  background: var(--magenta); border: 3px solid var(--white);
+  box-shadow: 0 0 0 3px var(--lavender-dark);
+}
+.timeline-time {
+  font-size: 0.8rem; font-weight: 900; color: var(--magenta);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.timeline-label {
+  display: inline-block; font-size: 0.68rem; font-weight: 800;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  background: var(--lavender); color: var(--indigo);
+  padding: 0.18rem 0.6rem; border-radius: 999px; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+.timeline-item h3 { font-size: 1.15rem; font-weight: 800; color: var(--gray-900); margin: 0.35rem 0 0.5rem; line-height: 1.3; }
+.timeline-speakers {
+  display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap;
+  font-size: 0.88rem; color: var(--gray-700); line-height: 1.5;
+}
+.timeline-avatars { display: flex; flex-shrink: 0; }
+.timeline-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  object-fit: cover; object-position: top center;
+  border: 2.5px solid var(--white); background: var(--lavender);
+  margin-left: -10px; box-shadow: 0 2px 8px rgba(10,8,40,0.12);
+}
+.timeline-avatar:first-child { margin-left: 0; }
+
+/* Expandable speaker bios (2025speakers) */
+.person-card.has-bio { cursor: pointer; }
+.person-bio {
+  display: none; font-size: 0.82rem; color: var(--gray-700); line-height: 1.6;
+  margin-top: 0.7rem; border-top: 1px solid var(--gray-100); padding-top: 0.7rem;
+}
+.person-card.expanded .person-bio { display: block; }
+.bio-toggle-hint { font-size: 0.72rem; font-weight: 700; color: var(--indigo); margin-top: 0.6rem; user-select: none; }
+
+@media (max-width: 768px) {
+  .track-card { padding: 1.6rem; }
+  .track-card h3 { font-size: 1.35rem; }
+  .info-banner { padding: 1.4rem 1.5rem; }
+  .session-grid { grid-template-columns: 1fr; }
+  .timeline-item { padding-left: 2.1rem; }
+  .timeline-item h3 { font-size: 1.02rem; }
+}

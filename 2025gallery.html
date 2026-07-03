@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Founder — Hamit Hamutcu — AIxEd</title>
-  <meta name="description" content="Meet Hamit Hamutcu, the founder of AIxEd. Read his biography, background in data and AI, and contributions to AI upskilling and data science standards." />
+  <title>2025 Gallery — AIxEd</title>
+  <meta name="description" content="Moments from AIxEd 2025 — scenes, collaboration, and learning moments from our past summits and events." />
   <link rel="icon" type="image/png" href="assets/logos/aixed-x.png" />
   <link rel="apple-touch-icon" href="assets/logos/aixed-x.png" />
   <meta name="theme-color" content="#1E1A6E" />
@@ -12,7 +12,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/site.css" />
-
 </head>
 <body>
 
@@ -48,9 +47,7 @@
     <li class="nav-dropdown">
       <a href="about.html" class="nav-dropdown-toggle">About <span class="caret">▾</span></a>
       <ul class="nav-dropdown-menu">
-        <li><a href="connect2026.html">May 2026</a></li>
-    <li><a href="2025.html">November 2025</a></li>
-    <li><a href="about.html">About AIxEd</a></li>
+        <li><a href="about.html">About AIxEd</a></li>
         <li><a href="founder.html">Founder</a></li>
         <li><a href="advisory-board.html">Advisory Board</a></li>
       </ul>
@@ -86,85 +83,22 @@
 
 <!-- ── HERO ── -->
 <section class="subpage-hero">
-  <div class="eyebrow">Founder of AIxEd</div>
-  <h1>Hamit Hamutcu</h1>
-  <p>Leading the exploration of AI's future in teaching, learning, and institutional transformation.</p>
+  <div class="eyebrow">2025 Gallery</div>
+  <h1>Moments from <em>AIxEd 2025</em></h1>
+  <p>Explore scenes, collaboration, and learning moments from our past summits and events.</p>
 </section>
 
-<!-- ── BIOGRAPHY ── -->
-<section class="content-section" style="padding: 80px 6%;">
-  <div class="bio-grid" style="max-width: 1050px; margin: 0 auto;">
-    
-    <!-- Profile Card (Left Column) -->
-    <div class="bio-left">
-      <img class="founder-photo" src="assets/logos/founder-hamit.jpg" alt="Hamit Hamutcu" />
-      <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.2rem;">Hamit Hamutcu</h3>
-      <p style="font-size: 0.85rem; font-weight: 700; color: var(--magenta); text-transform: uppercase; letter-spacing: 0.05em;">Founder, AIxEd</p>
-      
-      <div class="bio-social-links">
-        <a class="bio-link-item" href="https://www.linkedin.com/in/hamithamutcu/" target="_blank" rel="noopener">
-          LinkedIn →
-        </a>
-        <a class="bio-link-item" href="mailto:hello@aixed.org?subject=Contacting%20Founder">
-          Contact Founder →
-        </a>
-      </div>
-    </div>
-    
-    <!-- Narrative Biography (Right Column) -->
-    <div class="bio-content">
-      <h2>Biography</h2>
-      <p>
-        Hamit Hamutcu is the founder of AIxEd, which aims to explore the future of AI in learning, teaching, and the transformation of educational institutions. He brings 30 years of industry and consulting experience in data and AI. 
-      </p>
-      <p>
-        He was a Senior Advisor at the Institute for Experiential AI at Northeastern University, where he led strategy and educational programs in AI upskilling. He is also a co-editor at Harvard Data Science Review and co-founder of the Initiative for Analytics and Data Science Standards, a nonprofit initiative that aims to develop industry standards for the knowledge and skills required in data science roles and data and AI literacy.
-      </p>
-      <p>
-        Previously, Hamit was a managing partner for Peppers &amp; Rogers Group in Stamford, Connecticut, where he headed the Global Analytics Group and launched several offices for the company globally.
-      </p>
-      
-      <!-- Key Roles -->
-      <div class="roles-list">
-        <h3>Key Roles &amp; Positions</h3>
-        
-        <div class="role-item">
-          <span class="role-bullet">ROLE</span>
-          <div class="role-details">
-            <span class="role-title">Founder</span>
-            <span class="role-org">AIxEd</span>
-          </div>
-        </div>
-        
-        <div class="role-item">
-          <span class="role-bullet">ROLE</span>
-          <div class="role-details">
-            <span class="role-title">Co-Editor</span>
-            <span class="role-org">Harvard Data Science Review</span>
-          </div>
-        </div>
-        
-        <div class="role-item">
-          <span class="role-bullet">ROLE</span>
-          <div class="role-details">
-            <span class="role-title">Co-Founder</span>
-            <span class="role-org">Initiative for Analytics and Data Science Standards (IADSS)</span>
-          </div>
-        </div>
-        
-        <div class="role-item">
-          <span class="role-bullet">ROLE</span>
-          <div class="role-details">
-            <span class="role-title">Former Senior Advisor</span>
-            <span class="role-org">Institute for Experiential AI, Northeastern University</span>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-    
+<!-- ── GALLERY ── -->
+<section class="content-section alt">
+  <div class="page-container-wide">
+    <div class="gallery-page-grid" id="galleryGrid"><!-- filled by JS --></div>
   </div>
 </section>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+  <img id="lightboxImg" src="" alt="" />
+</div>
 
 <!-- ── FOOTER ── -->
 <footer>
@@ -175,7 +109,8 @@
   <ul class="footer-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#summit">Workforce Summit</a></li>
-    <li><a href="index.html#strategy">Strategy Collaborative</a></li>
+    <li><a href="connect2026.html">May 2026</a></li>
+    <li><a href="2025.html">November 2025</a></li>
     <li><a href="about.html">About AIxEd</a></li>
     <li><a href="advisory-board.html">Advisory Board</a></li>
     <li><a href="https://www.linkedin.com/company/aixed" target="_blank" rel="noopener">LinkedIn</a></li>
@@ -185,5 +120,30 @@
 </footer>
 
 <script src="assets/js/site.js"></script>
+<script>
+  const PHOTOS = [
+    { img: 'assets/gallery/808514_1a032a2e9fe84d5589396fc9e6aa44b6f000.jpg', caption: 'AIxEd Summit Scene' },
+    { img: 'assets/gallery/808514_95a2616563b543d189e77b15c89a7af6~mv2.png', caption: 'Seth Reynolds & Marta McAlister' },
+    { img: 'assets/gallery/808514_b092ad87539d4e489e38a9b29d58daf9~mv2.png', caption: 'Attendees' },
+    { img: 'assets/gallery/808514_bd01ebb7f0614a1186310515f19e1b3e~mv2.png', caption: 'Rachel Slama' },
+    { img: 'assets/gallery/808514_40d782addd0c4673b20c6f0b0843ee8a~mv2.jpg', caption: 'Sam Paddock (NGL)' },
+    { img: 'assets/gallery/808514_3deaf75f13cc4ebe9215e423ef103369f000.jpg', caption: 'Panel Q&A Session' },
+    { img: 'assets/gallery/808514_ce36ce7bd766428f8404fbec05fd385f~mv2.png', caption: 'Commissioner Noe Ortega' },
+    { img: 'assets/gallery/808514_2baad6af94df4af79b0cb2ad729374bff000.jpg', caption: 'Interactive Group Workshop' },
+  ];
+
+  document.getElementById('galleryGrid').innerHTML = PHOTOS.map(p => `
+    <figure>
+      <div class="gp-item">
+        <img src="${p.img}" alt="${p.caption}" loading="lazy" onclick="openLightbox(this.src)" style="cursor: zoom-in;" />
+      </div>
+      <figcaption>${p.caption}</figcaption>
+    </figure>`).join('');
+
+  function openLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+</script>
 </body>
 </html>

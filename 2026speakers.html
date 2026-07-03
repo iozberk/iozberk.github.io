@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Speakers — AIxEd</title>
+  <meta name="description" content="Meet the speakers of AIxEd 2026: academicians, industry experts, and government leaders sharing case studies and strategies for AI in education." />
+  <link rel="icon" type="image/png" href="assets/logos/aixed-x.png" />
+  <link rel="apple-touch-icon" href="assets/logos/aixed-x.png" />
+  <meta name="theme-color" content="#1E1A6E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+
+<!-- ── ANNOUNCEMENT BAR (early bird) ── -->
+<a class="announce-bar" href="https://luma.com/9dv2pace" target="_blank" rel="noopener">
+  🎟 Use code <strong>NOV2026</strong> to save <strong>20%</strong> on Workforce Summit tickets (valid until July 31). <span class="announce-cta">Register now →</span>
+</a>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/logos/aixed-x.png" alt="AIxEd" />AIx<span class="x">Ed</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#summit">Workforce Summit</a></li>
+    <li><a href="index.html#strategy">Strategy Collaborative</a></li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">AIxEd 2026 <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="connect2026.html">AIxEd May 2026</a></li>
+        <li><a href="connect.html">Connect Program</a></li>
+        <li><a href="leadershipsummit2026.html">Leadership Summit</a></li>
+        <li><a href="2026speakers.html">2026 Speakers</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">AIxEd 2025 <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="2025.html">AIxEd November 2025</a></li>
+        <li><a href="2025speakers.html">2025 Speakers</a></li>
+        <li><a href="2025gallery.html">Gallery</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="about.html" class="nav-dropdown-toggle">About <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="about.html">About AIxEd</a></li>
+        <li><a href="founder.html">Founder</a></li>
+        <li><a href="advisory-board.html">Advisory Board</a></li>
+      </ul>
+    </li>
+    <li><a href="https://luma.com/9dv2pace" target="_blank" rel="noopener" class="nav-cta">Register</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="index.html#summit" onclick="closeMenu()">Workforce Summit</a>
+  <a href="index.html#strategy" onclick="closeMenu()">Strategy Collaborative</a>
+  <p class="mobile-menu-group">AIxEd 2026</p>
+  <a href="connect2026.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd May 2026</a>
+  <a href="connect.html" class="mobile-menu-sub" onclick="closeMenu()">Connect Program</a>
+  <a href="leadershipsummit2026.html" class="mobile-menu-sub" onclick="closeMenu()">Leadership Summit</a>
+  <a href="2026speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2026 Speakers</a>
+  <p class="mobile-menu-group">AIxEd 2025</p>
+  <a href="2025.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd November 2025</a>
+  <a href="2025speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2025 Speakers</a>
+  <a href="2025gallery.html" class="mobile-menu-sub" onclick="closeMenu()">Gallery</a>
+  <p class="mobile-menu-group">About</p>
+  <a href="about.html" class="mobile-menu-sub" onclick="closeMenu()">About AIxEd</a>
+  <a href="founder.html" class="mobile-menu-sub" onclick="closeMenu()">Founder</a>
+  <a href="advisory-board.html" class="mobile-menu-sub" onclick="closeMenu()">Advisory Board</a>
+  <a href="https://luma.com/9dv2pace" class="mobile-menu-cta" target="_blank" rel="noopener" onclick="closeMenu()">Register</a>
+</div>
+<div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+
+<!-- ── HERO ── -->
+<section class="subpage-hero">
+  <div class="eyebrow">Connect 2026 Speakers</div>
+  <h1>Speakers guiding <em>AIxEd 2026</em></h1>
+  <p>Academicians, industry experts, and government leaders sharing case studies and strategies for AI in education.</p>
+</section>
+
+<!-- ── SPEAKERS ── -->
+<section class="content-section alt">
+  <div class="search-wrap" style="margin-top:0;">
+    <input type="search" class="search-input" id="speakerSearch"
+           placeholder="Search speakers by name, title, or university..." autocomplete="off" />
+  </div>
+  <div class="people-grid compact" id="speakerGrid"><!-- filled by JS --></div>
+  <p class="search-empty" id="speakerEmpty">No speakers match your search.</p>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand-block">
+    <div class="footer-logo-main"><img src="assets/logos/aixed-x.png" alt="AIxEd" />AIx<span class="x">Ed</span></div>
+    <div class="footer-logo-bracket">AIxEd[ Workforce Summit 2026 ]</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#summit">Workforce Summit</a></li>
+    <li><a href="connect2026.html">May 2026</a></li>
+    <li><a href="2025.html">November 2025</a></li>
+    <li><a href="about.html">About AIxEd</a></li>
+    <li><a href="advisory-board.html">Advisory Board</a></li>
+    <li><a href="https://www.linkedin.com/company/aixed" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="mailto:hello@aixed.org">Contact</a></li>
+  </ul>
+  <p class="footer-copy">©2026 AIxED — All rights reserved</p>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script>
+  const DEFAULT_AVATAR = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23EAE8F8"/><circle cx="50" cy="38" r="16" fill="%23B8B3E8"/><path d="M20 92c0-18 13-28 30-28s30 10 30 28" fill="%23B8B3E8"/></svg>';
+  const SPEAKERS = [
+    { name: 'Usama Fayyad', img: 'assets/speakers/808514_07e211523deb4ee3b03e07678d1be83d~mv2.webp', title: 'AI Transformation Leader', org: 'Northeastern University' },
+    { name: 'Can Erbil', img: 'assets/speakers/808514_94935c2cafab4973a7ecf16e526e0be4~mv2.jpeg', title: 'Professor of the Practice of Economics', org: 'Boston College' },
+    { name: 'Gabriela Torres', img: 'assets/speakers/808514_bac9113cf1644090a8cce62cbe1576ce~mv2.jpeg', title: 'Co-founder', org: 'Sundai Club (MIT)' },
+    { name: 'Kjersten Moody', img: 'assets/speakers/808514_aaa790017bdd437ebbad430ce6fbc2d7~mv2.avif', title: 'Chief Executive Officer for North America', org: 'Elai' },
+    { name: 'Kellie Fitzgerald', img: 'assets/speakers/808514_43655dc137564ec7815a25d803392f00~mv2.jpeg', title: 'Senior Director of Admissions Operations', org: 'NYU' },
+    { name: 'Cansu Canca', img: 'assets/speakers/808514_35e3df32b6a4451c9b33d359dcf6b0f0~mv2.jpeg', title: 'Head of Responsible AI', org: 'Northeastern University' },
+    { name: 'Noe Ortega', img: 'assets/speakers/808514_b0a98b9667ce4e5891482b443143e698~mv2.jpg', title: 'Commissioner of Higher Education', org: 'Commonwealth of Massachusetts' },
+    { name: 'Sabrina Mansur', img: 'assets/speakers/808514_42efbd567a864eba81da31310f7cc183~mv2.jpg', title: 'Director', org: 'Massachusetts AI Hub' },
+    { name: 'David McCool', img: 'assets/speakers/808514_126acf68de804e42bdfc2e0f66305f42~mv2.png', title: 'President & CEO', org: 'Muzzy Lane' },
+    { name: 'Ola Ozernov-Palchik', img: 'assets/speakers/808514_78235f4760104be0b0616126b0eb86ef~mv2.jpeg', title: 'Research Faculty and Scientist', org: 'BU & MIT' },
+    { name: 'Rachel Schechter', img: 'assets/speakers/808514_f88d622dc9874abc808a7193c73c2927~mv2.png', title: 'EdTech Research Leader', org: 'LXD Research' },
+    { name: 'Kaitlin Dumont', img: 'assets/speakers/808514_9e575b2423164173b407c02fc3091f2b~mv2.webp', title: 'Consulting Director, Higher Education', org: 'Huron Consulting' },
+    { name: 'Xiao-Li Meng', img: 'assets/speakers/808514_84f5c2707d7749dcbc0add54e4e1535a~mv2.jpg', title: 'Founding Editor-in-Chief', org: 'Harvard Data Science Review' },
+    { name: 'Ruth Steyn', img: 'assets/speakers/808514_84fa2261a8be4c4da13353ba2eb8287b~mv2.jpeg', title: 'Associate Director', org: 'LabXchange' },
+    { name: 'Anne DeMallie', img: 'assets/speakers/808514_c18a1d365537477791f6d84c8257aa4c~mv2.jpg', title: 'Director of STEM', org: 'MA Dept of Elementary & Secondary Education' },
+    { name: 'Jessica Booker', img: 'assets/speakers/808514_6fda199fbe2f4af1a6592e3e6c7c126c~mv2.jpg', title: 'Digital Learning Coach', org: 'Foxborough Public Schools' },
+    { name: 'Elizabeth Kerrigan', img: 'assets/speakers/808514_fd2f6f1ff76044e087554af260db7029~mv2.png', title: 'Technology Integration & Curriculum', org: 'Sudbury Public Schools' },
+    { name: 'Rachel Miller', img: 'assets/speakers/808514_c4455c52b37145dca75dc8e7dd28dc68~mv2.jpeg', title: 'Supervisor of Advanced Academic Performance', org: 'Springfield Public Schools' },
+    { name: 'Lisa Sacchetti', img: 'assets/speakers/808514_95bf56459586491b9e03913416b7a6ed~mv2.jpeg', title: 'Founder & CEO', org: 'The Renaissance Network' },
+    { name: 'Phillip Miller', img: 'assets/speakers/808514_97269c3ab5644b06a32748b227483eda~mv2.jpeg', title: 'CEO', org: 'Skillwell' },
+    { name: 'James Lane', img: 'assets/speakers/808514_e8fdcaaffdfe45bfbd74e66a46281c68~mv2.webp', title: 'CEO', org: 'University Instructors' },
+    { name: 'David Raney', img: 'assets/speakers/808514_46e423df360e42a0b8e3fe4f62aca964~mv2.jpg', title: 'CEO', org: 'Nuventive' },
+    { name: 'Shannon Famigletti', img: 'assets/speakers/808514_30aad678803e4d90b6ea5d4c37fca6bc~mv2.png', title: 'Instructional Technology Curriculum Specialist', org: 'Sudbury Public Schools' },
+    { name: 'Shauna Conway', img: 'assets/speakers/808514_b2d0ec036db142418de04f379423138e~mv2.png', title: 'Strategic Growth & Innovation', org: 'Founder' },
+    { name: 'Michael O. Moore', img: 'assets/speakers/808514_14f2d3d41a44446badd51ffcc282ef58~mv2.jpg', title: 'Massachusetts State Senator', org: 'D-Millbury' },
+    { name: 'Stephen Zrike Jr.', img: 'assets/speakers/808514_e1b73c50b6414c3b8f96cc8db72c1663~mv2.jpg', title: 'Massachusetts Secretary of Education', org: 'Salem Public Schools' },
+    { name: 'Jay Aslam', img: 'assets/speakers/808514_4413fa954dc241cdb67ab3370f9cdd75~mv2.jpg', title: 'Professor, Chief of Artificial Intelligence', org: 'Northeastern University' },
+    { name: 'Daniela Rus', img: 'assets/speakers/808514_53afd5dfc0da4d22919b2680c8e5197f~mv2.png', title: 'Director of CSAIL', org: 'MIT' },
+    { name: 'Michael Littman', img: 'assets/speakers/808514_71e2c6f9c7454fbca967d7b8b5c346d5~mv2.jpg', title: 'Professor of Computer Science', org: 'Brown University' },
+    { name: 'Dan Be Kim', img: 'assets/speakers/808514_25666e288e4548a284164a517e260703~mv2.jpg', title: 'Research Assistant', org: 'Harvard Graduate School of Education' },
+    { name: 'Rayna Freedman', img: 'assets/speakers/808514_8030232929f34acb9b67627d31813968~mv2.jpg', title: 'Educator & Tech Specialist', org: 'Jordan/Jackson Elementary School' },
+    { name: 'Mike Mendelson', img: 'assets/speakers/808514_8d189271fa3f40ef99144f4e1e004f7f~mv2.jpeg', title: 'Chief Technology Officer', org: 'sideby.ai' },
+    { name: 'Asher Scott', img: 'assets/speakers/808514_a7e1231209144263bc7f570c38494983~mv2.jpeg', title: 'K-12 Systems Leader', org: 'NYC Public Schools' },
+    { name: 'Kishore Aradhya', img: 'assets/speakers/808514_cf060e731cc3464cb79b7b5232ad7bea~mv2.jpeg', title: 'Head of Data Engineering & Architecture', org: 'Frontdoor & Northeastern University' },
+    { name: 'Kippy Smith', img: 'assets/speakers/808514_30bfb39f03d945da998f2d25844f708a~mv2.jpeg', title: 'Senior VP of Learning', org: 'sideby.ai' },
+    { name: 'David Petty', img: 'assets/speakers/808514_4b1dd21a109f4efeaaaa87e2005504ce~mv2.jpeg', title: 'Education Program Manager', org: 'App Inventor Foundation' },
+    { name: 'Carrie James', img: 'assets/speakers/808514_90587c9f41914c5daff4bded104c879e~mv2.jpg', title: 'Managing Director', org: 'Harvard GSE (Center for Digital Thriving)' },
+    { name: 'Alex Laraia', img: 'assets/speakers/808514_d5f3d50669d1419ea31b865fa6cf06fc~mv2.png', title: 'Co-founder', org: 'Crafting Tomorrow' },
+    { name: 'Cole Collins', img: 'assets/speakers/808514_160d0493e8c4449da028b3d730d3e08d~mv2.png', title: 'Co-founder', org: 'Crafting Tomorrow' },
+    { name: 'Kristi Girdharry', img: 'assets/speakers/808514_c8d775a62ffb417cae8ac6445ab88966~mv2.jpg', title: 'Director and Tutor', org: 'Babson College' },
+    { name: 'Rachel Slama', img: 'assets/speakers/808514_9eb70659e6394a3f8bed0aeb14d942c2~mv2.png', title: 'Associate Director, Future of Learning Lab', org: 'Cornell Bowers' },
+    { name: 'Pelin Bicen', img: 'assets/speakers/808514_825a3a9a7900416cb5a95da8a5a57a3c~mv2.jpg', title: 'Professor of Marketing', org: 'Suffolk University' },
+    { name: 'Wendy Colby', img: 'assets/speakers/808514_7aa1efacd36e4013974fea31b83f8911~mv2.jpg', title: 'Higher Education Executive', org: 'Boston University' },
+    { name: 'Erik Noyes', img: 'assets/speakers/808514_78bff21f4a61488e930501ead8b17041~mv2.jpg', title: 'Entrepreneurship Professor', org: 'Babson College' },
+    { name: 'Dan Serig', img: 'assets/speakers/808514_50025124ebaf4a01b90d7c40ccc85d47~mv2.jpeg', title: 'Assistant Professor, GSE', org: 'Northeastern University' },
+    { name: 'Luke Hobson', img: 'assets/speakers/808514_dc7c111e6a8e47749de0c940addf1578~mv2.jpg', title: 'Assistant Director of ID', org: 'MIT' },
+    { name: 'Peter Shea', img: 'assets/speakers/808514_3f2d0393ec174f939999390f243c1409~mv2.jpg', title: 'Assistant Dean of AI Integration', org: 'Middlesex Community College' },
+    { name: 'Gamze Yilmaz', img: 'assets/speakers/808514_30afbc516864434eabbf801fcf8ac34f~mv2.jpg', title: 'Associate Professor of Communication', org: 'UMass Boston' },
+    { name: 'Tiffany Kim', img: 'assets/speakers/808514_98deb0a9d9a74de78297726ba77c58f1~mv2.jpeg', title: 'Associate Clinical Professor', org: 'Northeastern University' },
+    { name: 'Lance Eaton', img: 'assets/speakers/808514_cdcc9b5b379e4be7b5fc0de633f16e11~mv2.jpg', title: 'Senior Associate Director', org: 'Northeastern University' },
+    { name: 'Julio Stanly Flores', img: 'assets/speakers/808514_b8fcf5918fc5488eaa9a001a884fcb01~mv2.jpeg', title: 'Studio Arts Professor', org: 'Bunker Hill Community College' },
+    { name: 'Steve Covello', img: 'assets/speakers/808514_1bb78cbecad4451ca717dfa33b5e9825~mv2.jpeg', title: 'Senior Instructional Designer', org: 'University of New Hampshire' },
+    { name: 'Ruth Slotnick', img: 'assets/speakers/808514_c9361de90cb348d095a27b225dde09c9~mv2.jpeg', title: 'Director of Assessment', org: 'Bridgewater State University' },
+    { name: 'Allan Glass', img: 'assets/speakers/808514_94e12d4ccb3a45c2a4b6e8ecf31f9165~mv2.jpeg', title: 'Associate Professor of Management', org: 'Endicott College' },
+    { name: 'Meg Riordan', img: 'assets/speakers/808514_f560849254c941b1b8c81bab48c7eede~mv2.jpeg', title: 'Chief Learning Officer', org: 'The Possible Zone' },
+    { name: 'Chris Unger', img: 'assets/speakers/808514_3e8f287708b34b51a263f2de6a9b8d16~mv2.jpeg', title: 'Co-Director, LEARN Lab', org: 'Northeastern University' },
+  ];
+
+  document.getElementById('speakerGrid').innerHTML = SPEAKERS.map(s => `
+    <div class="person-card" data-search="${(s.name + ' ' + s.title + ' ' + s.org).toLowerCase()}">
+      <img class="person-photo" src="${s.img || DEFAULT_AVATAR}" alt="${s.name}" loading="lazy" />
+      <div class="person-body">
+        <div class="person-name">${s.name}</div>
+        <div class="person-title">${s.title}</div>
+        <div class="person-org">${s.org}</div>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('speakerSearch').addEventListener('input', function () {
+    const q = this.value.trim().toLowerCase();
+    let visible = 0;
+    document.querySelectorAll('#speakerGrid .person-card').forEach(card => {
+      const show = !q || card.dataset.search.includes(q);
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    document.getElementById('speakerEmpty').style.display = visible ? 'none' : 'block';
+  });
+</script>
+</body>
+</html>

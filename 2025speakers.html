@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2025 Speakers — AIxEd</title>
+  <meta name="description" content="Meet the speakers of AIxEd November 2025: academicians, industry experts, and government leaders sharing case studies and strategies for AI in education." />
+  <link rel="icon" type="image/png" href="assets/logos/aixed-x.png" />
+  <link rel="apple-touch-icon" href="assets/logos/aixed-x.png" />
+  <meta name="theme-color" content="#1E1A6E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+
+<!-- ── ANNOUNCEMENT BAR (early bird) ── -->
+<a class="announce-bar" href="https://luma.com/9dv2pace" target="_blank" rel="noopener">
+  🎟 Use code <strong>NOV2026</strong> to save <strong>20%</strong> on Workforce Summit tickets (valid until July 31). <span class="announce-cta">Register now →</span>
+</a>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/logos/aixed-x.png" alt="AIxEd" />AIx<span class="x">Ed</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#summit">Workforce Summit</a></li>
+    <li><a href="index.html#strategy">Strategy Collaborative</a></li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">AIxEd 2026 <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="connect2026.html">AIxEd May 2026</a></li>
+        <li><a href="connect.html">Connect Program</a></li>
+        <li><a href="leadershipsummit2026.html">Leadership Summit</a></li>
+        <li><a href="2026speakers.html">2026 Speakers</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">AIxEd 2025 <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="2025.html">AIxEd November 2025</a></li>
+        <li><a href="2025speakers.html">2025 Speakers</a></li>
+        <li><a href="2025gallery.html">Gallery</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="about.html" class="nav-dropdown-toggle">About <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="about.html">About AIxEd</a></li>
+        <li><a href="founder.html">Founder</a></li>
+        <li><a href="advisory-board.html">Advisory Board</a></li>
+      </ul>
+    </li>
+    <li><a href="https://luma.com/9dv2pace" target="_blank" rel="noopener" class="nav-cta">Register</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="index.html#summit" onclick="closeMenu()">Workforce Summit</a>
+  <a href="index.html#strategy" onclick="closeMenu()">Strategy Collaborative</a>
+  <p class="mobile-menu-group">AIxEd 2026</p>
+  <a href="connect2026.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd May 2026</a>
+  <a href="connect.html" class="mobile-menu-sub" onclick="closeMenu()">Connect Program</a>
+  <a href="leadershipsummit2026.html" class="mobile-menu-sub" onclick="closeMenu()">Leadership Summit</a>
+  <a href="2026speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2026 Speakers</a>
+  <p class="mobile-menu-group">AIxEd 2025</p>
+  <a href="2025.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd November 2025</a>
+  <a href="2025speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2025 Speakers</a>
+  <a href="2025gallery.html" class="mobile-menu-sub" onclick="closeMenu()">Gallery</a>
+  <p class="mobile-menu-group">About</p>
+  <a href="about.html" class="mobile-menu-sub" onclick="closeMenu()">About AIxEd</a>
+  <a href="founder.html" class="mobile-menu-sub" onclick="closeMenu()">Founder</a>
+  <a href="advisory-board.html" class="mobile-menu-sub" onclick="closeMenu()">Advisory Board</a>
+  <a href="https://luma.com/9dv2pace" class="mobile-menu-cta" target="_blank" rel="noopener" onclick="closeMenu()">Register</a>
+</div>
+<div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+
+<!-- ── HERO ── -->
+<section class="subpage-hero">
+  <div class="eyebrow">Speakers</div>
+  <h1>Speakers guiding <em>AIxEd</em> conversations</h1>
+  <p>Academicians, industry experts, and government leaders sharing case studies and strategies for AI in education.</p>
+</section>
+
+<!-- ── SPEAKERS ── -->
+<section class="content-section alt">
+  <div class="search-wrap" style="margin-top:0;">
+    <input type="search" class="search-input" id="speakerSearch"
+           placeholder="Search speakers by name, title, or university..." autocomplete="off" />
+  </div>
+  <div class="people-grid" id="speakerGrid"><!-- filled by JS --></div>
+  <p class="search-empty" id="speakerEmpty">No speakers match your search.</p>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand-block">
+    <div class="footer-logo-main"><img src="assets/logos/aixed-x.png" alt="AIxEd" />AIx<span class="x">Ed</span></div>
+    <div class="footer-logo-bracket">AIxEd[ Workforce Summit 2026 ]</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#summit">Workforce Summit</a></li>
+    <li><a href="connect2026.html">May 2026</a></li>
+    <li><a href="2025.html">November 2025</a></li>
+    <li><a href="about.html">About AIxEd</a></li>
+    <li><a href="advisory-board.html">Advisory Board</a></li>
+    <li><a href="https://www.linkedin.com/company/aixed" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="mailto:hello@aixed.org">Contact</a></li>
+  </ul>
+  <p class="footer-copy">©2026 AIxED — All rights reserved</p>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script>
+  const DEFAULT_AVATAR = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23EAE8F8"/><circle cx="50" cy="38" r="16" fill="%23B8B3E8"/><path d="M20 92c0-18 13-28 30-28s30 10 30 28" fill="%23B8B3E8"/></svg>';
+  const SPEAKERS = [
+    { name: 'Noe Ortega, Ph.D.', img: 'assets/speakers/808514_b0a98b9667ce4e5891482b443143e698~mv2.jpg', title: 'Commissioner of Higher Education', org: 'Commonwealth of Massachusetts',
+      bio: 'Noe Ortega, Ph.D., was sworn in as Massachusetts Commissioner of Higher Education on November 1, 2022. He has led the Department of Higher Education (DHE) through a time of historic investment by the state legislature and Healey-Driscoll Administration in affordability and access for all learners in the Commonwealth. Dr. Ortega is dedicated to closing equity gaps through the Board of Higher Education’s four strategic priorities: Student Success and Affordability, Economic Mobility, Public Good, and Innovation.' },
+    { name: 'Usama Fayyad', img: 'assets/speakers/808514_07e211523deb4ee3b03e07678d1be83d~mv2.webp', title: 'AI Transformation Leader', org: 'Institute for Experiential AI, Northeastern University',
+      bio: 'Usama is the Chairman and Founder of Open Insights, a consultancy based in Silicon Valley and Seattle that he launched in 2008. He is the SVP of AI & Data Strategy, Senior Advisor to the President, and Inaugural Director of the Institute for Experiential AI at Northeastern University. Previously, he served as Chief Data Officer and Group Managing Director at Barclays in London, Chief Data Officer and EVP at Yahoo!, and co-founded multiple companies in data mining, AI, and digital innovation. Over his career, Fayyad has been recognized as a pioneer in big data, AI-driven business transformation, and large-scale analytics, with impact spanning technology, healthcare, finance, and telecommunications.' },
+    { name: 'Xiao-Li Meng', img: 'assets/speakers/808514_f518e33ada8349c0b7476f15bd295e22~mv2.jpg', title: 'Statistics & Data Science Leader', org: 'Harvard University',
+      bio: 'Xiao-Li is the Whipple V. N. Jones Professor of Statistics at Harvard University and Founding Editor-in-Chief of the Harvard Data Science Review. He specializes in statistical computation, Bayesian inference, and methods for complex and high-dimensional data. Meng has published extensively, delivered hundreds of research presentations worldwide, and has held leadership roles including Chair of Harvard’s Department of Statistics and Dean of the Graduate School of Arts and Sciences.' },
+    { name: 'Christopher Hull', img: 'assets/speakers/808514_d7339f977caa404a921f299db7b5a94c~mv2.jpg', title: 'Co-founder & President', org: 'Otus',
+      bio: 'Christopher is the President and Co-Founder of Otus, he leverages his background as a former educator to drive his mission: significantly improving the K-12 educational experience for all stakeholders. His classroom experience fuels his commitment to developing innovative solutions that boost student outcomes and empower teachers and administrators. Otus is a comprehensive assessment, data, and insights platform that centralizes all student data (academic, attendance, behavior, and cognitive) into a single, integrated solution. This integration transforms data collection into actionable insights, making differentiated instruction easier and decision-making more informed. His journey from the classroom to founding Otus is rooted in his passion for education and the belief that every student deserves the opportunity to succeed. He strives daily to ensure Otus equips educators with the tools needed to focus on their most critical task: teaching and supporting their students\' growth and achievement.' },
+    { name: 'Izzat Jarudi', img: 'assets/speakers/808514_0f2d9ab5c1974c2798dec03a5bfc8efc~mv2.png', title: 'AI Innovator and Cognitive Scientist', org: 'Edifii',
+      bio: 'Izzat has worked in AI-driven companies such as Cambridge Mobile Telematics, where he was a manager for large product and data science teams supporting millions of users and using cutting-edge machine learning techniques. As Co-Founder and CEO of Edifii, Dr. Jarudi is developing an AI and Neuroscience-based mentor for students, counselors, and parents. Edifii was one of eight companies chosen nationally by the US Department of Education for its Small Business Innovation Research grant in 2024 and 2025 and was a member of the inaugural cohort of Techstars Economic Mobility program in 2023.' },
+    { name: 'Pelin Bicen', img: 'assets/speakers/808514_d0e15567b387498b8afcabb7c4882c0e~mv2.jpg', title: 'AI & Marketing Strategist', org: 'Suffolk University',
+      bio: 'Professor of marketing at Suffolk University.' },
+    { name: 'Seth Reynolds', img: 'assets/speakers/808514_583a3871b609447f8adbb9be78d34f71~mv2.jpg', title: 'EY-Parthenon Education Practice Leader', org: 'Ernst & Young LLP',
+      bio: 'Seth works with leaders to design strategies that build resilient, sustainable, and successful organizations. As head of Sustainability and Education at EY-Parthenon, the strategy consulting arm of Ernst & Young LLP, he helps clients achieve strong financial performance while driving positive social impact. His clients span start-ups, Fortune 500 companies, universities, school districts, government agencies, and global foundations. A recognized voice in the education sector, Seth has spoken at major forums including LearnLaunch Across Boundaries, EdTech Week, and SXSWedu.' },
+    { name: 'Shannon McKeen', img: 'assets/speakers/808514_545719511e744cb8847482c0f6e024ab~mv2.jpg', title: 'Professor and Executive Director', org: 'Wake Forest University',
+      bio: 'Shannon is a Professor of Practice and Executive Director for the Center of Analytics Impact at Wake Forest University\'s School of Business. His work focuses on data science, experiential learning, and professional skills development. Shannon has taught at UNC Chapel Hill, Duke University, and Dartmouth College. Prior to academia, he spent 30 years in industry as a consultant and executive in sales and marketing, including roles at Price Waterhouse Coopers and Hanesbrands.' },
+    { name: 'Louis NeJame', img: 'assets/speakers/808514_7a074844a37646a4b70a434fe3fd14fe~mv2.jpeg', title: 'Edtech Entrepreneur', org: 'Manati',
+      bio: 'Louis is the founder of Manati, an AI-driven platform supporting instructional designers in creating high-quality online courses. He previously led the development of AI Reader at McGraw Hill Higher Education and advised leading organizations through his work at Tyton Partners, where he contributed to research initiatives such as Time for Class with the Bill & Melinda Gates Foundation.' },
+    { name: 'Dan Be Kim', img: 'assets/speakers/808514_2a89d3ea64dd4eca97e02b039a22870b~mv2.jpeg', title: 'Research Assistant', org: 'Harvard Human Flourishing Program',
+      bio: 'Dan is a researcher at the Harvard Human Flourishing Program and a graduate student at the Harvard Graduate School of Education, with interests in AI, youth engagement, and wellbeing.' },
+    { name: 'Paul Tesluk', img: 'assets/speakers/808514_dd4b34ca01d54801a861038a1e5f7c28~mv2.png', title: 'Leadership Development Pioneer', org: 'Bentley University',
+      bio: 'Paul is Provost and Vice President for Academic Affairs at Bentley University. He previously served as Dean of the University at Buffalo School of Management, where he founded the Center for Leadership and Organizational Effectiveness. A nationally recognized scholar in leadership, teams, and organizational change, his research has been supported by the National Science Foundation and the National Institutes of Health. He is a fellow of the Society for Industrial and Organizational Psychology and the Society for Organizational Behavior.' },
+    { name: 'Gaurav Shah', img: 'assets/speakers/808514_6f4eb3efdf5f45c69bf07a24941cede4~mv2.jpg', title: 'Hybrid Learning Innovator', org: 'Bentley University',
+      bio: 'Learning Technologist with 20+ years at Bentley University, focused on hybrid learning innovation.' },
+    { name: 'Rahul Divekar', img: 'assets/speakers/808514_b7d80277ce174cf39ec1d70d7f55af5a~mv2.jpeg', title: 'Conversational AI Innovator', org: 'Bentley University',
+      bio: 'Rahul is an Assistant Professor at Bentley University, specializing in Human–AI interaction, conversational AI, and immersive learning technologies. He previously served as a Research Associate at Educational Testing Service and conducted research at IBM Research – Thomas J. Watson Research Center. At Rensselaer Polytechnic Institute, Rahul was instrumental in developing the Rensselaer Mandarin Project, an immersive language learning environment that combines Embodied Conversational AI, extended reality, and task-based scenarios to teach Mandarin Chinese.' },
+    { name: 'Melissa Hey', img: 'assets/speakers/808514_e20abda8f51b42099e0e79678efe7509~mv2.jpeg', title: 'Environmental Science Educator', org: 'Bentley University',
+      bio: 'Lecturer at Bentley University, exploring AI integration in environmental science education.' },
+    { name: 'Peter Shea', img: 'assets/speakers/808514_3f2d0393ec174f939999390f243c1409~mv2.jpg', title: 'Assistant Dean for AI Integration', org: 'Middlesex Community College',
+      bio: 'Peter is a learning professional with extensive experience as a designer, instructor, editor, writer, and professional development manager. He is an advocate for highly immersive learning experiences and for using learning analytics to inform learning design. He has spent several years as director of professional development at the community college level and created the first open educational inclusive pedagogy resource collection for the community colleges of Massachusetts. In addition, he served as a teaching assistant for a course on Adult Learning at Harvard Extension School.' },
+    { name: 'Isabella Douzoglou', img: 'assets/speakers/808514_c0979e7c694b45b884a933dd09624ddf~mv2.jpeg', title: 'Interdisciplinary Scientist', org: 'Biophysics startup founder',
+      bio: 'PhD Student in biophysics, startup founder.' },
+    { name: 'Steve Ouellette', img: 'assets/speakers/808514_91e384a5617141aaa4e4f8ae2918f92e~mv2.png', title: "AI in Public School's Leader", org: 'Westwood Public Schools',
+      bio: 'Steve has been the Director of Technology, Learning, and Innovation for Westwood Public Schools since 2010. Before that, he held the position of Math Department Chair in the Walpole and Westwood school districts. In his current role, Steve oversees a staff of 12 people with responsibilities that range from maintaining the district’s technology infrastructure to working with staff to leverage technology in meaningful ways to empower students to be the best learners possible.' },
+    { name: 'Gabriela Torres Vives', img: 'assets/speakers/808514_bac9113cf1644090a8cce62cbe1576ce~mv2.jpeg', title: 'Co-founder', org: 'Sundai Club & Aethos (MIT Ecosystem)',
+      bio: 'Gabriela works at the intersection of Human-AI interaction, behavioral design, and education. They co-founded Sundai Club and Aethos in the MIT ecosystem to foster AI prototyping, start-up acceleration, and AI safety research, and are expanding these communities in Latin America through Sundai Latam. Her research spans digital privacy and financial infrastructure, including co-authoring Enhancing the Privacy of a Digital Pound with the Bank of England at the MIT Media Lab and contributing to projects on digital economies in the Global South. Before focusing on AI, Gabriela worked in corporate finance and digital transformation and founded a non-profit EdTech initiative for teenagers in Peru.' },
+    { name: 'Candace Williams', img: 'assets/speakers/808514_a101eca916a649f2a4a13ec33591c465~mv2.jpg', title: 'Senior Director of the Solutions Lab', org: 'Business-Higher Education Forum (BHEF)',
+      bio: 'Candace is senior director of the Solutions Lab at the Business-Higher Education Forum (BHEF). Her work drives cross-sector collaborations that expand inclusive pathways from education to work—bridging regional talent initiatives, original research, and strategic solutions. Candace leads the Connecticut Tech Talent Accelerator, advances BHEF’s work-integrated learning strategy, develops thought leadership, and secures resources to scale innovative business–higher education collaborations. Before becoming senior director, Candace was BHEF’s director of regional initiatives, strengthening talent ecosystems through postsecondary-employer partnerships.' },
+    { name: 'Thomas Van de Velde', img: 'assets/speakers/808514_e7834bf9d3aa42ea89f12a2c70de0c06~mv2.png', title: 'Building AI-Powered Education', org: 'TeachPilot & Tufts University',
+      bio: 'Thomas is a technology executive and educator with over 20 years of experience leading digital transformations. At Accenture, he spent 12 years helping major retailers like Best Buy harness data and AI to serve online customers. At Amazon, he led global AI-driven operations that optimized fulfillment networks, shaped worldwide grocery and one-hour delivery services, and co-founded Amazon Fresh stores and Locker pickup points. Today, as founder of TeachPilot, lecturer at Tufts University, and a member of the Presidential Advisory Board of Greenway Institute - a pioneering nonprofit reimagining engineering education - Thomas is focused on democratizing engineering education. He applies his experience solving complex real-world problems to create AI-powered, project-based learning that connects authentic challenges with skill development.' },
+    { name: 'Andrea Claver', img: 'assets/speakers/808514_6384d0b0120646ca8e76898fad28de10~mv2.avif', title: 'Educational Technology Professional', org: 'InnovateEDU & EDSAFE AI Alliance',
+      bio: 'Andrea is an educational technology professional committed to expanding access and opportunity in learning. She serves as Project Manager for the EDSAFE AI Alliance at InnovateEDU, where she helps drive collaboration around the future of AI in education. With nearly a decade of experience in professional development, content creation, and community engagement, she has led district and statewide initiatives reaching more than 1,500 educators and administrators. Her work is grounded in impact, innovation, and authentic collaboration, all in service of transforming learning environments for every student.' },
+    { name: 'Kristi Girdharry', img: 'assets/speakers/808514_c8d775a62ffb417cae8ac6445ab88966~mv2.jpg', title: 'Director and Tutor', org: 'Babson College',
+      bio: 'Kristi is the Director of the Writing Center and an Associate Teaching Professor in the Arts and Humanities division of Babson College, where she teaches courses on writing, tutoring, and social media. Her work brings together teaching, research, and community engagement, with a particular focus on how writing and literacy practices shape inclusion, access, and belonging. In addition to her research, Kristi co-edits the Best of the Journals in Rhetoric and Composition Series, helping bring key trends and conversations in Writing Studies to a broader teaching community. Her most recent work explores the role of artificial intelligence in the writing classroom, examining how emerging technologies are reshaping writing pedagogy and student learning.' },
+    { name: 'Marta McAlister', img: 'assets/speakers/808514_73c553f0977c4f27a20412f6af16f7d2~mv2.jpeg', title: 'Google Classroom Leader', org: 'Google for Education',
+      bio: 'Marta is a former teacher turned Googler who came to Google to build products for educators. In her 14+ years at Google, Marta has worked on every product across the k12 and higher education Google for Education portfolio. Marta currently manages teams bringing products across Chrome, Android and Google for Education to market. She also leads Sales & Channel Enablement for both the Education and Enterprise go-to-market teams. Outside of work, Marta spends much of her time with her family - particularly with her two sons who keep her energy and sense of humor up. Marta is also engaged with the Boston Chamber of Commerce Workforce Development Board, the Tech Advisory Board for UP Academy Network, and the Emerging Leaders Board for Massachusetts Business Alliance for Education (MBAE). She graduated from Brown University and has her M.Ed in childhood and special education from Hunter College.' },
+    { name: 'Yakut Gazi', img: 'assets/speakers/808514_39b7d3c0635549d09622f651ef2baaed~mv2.jpg', title: 'Vice Provost', org: 'Duke University',
+      bio: 'Yakut Gazi is the Vice Provost for Learning Innovation and Digital Education at Duke University. Her higher education experience spans over 32 years in four countries. Dr. Gazi has her Ph.D. in Educational Psychology from Texas A&M University, and an M.A. in Educational Sciences and a B.S. in Teaching Chemistry, both from Bogazici University in Turkey. A native of Istanbul, Dr. Gazi is married, with a daughter.' },
+    { name: 'Gates Bryant', img: 'assets/speakers/808514_26adb5bfba004f248432f0c5df6d83ce~mv2.jpeg', title: 'Executive in Education', org: 'General Manager & Strategic Advisor',
+      bio: 'Gates is a highly accomplished General Manager and Strategic Advisor with a demonstrated track record of effectively bridging the gap between strategy and execution across the information, education, publishing, and technology industries. He is recognized as a collaborative leader who drives transformational initiatives in crucial areas such as product development and management, sales strategy, and merger integration. Bryant has a proven history of success in achieving P&L improvement, even amidst periods of unprecedented market transformation. His specialties include deep expertise in For-profit Education, Higher Education, K-12 Education, and Educational Technology.' },
+    { name: 'Sam Paddock', img: 'assets/speakers/808514_68d0b7f3c5154fdd86f6f3e323d57165~mv2.jpeg', title: 'CEO', org: 'Next Gen Learning (NGL)',
+      bio: 'Sam is an education entrepreneur and co-founder, best known for establishing the successful online education company, GetSmarter, which offered high-touch certified short courses in partnership with world-leading universities until its acquisition by 2U (now edX) in 2017. Paddock\'s current focus is on leading the Next Gen Learning (NGL) team, where he is pioneering the use of advanced AI and voice-based technology to address long-standing challenges in online education. The NGL team is dedicated to combining the inspiration of human faculty with the precision of AI tutors and copilots, creating more personal, adaptive, and scalable learning experiences that are proven to double learning gains. His work is centered on integrating generative AI directly into the core learning path, enabling the next generation of high-impact, human-centered online courses.' },
+    { name: 'Hamit Hamutcu', img: 'assets/speakers/808514_6a3207884c624a4c86e50ce15ba2cb10~mv2.jpg', title: 'AI & Data Strategy Leader', org: 'Founder of AIxEd',
+      bio: 'Hamit is the founder of AIxEd, which aims to explore the future of AI in learning, teaching, and the transformation of educational institutions. He brings 30 years of industry and consulting experience in data and AI. He was a Senior Advisor at the Institute for Experiential AI at Northeastern University where he led strategy and educational programs in AI upskilling. He is also co-editor at Harvard Data Science Review and co-founder of the Initiative for Analytics and Data Science Standards, a nonprofit initiative that aims to develop industry standards for the knowledge and skills required in data science roles and data and AI literacy.' },
+  ];
+
+  document.getElementById('speakerGrid').innerHTML = SPEAKERS.map(s => `
+    <div class="person-card has-bio" data-search="${(s.name + ' ' + s.title + ' ' + s.org).toLowerCase()}"
+         onclick="this.classList.toggle('expanded')">
+      <img class="person-photo" src="${s.img || DEFAULT_AVATAR}" alt="${s.name}" loading="lazy" />
+      <div class="person-body">
+        <div class="person-name">${s.name}</div>
+        <div class="person-title">${s.title}</div>
+        <div class="person-org">${s.org}</div>
+        <div class="bio-toggle-hint">Read bio ↓</div>
+        <div class="person-bio">${s.bio}</div>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('speakerSearch').addEventListener('input', function () {
+    const q = this.value.trim().toLowerCase();
+    let visible = 0;
+    document.querySelectorAll('#speakerGrid .person-card').forEach(card => {
+      const show = !q || card.dataset.search.includes(q);
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    document.getElementById('speakerEmpty').style.display = visible ? 'none' : 'block';
+  });
+</script>
+</body>
+</html>
