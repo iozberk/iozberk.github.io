@@ -28,12 +28,11 @@
     <li><a href="index.html#summit">Workforce Summit</a></li>
     <li><a href="index.html#strategy">Strategy Collaborative</a></li>
     <li class="nav-dropdown">
-      <a href="#" class="nav-dropdown-toggle">AIxEd 2026 <span class="caret">▾</span></a>
+      <a href="connect2026.html" class="nav-dropdown-toggle">AIxEd 2026 <span class="caret">▾</span></a>
       <ul class="nav-dropdown-menu">
-        <li><a href="connect2026.html">AIxEd May 2026</a></li>
         <li><a href="connect.html">Connect Program</a></li>
         <li><a href="leadershipsummit2026.html">Leadership Summit</a></li>
-        <li><a href="2026speakers.html">2026 Speakers</a></li>
+        <li><a href="2026speakers.html">Speaker Lineup</a></li>
       </ul>
     </li>
     <li class="nav-dropdown">
@@ -64,11 +63,10 @@
   <a href="index.html" onclick="closeMenu()">Home</a>
   <a href="index.html#summit" onclick="closeMenu()">Workforce Summit</a>
   <a href="index.html#strategy" onclick="closeMenu()">Strategy Collaborative</a>
-  <p class="mobile-menu-group">AIxEd 2026</p>
-  <a href="connect2026.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd May 2026</a>
+  <a href="connect2026.html" class="mobile-menu-group mobile-menu-grouplink" onclick="closeMenu()">AIxEd 2026</a>
   <a href="connect.html" class="mobile-menu-sub" onclick="closeMenu()">Connect Program</a>
   <a href="leadershipsummit2026.html" class="mobile-menu-sub" onclick="closeMenu()">Leadership Summit</a>
-  <a href="2026speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2026 Speakers</a>
+  <a href="2026speakers.html" class="mobile-menu-sub" onclick="closeMenu()">Speaker Lineup</a>
   <p class="mobile-menu-group">AIxEd 2025</p>
   <a href="2025.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd November 2025</a>
   <a href="2025speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2025 Speakers</a>
@@ -83,28 +81,33 @@
 
 <!-- ── HERO ── -->
 <section class="subpage-hero">
-  <div class="eyebrow">May 8, 2026 Program</div>
-  <h1>AIxEd Leadership <em>Summit</em></h1>
-  <p>Our premier full-day gathering of K-12, Higher-Ed, and Edtech leaders, featuring case studies and strategic insights.</p>
-  <div class="meta-row">
-    <a class="btn-primary" href="https://www.eventbrite.com/e/aixed-leadership-summit-tickets-1983496547568" target="_blank" rel="noopener">Get Summit Tickets</a>
+  <div class="split-with-gallery">
+    <div>
+      <div class="eyebrow">May 8, 2026 Program</div>
+      <h1>AIxEd Leadership <em>Summit</em></h1>
+      <p>Our premier full-day gathering of K-12, Higher-Ed, and Edtech leaders, featuring case studies and strategic insights.</p>
+      <div class="meta-row">
+        <a class="btn-primary" href="https://www.eventbrite.com/e/aixed-leadership-summit-tickets-1983496547568" target="_blank" rel="noopener">Event Details</a>
+      </div>
+    </div>
+    <div class="rotating-gallery" id="heroGallery"><!-- filled by JS --></div>
   </div>
 </section>
 
-<!-- ── OVERVIEW ── -->
-<section class="content-section">
+<!-- ── OVERVIEW (lean) ── -->
+<section class="content-section" style="padding-top:52px; padding-bottom:52px;">
   <div class="page-container-wide">
     <div class="section-eyebrow">Overview</div>
-    <h2 class="section-heading">Strategic implications of AI in education</h2>
-    <p class="section-lead">A dedicated tracks of expert keynotes, fireside chats, and panels bringing together policymakers, university chancellors, K-12 superintendents, and EdTech executives. The summit agenda spans workforce readiness, institutional governance, personalization at scale, and responsible AI deployment.</p>
+    <h2 class="section-heading" style="max-width:none;">Strategic implications of AI in Education</h2>
+    <p class="section-lead overview-lead">Expert keynotes, fireside chats, and panels bringing together policymakers, university chancellors, K-12 superintendents, and EdTech executives — spanning workforce readiness, institutional governance, personalization at scale, and responsible AI deployment.</p>
   </div>
 </section>
 
 <!-- ── TIMELINE ── -->
 <section class="content-section alt">
   <div class="page-container-wide">
-    <div class="section-eyebrow">Program</div>
-    <h2 class="section-heading">The day, hour by hour</h2>
+    <div class="section-eyebrow">Program — May 8</div>
+    <h2 class="section-heading">The full-day agenda</h2>
     <div class="timeline" id="summitTimeline"><!-- filled by JS --></div>
   </div>
 </section>
@@ -130,35 +133,48 @@
 
 <script src="assets/js/site.js"></script>
 <script>
+  const S = 'assets/speakers/';
   const TIMELINE = [
-    { time: '09:00 AM', label: 'Opening Remarks', title: 'Welcome Address',
-      speakers: 'Hamit Hamutcu (Founder, AIxEd)', avatars: ["assets/speakers/808514_2b51e06e3cfc48f88c6db98adcb3fa25~mv2.jpg"] },
-    { time: '09:15 AM', label: 'Keynote Address', title: 'The State of Education in the Commonwealth',
-      speakers: 'Dr. Stephen Zrike Jr. (Secretary of Education, Commonwealth of Massachusetts)', avatars: ["assets/speakers/808514_e1b73c50b6414c3b8f96cc8db72c1663~mv2.jpg"] },
-    { time: '09:45 AM', label: 'Fireside Chat', title: 'Legislative Perspectives on AI and Workforce Strategy',
-      speakers: 'Senator Michael O. Moore (MA State Senate) & Shauna Conway (Strategic Growth & Innovation)', avatars: ["assets/speakers/808514_14f2d3d41a44446badd51ffcc282ef58~mv2.jpg", "assets/speakers/808514_b2d0ec036db142418de04f379423138e~mv2.png"] },
-    { time: '10:15 AM', label: 'Panel Discussion', title: 'Academic Leadership: AI Innovation and Research Governance',
-      speakers: 'Usama Fayyad & Jay Aslam (Northeastern University), Daniela Rus (MIT CSAIL), Michael Littman (Brown University)', avatars: ["assets/speakers/808514_89699a930cf0463fa5c0561167e539c1~mv2.jpg", "assets/speakers/808514_07263697a2bb4360a210c24d74d93c96~mv2.jpg", "assets/speakers/808514_4ec54a4863b74802bb48fa802e7da232~mv2.jpg", "assets/speakers/808514_51efe9ef6c2941cea0b77bf4b65a3e8d~mv2.jpg"] },
-    { time: '11:15 AM', label: 'Fireside Chat', title: 'The Massachusetts AI Hub Vision',
-      speakers: 'Noe Ortega (Commissioner of Higher Ed, MA) & Sabrina Mansur (Director, Mass AI Hub)', avatars: ["assets/speakers/808514_b0a98b9667ce4e5891482b443143e698~mv2.jpg", "assets/speakers/808514_42efbd567a864eba81da31310f7cc183~mv2.jpg"] },
-    { time: '12:00 PM', label: 'Lightning Talk & Case Study', title: 'Muzzy Lane Assessment Principles & Doctoral Research',
-      speakers: 'David McCool (CEO, Muzzy Lane) & Dan Be Kim (Harvard Graduate School of Education)', avatars: ["assets/speakers/808514_ea3a9033c4dc4fb0a2ff77619c11282d~mv2.webp", "assets/speakers/808514_b9ecb4251d2a48259fc59008e95434ea~mv2.jpg"] },
-    { time: '01:30 PM', label: 'Fireside Chat', title: 'Mind the Gap: Rethinking Talent Pipelines for the Agentic AI Era',
-      speakers: 'Usama Fayyad (Northeastern University) & Kjersten Moody (CEO, North America, Elai)', avatars: ["assets/speakers/808514_89699a930cf0463fa5c0561167e539c1~mv2.jpg", "assets/speakers/808514_aaa790017bdd437ebbad430ce6fbc2d7~mv2.avif"] },
-    { time: '02:15 PM', label: 'Keynote Address', title: 'Where is Responsible AI in Higher Education?',
-      speakers: 'Cansu Canca (Head of Responsible AI, Northeastern University)', avatars: ["assets/speakers/808514_35e3df32b6a4451c9b33d359dcf6b0f0~mv2.jpeg"] },
-    { time: '03:00 PM', label: 'Case Study Presentation', title: 'Triple Personalization: Scale as the Engine of Learning',
-      speakers: 'Xiao-Li Meng, Ruth Steyn, Gaurav Vazirani (Harvard University / LabXchange)', avatars: ["assets/speakers/808514_84f5c2707d7749dcbc0add54e4e1535a~mv2.jpg", "assets/speakers/808514_84fa2261a8be4c4da13353ba2eb8287b~mv2.jpeg", "assets/speakers/808514_e0f9bda18e164c5493df6b2b3c9caef9~mv2.png"] },
-    { time: '03:30 PM', label: 'K-12 Systems Panel', title: 'Superintendent Perspectives: District-Wide Deployments',
-      speakers: 'Anne DeMallie (MA DESE), Rachel Miller (Springfield), Jessica Booker (Foxborough), Elizabeth Kerrigan (Sudbury)', avatars: ["assets/speakers/808514_c18a1d365537477791f6d84c8257aa4c~mv2.jpg", "assets/speakers/808514_9b98e981660b4a378666e684c33b79a7~mv2.jpg", "assets/speakers/808514_6fda199fbe2f4af1a6592e3e6c7c126c~mv2.jpg", "assets/speakers/808514_fd2f6f1ff76044e087554af260db7029~mv2.png"] },
-    { time: '04:15 PM', label: 'Panel Discussion', title: 'Hiring and Building Teams in the Age of AI',
-      speakers: 'Lisa Sacchetti (TRN), Phillip Miller (Skillwell), James Lane (University Instructors), David Raney (Nuventive)', avatars: ["assets/speakers/808514_95bf56459586491b9e03913416b7a6ed~mv2.jpeg", "assets/speakers/808514_3440d69395c84d2499fc2d900dc88bcf~mv2.jpeg", "assets/speakers/808514_e8fdcaaffdfe45bfbd74e66a46281c68~mv2.webp", "assets/speakers/808514_46e423df360e42a0b8e3fe4f62aca964~mv2.jpg"] },
-    { time: '05:00 PM', label: 'Closing Keynotes', title: "Chancellor's Perspectives & Future Outlook",
-      speakers: 'Dr. Ken Henderson (Chancellor, Northeastern University) & Hamit Hamutcu', avatars: ["assets/speakers/808514_60d537e0d8c74aae942d6d8e272763da~mv2.jpg", "assets/speakers/808514_2b51e06e3cfc48f88c6db98adcb3fa25~mv2.jpg"] },
+    { label: 'Opening Remarks', title: 'Welcome Address',
+      speakers: 'Hamit Hamutcu — Founder, AIxEd', avatars: [S+'808514_2b51e06e3cfc48f88c6db98adcb3fa25~mv2.jpg'] },
+    { label: 'Keynote', title: 'The State of Education in the Commonwealth',
+      speakers: 'Dr. Stephen Zrike Jr. — Secretary of Education, Commonwealth of Massachusetts', avatars: [S+'808514_e1b73c50b6414c3b8f96cc8db72c1663~mv2.jpg'] },
+    { label: 'Fireside Chat', title: 'Legislative Perspectives on AI and Workforce Strategy',
+      speakers: 'Michael O. Moore — Senator, Massachusetts State Senate & Shauna Conway — Founder, Strategic Growth & Innovation', avatars: [S+'808514_14f2d3d41a44446badd51ffcc282ef58~mv2.jpg', S+'808514_b2d0ec036db142418de04f379423138e~mv2.png'] },
+    { label: 'Panel', title: 'Academic Leadership: AI Innovation and Research Governance',
+      speakers: 'Usama Fayyad & Jay Aslam (Northeastern University), Daniela Rus (MIT CSAIL), Michael Littman (Brown University)', avatars: [S+'808514_89699a930cf0463fa5c0561167e539c1~mv2.jpg', S+'808514_07263697a2bb4360a210c24d74d93c96~mv2.jpg', S+'808514_4ec54a4863b74802bb48fa802e7da232~mv2.jpg', S+'808514_51efe9ef6c2941cea0b77bf4b65a3e8d~mv2.jpg'] },
+    { label: 'Fireside Chat', title: 'The Massachusetts AI Hub Vision',
+      speakers: 'Noe Ortega — Commissioner of Higher Education, MA & Sabrina Mansur — Director, Mass AI Hub', avatars: [S+'808514_b0a98b9667ce4e5891482b443143e698~mv2.jpg', S+'808514_42efbd567a864eba81da31310f7cc183~mv2.jpg'] },
+    { label: 'Lightning Talk', title: 'Rethinking Research in the Doctoral Journey',
+      speakers: 'Dan Be Kim — Harvard Graduate School of Education', avatars: [S+'808514_b9ecb4251d2a48259fc59008e95434ea~mv2.jpg'] },
+    { label: 'Muzzy Lane Presents', title: 'How I Learned to Stop Worrying and Love Online Assessment',
+      speakers: 'David McCool — President & CEO, Muzzy Lane', avatars: [S+'808514_ea3a9033c4dc4fb0a2ff77619c11282d~mv2.webp'] },
+    { label: 'Fireside Chat', title: 'Mind the Gap: Rethinking Talent Pipelines for the Agentic AI Era',
+      speakers: 'Usama Fayyad (Northeastern University) & Kjersten Moody — CEO, North America, Elai', avatars: [S+'808514_89699a930cf0463fa5c0561167e539c1~mv2.jpg', S+'808514_aaa790017bdd437ebbad430ce6fbc2d7~mv2.avif'] },
+    { label: 'Keynote', title: 'Where is Responsible AI in Higher Education?',
+      speakers: 'Cansu Canca — Head of Responsible AI, Northeastern University; Founder & Director, AI Ethics Lab', avatars: [S+'808514_35e3df32b6a4451c9b33d359dcf6b0f0~mv2.jpeg'] },
+    { label: 'Harvard University Presents', title: 'Triple Personalization in the Age of AI: When Scale Becomes the Engine of Learning',
+      speakers: 'Xiao-Li Meng (HDSR), Ruth Steyn & Gaurav Vazirani (LabXchange)', avatars: [S+'808514_84f5c2707d7749dcbc0add54e4e1535a~mv2.jpg', S+'808514_84fa2261a8be4c4da13353ba2eb8287b~mv2.jpeg', S+'808514_e0f9bda18e164c5493df6b2b3c9caef9~mv2.png'] },
+    { label: 'K-12 Systems Panel', title: 'Superintendent Perspectives: District-Wide Deployments',
+      speakers: 'Anne DeMallie (MA DESE), Rachel Miller (Springfield), Jessica Booker (Foxborough), Elizabeth Kerrigan & Shannon Famigletti (Sudbury), Cody Minahan', avatars: [S+'808514_c18a1d365537477791f6d84c8257aa4c~mv2.jpg', S+'808514_9b98e981660b4a378666e684c33b79a7~mv2.jpg', S+'808514_6fda199fbe2f4af1a6592e3e6c7c126c~mv2.jpg', S+'808514_fd2f6f1ff76044e087554af260db7029~mv2.png', S+'808514_30aad678803e4d90b6ea5d4c37fca6bc~mv2.png', S+'808514_a906b802e7284d90980b1bbd8e3771e7~mv2.png'] },
+    { label: 'Panel', title: 'Hiring and Building Teams in the Age of AI',
+      speakers: 'Lisa Sacchetti (The Renaissance Network), Phillip Miller (Skillwell), James Lane (University Instructors), David Raney (Nuventive)', avatars: [S+'808514_95bf56459586491b9e03913416b7a6ed~mv2.jpeg', S+'808514_3440d69395c84d2499fc2d900dc88bcf~mv2.jpeg', S+'808514_e8fdcaaffdfe45bfbd74e66a46281c68~mv2.webp', S+'808514_46e423df360e42a0b8e3fe4f62aca964~mv2.jpg'] },
+    { label: 'Lightning Talk', title: "Scaling Student Support with AI: Lessons from NYU's Ivy.ai Chatbot",
+      speakers: 'Kellie Fitzgerald — Senior Director of Admissions Operations, NYU', avatars: [S+'808514_43655dc137564ec7815a25d803392f00~mv2.jpeg'] },
+    { label: 'Panel', title: 'How Do You Evaluate and Select EdTech Tools: Three Perspectives from Three Experts',
+      speakers: 'Ola Ozernov-Palchik (MIT), Rachel Schechter (LXD Research), Kaitlin Dumont (Huron Consulting)', avatars: [S+'808514_78235f4760104be0b0616126b0eb86ef~mv2.jpeg', S+'808514_f88d622dc9874abc808a7193c73c2927~mv2.png', S+'808514_9e575b2423164173b407c02fc3091f2b~mv2.webp'] },
+    { label: 'Talk', title: 'Upskilling Educators in AI',
+      speakers: 'Gabriela Torres — Mass AI Hub & SUNDAI Club', avatars: [S+'808514_bac9113cf1644090a8cce62cbe1576ce~mv2.jpeg'] },
+    { label: 'Case Study', title: 'Human Edge Studio: Students Applying AI to Real-World Challenges',
+      speakers: 'Student Hackathon Winners — presented by Shauna Conway', avatars: [S+'808514_b2d0ec036db142418de04f379423138e~mv2.png'] },
+    { label: 'Keynote', title: "Chancellor's Perspective & Future Outlook",
+      speakers: 'Dr. Ken Henderson — Chancellor, Northeastern University', avatars: [S+'808514_60d537e0d8c74aae942d6d8e272763da~mv2.jpg'] },
+    { label: 'Closing Remarks', title: 'Closing Remarks',
+      speakers: 'Hamit Hamutcu — Founder, AIxEd', avatars: [S+'808514_2b51e06e3cfc48f88c6db98adcb3fa25~mv2.jpg'] },
   ];
   document.getElementById('summitTimeline').innerHTML = TIMELINE.map(t => `
     <div class="timeline-item">
-      <span class="timeline-time">${t.time}</span><span class="timeline-label">${t.label}</span>
+      <span class="timeline-time">${t.label}</span>
       <h3>${t.title}</h3>
       <div class="timeline-speakers">
         <span class="timeline-avatars">${t.avatars.map(a =>
@@ -166,6 +182,19 @@
         <span>${t.speakers}</span>
       </div>
     </div>`).join('');
+
+  // hero rotating gallery (PLACEHOLDER photos — swap when final Summit folder arrives)
+  const GALLERY = [
+    'assets/photos/events-web/ev-05.jpg', 'assets/photos/events-web/ev-12.jpg',
+    'assets/photos/events-web/ev-20.jpg', 'assets/photos/events-web/ev-28.jpg',
+    'assets/photos/events-web/ev-36.jpg'
+  ];
+  const gEl = document.getElementById('heroGallery');
+  gEl.innerHTML = GALLERY.map((src, i) => `<img src="${src}" alt="AIxEd Summit scene" class="${i === 0 ? 'active' : ''}" loading="lazy" />`).join('');
+  const gimgs = gEl.querySelectorAll('img'); let gi = 0;
+  if (gimgs.length > 1) setInterval(() => {
+    gimgs[gi].classList.remove('active'); gi = (gi + 1) % gimgs.length; gimgs[gi].classList.add('active');
+  }, 3500);
 </script>
 </body>
 </html>

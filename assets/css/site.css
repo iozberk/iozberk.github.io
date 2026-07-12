@@ -1107,3 +1107,119 @@
   .timeline-item { padding-left: 2.1rem; }
   .timeline-item h3 { font-size: 1.02rem; }
 }
+
+/* ===================================================================
+   BATCH 2 — nav grouplink, track buttons, hover cards, gallery,
+   filter chips, modal popup
+   =================================================================== */
+
+/* Mobile menu: tappable group header (AIxEd 2026 -> connect2026) */
+.mobile-menu a.mobile-menu-grouplink {
+  color: rgba(255,255,255,0.4); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 1.2rem 0.6rem 0.3rem; border-bottom: none;
+}
+.mobile-menu a.mobile-menu-grouplink:hover { color: var(--yellow); }
+
+/* Track cards: equal-height, buttons pinned in a side-by-side row at the bottom */
+.track-card { min-height: 100%; }
+.track-cta-row { margin-top: auto; }
+.track-cta-row .btn-indigo, .track-cta-row .btn-ghost-indigo {
+  flex: 1 1 0; text-align: center; white-space: nowrap;
+}
+@media (max-width: 480px) { .track-cta-row { flex-direction: column; } }
+
+/* Overview lead: wider, matches the track grid width below it */
+.overview-lead { max-width: 100%; font-size: 1.12rem; }
+
+/* Highlight cards with hover-reveal description */
+.reveal-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem; margin-top: 2.5rem;
+}
+.reveal-card {
+  position: relative; overflow: hidden; border-radius: 14px;
+  background: var(--indigo-deep); color: var(--white);
+  min-height: 200px; padding: 1.6rem;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  cursor: default;
+}
+.reveal-card:hover { transform: translateY(-4px); background: var(--indigo); box-shadow: 0 16px 40px rgba(30,26,110,0.35); }
+.reveal-card .rc-icon { font-size: 1.9rem; margin-bottom: auto; }
+.reveal-card h3 { font-size: 1.15rem; font-weight: 800; color: var(--white); letter-spacing: -0.01em; }
+.reveal-card p {
+  font-size: 0.9rem; color: rgba(255,255,255,0.82); line-height: 1.6;
+  max-height: 0; opacity: 0; margin-top: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  overflow: hidden;
+}
+.reveal-card:hover p, .reveal-card:focus-within p { max-height: 220px; opacity: 1; margin-top: 0.6rem; }
+@media (hover: none) { /* touch: always show text */
+  .reveal-card p { max-height: 220px; opacity: 1; margin-top: 0.6rem; }
+}
+
+/* Rotating gallery box (connect + leadership right rail) */
+.split-with-gallery {
+  display: grid; grid-template-columns: 1fr 0.85fr; gap: 3rem; align-items: center;
+  max-width: 1150px; margin: 0 auto;
+}
+.rotating-gallery {
+  position: relative; width: 100%; aspect-ratio: 4 / 3;
+  border-radius: 16px; overflow: hidden; background: var(--lavender);
+  box-shadow: 0 16px 48px rgba(45,42,143,0.18);
+}
+.rotating-gallery img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0; transition: opacity 0.9s ease;
+}
+.rotating-gallery img.active { opacity: 1; }
+@media (max-width: 860px) {
+  .split-with-gallery { grid-template-columns: 1fr; gap: 1.8rem; }
+  .rotating-gallery { max-width: 520px; margin: 0 auto; }
+}
+
+/* Filter chips (sessions + speakers) */
+.filter-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.6rem; }
+.filter-chip {
+  font-family: inherit; font-size: 0.85rem; font-weight: 700;
+  padding: 0.5rem 1.15rem; border-radius: 999px; cursor: pointer;
+  background: var(--white); color: var(--indigo);
+  border: 1.5px solid var(--lavender-dark); transition: all 0.15s;
+}
+.filter-chip:hover { border-color: var(--indigo); }
+.filter-chip.active { background: var(--indigo); color: var(--white); border-color: var(--indigo); }
+
+/* Modal popup (session details + speaker bios) */
+.modal {
+  position: fixed; inset: 0; z-index: 420; background: rgba(10,8,40,0.78);
+  display: none; align-items: center; justify-content: center; padding: 5vh 5vw;
+}
+.modal.open { display: flex; }
+.modal-card {
+  background: var(--white); border-radius: 18px; max-width: 620px; width: 100%;
+  max-height: 88vh; overflow-y: auto; position: relative;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.45);
+}
+.modal-close {
+  position: absolute; top: 0.9rem; right: 1rem; z-index: 2;
+  width: 38px; height: 38px; border-radius: 50%; border: none; cursor: pointer;
+  background: rgba(10,8,40,0.08); color: var(--gray-900);
+  font-size: 1.3rem; line-height: 1; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; transition: background 0.15s;
+}
+.modal-close:hover { background: rgba(10,8,40,0.16); }
+.modal-photo { width: 100%; max-height: 300px; object-fit: cover; object-position: top center; display: block; border-radius: 18px 18px 0 0; }
+.modal-body { padding: 1.6rem 1.9rem 2rem; }
+.modal-tag {
+  display: inline-block; font-size: 0.68rem; font-weight: 900; letter-spacing: 0.07em;
+  text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 999px; margin-bottom: 0.7rem;
+}
+.modal-tag.lab { background: var(--yellow); color: var(--indigo-deep); }
+.modal-tag.expert { background: var(--indigo); color: var(--white); }
+.modal-name { font-size: 1.5rem; font-weight: 900; color: var(--gray-900); letter-spacing: -0.02em; line-height: 1.2; }
+.modal-sub { font-size: 0.95rem; color: var(--magenta); font-weight: 700; margin-top: 0.3rem; }
+.modal-org { font-size: 0.9rem; color: var(--gray-700); margin-top: 0.15rem; }
+.modal-text { font-size: 0.96rem; color: var(--gray-700); line-height: 1.7; margin-top: 1.1rem; }
+.person-card, .session-card { cursor: pointer; }

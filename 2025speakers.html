@@ -28,12 +28,11 @@
     <li><a href="index.html#summit">Workforce Summit</a></li>
     <li><a href="index.html#strategy">Strategy Collaborative</a></li>
     <li class="nav-dropdown">
-      <a href="#" class="nav-dropdown-toggle">AIxEd 2026 <span class="caret">▾</span></a>
+      <a href="connect2026.html" class="nav-dropdown-toggle">AIxEd 2026 <span class="caret">▾</span></a>
       <ul class="nav-dropdown-menu">
-        <li><a href="connect2026.html">AIxEd May 2026</a></li>
         <li><a href="connect.html">Connect Program</a></li>
         <li><a href="leadershipsummit2026.html">Leadership Summit</a></li>
-        <li><a href="2026speakers.html">2026 Speakers</a></li>
+        <li><a href="2026speakers.html">Speaker Lineup</a></li>
       </ul>
     </li>
     <li class="nav-dropdown">
@@ -64,11 +63,10 @@
   <a href="index.html" onclick="closeMenu()">Home</a>
   <a href="index.html#summit" onclick="closeMenu()">Workforce Summit</a>
   <a href="index.html#strategy" onclick="closeMenu()">Strategy Collaborative</a>
-  <p class="mobile-menu-group">AIxEd 2026</p>
-  <a href="connect2026.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd May 2026</a>
+  <a href="connect2026.html" class="mobile-menu-group mobile-menu-grouplink" onclick="closeMenu()">AIxEd 2026</a>
   <a href="connect.html" class="mobile-menu-sub" onclick="closeMenu()">Connect Program</a>
   <a href="leadershipsummit2026.html" class="mobile-menu-sub" onclick="closeMenu()">Leadership Summit</a>
-  <a href="2026speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2026 Speakers</a>
+  <a href="2026speakers.html" class="mobile-menu-sub" onclick="closeMenu()">Speaker Lineup</a>
   <p class="mobile-menu-group">AIxEd 2025</p>
   <a href="2025.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd November 2025</a>
   <a href="2025speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2025 Speakers</a>
@@ -97,6 +95,20 @@
   <div class="people-grid" id="speakerGrid"><!-- filled by JS --></div>
   <p class="search-empty" id="speakerEmpty">No speakers match your search.</p>
 </section>
+
+<!-- ── SPEAKER MODAL ── -->
+<div class="modal" id="speakerModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeSpeakerModal()" aria-label="Close">×</button>
+    <img class="modal-photo" id="spPhoto" src="" alt="" />
+    <div class="modal-body">
+      <div class="modal-name" id="spName"></div>
+      <div class="modal-sub" id="spTitle"></div>
+      <div class="modal-org" id="spOrg"></div>
+      <div class="modal-text" id="spBio"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ── FOOTER ── -->
 <footer>
@@ -177,18 +189,33 @@
       bio: 'Hamit is the founder of AIxEd, which aims to explore the future of AI in learning, teaching, and the transformation of educational institutions. He brings 30 years of industry and consulting experience in data and AI. He was a Senior Advisor at the Institute for Experiential AI at Northeastern University where he led strategy and educational programs in AI upskilling. He is also co-editor at Harvard Data Science Review and co-founder of the Initiative for Analytics and Data Science Standards, a nonprofit initiative that aims to develop industry standards for the knowledge and skills required in data science roles and data and AI literacy.' },
   ];
 
-  document.getElementById('speakerGrid').innerHTML = SPEAKERS.map(s => `
-    <div class="person-card has-bio" data-search="${(s.name + ' ' + s.title + ' ' + s.org).toLowerCase()}"
-         onclick="this.classList.toggle('expanded')">
+  document.getElementById('speakerGrid').innerHTML = SPEAKERS.map((s, i) => `
+    <div class="person-card" data-search="${(s.name + ' ' + s.title + ' ' + s.org).toLowerCase()}" onclick="openSpeakerModal(${i})">
       <img class="person-photo" src="${s.img || DEFAULT_AVATAR}" alt="${s.name}" loading="lazy" />
       <div class="person-body">
         <div class="person-name">${s.name}</div>
         <div class="person-title">${s.title}</div>
         <div class="person-org">${s.org}</div>
-        <div class="bio-toggle-hint">Read bio ↓</div>
-        <div class="person-bio">${s.bio}</div>
       </div>
     </div>`).join('');
+
+  function openSpeakerModal(i) {
+    const s = SPEAKERS[i];
+    document.getElementById('spPhoto').src = s.img || DEFAULT_AVATAR;
+    document.getElementById('spPhoto').alt = s.name;
+    document.getElementById('spName').textContent = s.name;
+    document.getElementById('spTitle').textContent = s.title;
+    document.getElementById('spOrg').textContent = s.org;
+    document.getElementById('spBio').textContent = s.bio || 'Bio coming soon.';
+    document.getElementById('speakerModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSpeakerModal() {
+    document.getElementById('speakerModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('speakerModal').addEventListener('click', e => { if (e.target.id === 'speakerModal') closeSpeakerModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSpeakerModal(); });
 
   document.getElementById('speakerSearch').addEventListener('input', function () {
     const q = this.value.trim().toLowerCase();

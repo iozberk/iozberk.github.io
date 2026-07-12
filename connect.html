@@ -28,12 +28,11 @@
     <li><a href="index.html#summit">Workforce Summit</a></li>
     <li><a href="index.html#strategy">Strategy Collaborative</a></li>
     <li class="nav-dropdown">
-      <a href="#" class="nav-dropdown-toggle">AIxEd 2026 <span class="caret">▾</span></a>
+      <a href="connect2026.html" class="nav-dropdown-toggle">AIxEd 2026 <span class="caret">▾</span></a>
       <ul class="nav-dropdown-menu">
-        <li><a href="connect2026.html">AIxEd May 2026</a></li>
         <li><a href="connect.html">Connect Program</a></li>
         <li><a href="leadershipsummit2026.html">Leadership Summit</a></li>
-        <li><a href="2026speakers.html">2026 Speakers</a></li>
+        <li><a href="2026speakers.html">Speaker Lineup</a></li>
       </ul>
     </li>
     <li class="nav-dropdown">
@@ -64,11 +63,10 @@
   <a href="index.html" onclick="closeMenu()">Home</a>
   <a href="index.html#summit" onclick="closeMenu()">Workforce Summit</a>
   <a href="index.html#strategy" onclick="closeMenu()">Strategy Collaborative</a>
-  <p class="mobile-menu-group">AIxEd 2026</p>
-  <a href="connect2026.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd May 2026</a>
+  <a href="connect2026.html" class="mobile-menu-group mobile-menu-grouplink" onclick="closeMenu()">AIxEd 2026</a>
   <a href="connect.html" class="mobile-menu-sub" onclick="closeMenu()">Connect Program</a>
   <a href="leadershipsummit2026.html" class="mobile-menu-sub" onclick="closeMenu()">Leadership Summit</a>
-  <a href="2026speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2026 Speakers</a>
+  <a href="2026speakers.html" class="mobile-menu-sub" onclick="closeMenu()">Speaker Lineup</a>
   <p class="mobile-menu-group">AIxEd 2025</p>
   <a href="2025.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd November 2025</a>
   <a href="2025speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2025 Speakers</a>
@@ -83,11 +81,16 @@
 
 <!-- ── HERO ── -->
 <section class="subpage-hero">
-  <div class="eyebrow">Connect 2026 Detailed Program</div>
-  <h1>AIxEd [Connect] <em>Sessions</em></h1>
-  <p>Explore the full slate of expert deep-dives, hands-on upskilling labs, and exhibition highlights from our May 2026 event.</p>
-  <div class="meta-row">
-    <a class="btn-primary" href="https://www.eventbrite.com/e/aixed-connect-2026-tickets-1978645351510" target="_blank" rel="noopener">Register for Free</a>
+  <div class="split-with-gallery">
+    <div>
+      <div class="eyebrow">May 8th and 9th, 2026 Program</div>
+      <h1>AIxEd [Connect] <em>Sessions</em></h1>
+      <p>Explore the full slate of expert deep-dives, hands-on upskilling labs, and exhibition highlights from our May 2026 event.</p>
+      <div class="meta-row">
+        <a class="btn-primary" href="https://www.eventbrite.com/e/aixed-connect-2026-tickets-1978645351510" target="_blank" rel="noopener">Event Details</a>
+      </div>
+    </div>
+    <div class="rotating-gallery" id="heroGallery"><!-- filled by JS --></div>
   </div>
 </section>
 
@@ -95,7 +98,12 @@
 <section class="content-section alt">
   <div class="page-container-wide">
     <div class="section-eyebrow">Sessions</div>
-    <h2 class="section-heading">Expert sessions &amp; upskill labs</h2>
+    <h2 class="section-heading">Expert Sessions &amp; Upskilling Lab</h2>
+    <div class="filter-row" id="sessionFilters">
+      <button class="filter-chip active" data-filter="all">All Sessions</button>
+      <button class="filter-chip" data-filter="Expert Session">Expert Sessions</button>
+      <button class="filter-chip" data-filter="Upskilling Lab">Upskilling Lab</button>
+    </div>
     <div class="search-wrap">
       <input type="search" class="search-input" id="sessionSearch"
              placeholder="Search sessions by topic, speaker, or keyword..." autocomplete="off" />
@@ -105,9 +113,18 @@
   </div>
 </section>
 
-<!-- ── LIGHTBOX ── -->
-<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
-  <img id="lightboxImg" src="" alt="" />
+<!-- ── SESSION MODAL ── -->
+<div class="modal" id="sessionModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeSessionModal()" aria-label="Close">×</button>
+    <img class="modal-photo" id="smPhoto" src="" alt="" />
+    <div class="modal-body">
+      <span class="modal-tag" id="smTag"></span>
+      <div class="modal-name" id="smTitle"></div>
+      <div class="modal-sub" id="smSpeakers"></div>
+      <div class="modal-text" id="smDesc"></div>
+    </div>
+  </div>
 </div>
 
 <!-- ── FOOTER ── -->
@@ -132,66 +149,99 @@
 <script src="assets/js/site.js"></script>
 <script>
   const SESSIONS = [
-    { title: 'Community Before Compliance: Co-Learning in the Age of AI', img: 'assets/sessions/808514_f3c82bf3c911459f9d2e44bea762f510~mv2.png', desc: 'We\'ve seen institutions often defaulting to unclear rules and restrictions that can lead to confusion and even division. This session considers an alternative path: beginning with community. Drawing on the experience of launching an interdisciplinary AI initiative called "The Generator" at Babson College, we will explore how faculty leadership, student engagement, and institutional alignment can create durable, values-driven responses to AI. This session will offer attendees glimpses into initiatives we have taken on from a community-first perspective. Examples include an AI Teaching Training program, the development of new courses, research support, and community engagement initiatives. The session will include space for participant thought and dialogue about what community-building might look like in their own contexts with particular attention to the issue of resources.', speakers: 'Kristi Girdharry & Erik Noyes', tag: 'Upskill Lab' },
-    { title: 'AI in the Doctoral Journey: How Students and Faculty Are Rethinking Research', img: 'assets/sessions/808514_9e6a12e571e34b788261849584e90456~mv2.png', desc: 'This panel brings together doctoral students and faculty to examine how AI tools are reshaping the research process — from literature review and data analysis to writing and defense preparation. Anchored by findings from Dan Serig’s longitudinal study tracking doctoral students through the GenAI era, panelists will share firsthand accounts of integrating AI into their scholarly work, discuss the evolving expectations around originality and rigor, and explore what it means to develop researcher identity when AI is a constant collaborator. The session is designed for faculty, graduate program directors, and anyone guiding the next generation of researchers.', speakers: 'Dan Serig', tag: 'Upskill Lab' },
+    { title: 'Community Before Compliance: Co-Learning in the Age of AI', img: 'assets/sessions/808514_f3c82bf3c911459f9d2e44bea762f510~mv2.png', desc: 'We\'ve seen institutions often defaulting to unclear rules and restrictions that can lead to confusion and even division. This session considers an alternative path: beginning with community. Drawing on the experience of launching an interdisciplinary AI initiative called "The Generator" at Babson College, we will explore how faculty leadership, student engagement, and institutional alignment can create durable, values-driven responses to AI. This session will offer attendees glimpses into initiatives we have taken on from a community-first perspective. Examples include an AI Teaching Training program, the development of new courses, research support, and community engagement initiatives. The session will include space for participant thought and dialogue about what community-building might look like in their own contexts with particular attention to the issue of resources.', speakers: 'Kristi Girdharry & Erik Noyes', tag: 'Upskilling Lab' },
+    { title: 'AI in the Doctoral Journey: How Students and Faculty Are Rethinking Research', img: 'assets/sessions/808514_9e6a12e571e34b788261849584e90456~mv2.png', desc: 'This panel brings together doctoral students and faculty to examine how AI tools are reshaping the research process — from literature review and data analysis to writing and defense preparation. Anchored by findings from Dan Serig’s longitudinal study tracking doctoral students through the GenAI era, panelists will share firsthand accounts of integrating AI into their scholarly work, discuss the evolving expectations around originality and rigor, and explore what it means to develop researcher identity when AI is a constant collaborator. The session is designed for faculty, graduate program directors, and anyone guiding the next generation of researchers.', speakers: 'Dan Serig', tag: 'Upskilling Lab' },
     { title: 'SAIL in Action: Teaching First-Year Business Students AI Literacy Through a Real Client Challenge', img: 'assets/sessions/808514_693894789834452ab7500c5903a40139~mv2.png', desc: 'This session presents a replicable model for integrating AI into undergraduate business education using the SAIL Framework (Social Intelligence, AI Literacy, Innovation/Inquiry, Leadership). It will walk through a first-year course project where students partnered with the Boston Globe on a multicultural marketing challenge. The course requires AI use and includes structured training on AI tools before students apply them to client research, audience analysis, and strategy development. The audience will leave with a practical framework and specific design principles for embedding AI literacy into experiential, client-based courses.', speakers: 'Pelin Bicen', tag: 'Expert Session' },
     { title: 'Muzzy Lane Presents AI Resilient Roleplay Assessments', img: 'assets/sessions/808514_2e56e508c5874f8ab9e6c0329e0c53ef~mv2.png', desc: 'Assessment loses its value when an LLM can do it for the student at a passing standard.  When it comes to formative assessments and ensuring students actually ‘do the work’, role-play & simulation-based assessments are proven methods that are underutilized in higher education.  AI has removed the cost and time barriers associated with creating high-quality roleplay and assessments, but it has also flooded the market with tools that are hard to evaluate without a framework.  Leave the session with a practical framework for evaluating these tools against the logistical constraints before you fall in love with a demo.', speakers: 'Jeffrey Fiske & Peter Shea', tag: 'Expert Session' },
     { title: 'Socratic AI: Adaptive Oral Assessments, AI-Driven Conversations, and Pedagogy in the Classroom', img: 'assets/sessions/808514_05857ec367184bc2aa7b3144aa0f1afb~mv2.png', desc: 'This session presents a field-tested approach to AI-driven, adaptive oral assessments deployed in a 300-student introductory economics course at Boston College, in partnership with Professor.io. Students engage in short, structured Socratic conversations with an AI trained on course materials, yielding ~94% completion rates, significantly higher exam scores, and concept-level analytics that enable targeted, personalized outreach before exams. The core message is about augmentation rather than automation: thoughtfully deployed AI can scale the kind of individualized dialogue once limited to small seminars, and this talk shares assignment frameworks, adaptive prompt examples, real student transcripts, and reflections on aligning AI with human-centered teaching.', speakers: 'Can Erbil', tag: 'Expert Session' },
-    { title: 'A Participatory Design Workshop Hosted By The Center For Digital Thriving At Harvard University', img: 'assets/sessions/808514_23cdaf2a04ee4bb0830ff0e8617e5793~mv2.png', desc: '"THE AI TO Z WORKSHOP is a participatory design experience developed by the Center for Digital Thriving at Harvard Graduate School of Education. In it, a diverse group of people come together to name the often-invisible ways AI is reshaping culture, relationships, and everyday human experience. Using simple materials (index cards, Sharpies, and conversation protocols), participants surface and coin terms for phenomena we\'re living through but don\'t yet have words for. In previous workshops, we’ve come up with provisional terms like Chatplomacy, Expectation Explosion, Human Signaling, Why Botherism. The act of naming these things is an intervention in itself, making cultural shifts visible and giving us shared language to talk about them. But the process does something more than diagnose the present. By creating new language together, we begin to see what\'s changing with more clarity. And with that clarity comes the agency to choose how we relate to it, the hope that comes from knowing we\'re not alone, and the beginning of a shared vision for a future we actually want to move toward."', speakers: 'Dan Be Kim & Carrie James', tag: 'Upskill Lab' },
+    { title: 'A Participatory Design Workshop Hosted By The Center For Digital Thriving At Harvard University', img: 'assets/sessions/808514_23cdaf2a04ee4bb0830ff0e8617e5793~mv2.png', desc: '"THE AI TO Z WORKSHOP is a participatory design experience developed by the Center for Digital Thriving at Harvard Graduate School of Education. In it, a diverse group of people come together to name the often-invisible ways AI is reshaping culture, relationships, and everyday human experience. Using simple materials (index cards, Sharpies, and conversation protocols), participants surface and coin terms for phenomena we\'re living through but don\'t yet have words for. In previous workshops, we’ve come up with provisional terms like Chatplomacy, Expectation Explosion, Human Signaling, Why Botherism. The act of naming these things is an intervention in itself, making cultural shifts visible and giving us shared language to talk about them. But the process does something more than diagnose the present. By creating new language together, we begin to see what\'s changing with more clarity. And with that clarity comes the agency to choose how we relate to it, the hope that comes from knowing we\'re not alone, and the beginning of a shared vision for a future we actually want to move toward."', speakers: 'Dan Be Kim & Carrie James', tag: 'Upskilling Lab' },
     { title: 'Critical AI Literacy in Practice: A Case Study from NYC Public Schools', img: 'assets/sessions/808514_9ff7e0c7193347f299acb50d63efd42c~mv2.png', desc: 'Most AI literacy frameworks stop at "understand the technology." This session argues that\'s not nearly enough, and presents a case study from New Visions for Public Schools to show what a fuller approach looks like. The framework introduces two missing dimensions: market literacy (who built this tool and how does their business model shape it?) and self-literacy (do you know your values well enough to notice when AI is shifting them?). Participants go through the same structured reflection exercise delivered to staff across New Visions and our school partners.', speakers: 'Asher Scott', tag: 'Expert Session' },
-    { title: 'From Curiosity to Capability: What It Means to Go All In on AI', img: 'assets/sessions/808514_0e021c8b18344ca78e6d4ebd8d1fbed2~mv2.png', desc: 'This session is for people who are trying to figure out how seriously to take AI in their work. We’ll look at what it actually means to go “all in” by walking through two real domains: software development and education. Not hypotheticals—what top practitioners in these fields can actually do now because they’ve fully embraced AI. Then we’ll shift gears. Instead of just talking about it, we’ll run a short, structured, hands-on exercise that helps you feel how AI works and how to use it more effectively. By the end, you should have a much clearer sense of: - What “full adoption” looks like in practice -  What you might be missing right now - Whether going deeper with AI is worth it for you', speakers: 'Mike Mendelson', tag: 'Upskill Lab' },
-    { title: 'Build Software with Claude Code — No Developer Needed', img: 'assets/sessions/808514_cdbd0c33b3244d8abde3675fb09caef5~mv2.png', desc: 'What if you could turn an idea into a working app in 45 minutes — without writing a single line of code? In this hands-on session, you will do exactly that. Starting from a blank folder and a plain-English description of what you want to build, we will use Claude Code to create a fully functional data analysis tool from scratch. You will upload real data, ask questions in plain English, and watch the answers come back as clean, visual reports — all built live in the room. This session is not about understanding AI. It is about using it to build something real. You will leave knowing how to start your own project, how to guide AI to build your idea, and why the gap between having an idea and having working software just got a lot smaller. No technical background required. Just bring a laptop and come, create working software.', speakers: 'Ozgur Yogurtcu', tag: 'Upskill Lab' },
+    { title: 'From Curiosity to Capability: What It Means to Go All In on AI', img: 'assets/sessions/808514_0e021c8b18344ca78e6d4ebd8d1fbed2~mv2.png', desc: 'This session is for people who are trying to figure out how seriously to take AI in their work. We’ll look at what it actually means to go “all in” by walking through two real domains: software development and education. Not hypotheticals—what top practitioners in these fields can actually do now because they’ve fully embraced AI. Then we’ll shift gears. Instead of just talking about it, we’ll run a short, structured, hands-on exercise that helps you feel how AI works and how to use it more effectively. By the end, you should have a much clearer sense of: - What “full adoption” looks like in practice -  What you might be missing right now - Whether going deeper with AI is worth it for you', speakers: 'Mike Mendelson', tag: 'Upskilling Lab' },
     { title: 'An Ethical Ed Tech Decision-Making Framework For Educators', img: 'assets/sessions/808514_4cda1a000f194fc3b002ca28defd32e4~mv2.png', desc: 'How educators, administrators, and policymakers can make principled, responsible decisions about AI adoption. Draws on contemporary philosophy (including principlism), political science, and practical case studies to explore trade-offs around equity, privacy, autonomy, trust, and governance. Participants analyze real-world scenarios, apply decision-making frameworks, and leave with actionable strategies for shaping ethical AI policies and practices.', speakers: 'Priten Shah', tag: 'Expert Session' },
+    { title: 'Build Software with Claude Code — No Developer Needed', img: 'assets/sessions/808514_cdbd0c33b3244d8abde3675fb09caef5~mv2.png', desc: 'What if you could turn an idea into a working app in 45 minutes — without writing a single line of code? In this hands-on session, you will do exactly that. Starting from a blank folder and a plain-English description of what you want to build, we will use Claude Code to create a fully functional data analysis tool from scratch. You will upload real data, ask questions in plain English, and watch the answers come back as clean, visual reports — all built live in the room. This session is not about understanding AI. It is about using it to build something real. You will leave knowing how to start your own project, how to guide AI to build your idea, and why the gap between having an idea and having working software just got a lot smaller. No technical background required. Just bring a laptop and come, create working software.', speakers: 'Ozgur Yogurtcu', tag: 'Upskilling Lab' },
     { title: 'The "Jagged Frontier" of AI in K12 Education', img: 'assets/sessions/808514_3971c8799c0c4ccbae42b3d7d3716980~mv2.png', desc: 'AI adoption in k12 education is all over the map – some are doing their best to adopt and integrate it into their classrooms, schools, and districts. And many district leaders are finding it challenging to navigate the various stakeholder concerns and challenges of AI adoption today. Three classroom educators and one local tech director will speak to how the promise and challenges of AI adoption in K12 are showing promise but also spotlight the specific challenges accelerating the possibilities in their schools and school systems.', speakers: 'Chris Unger, Deidre Whall, Dan Stowell, Rayna Freedman, Dan MacLeod', tag: 'Expert Session' },
-    { title: 'The Full Stack Learning Designer: Hands-On Workshop', img: 'assets/sessions/808514_2b088b108e4e4d69b04b335911205894~mv2.png', desc: 'Ever wanted to build an interactive learning experience but got stuck on the technical execution? This hands-on workshop puts you in the role of a full stack learning experience designer. Choose your own topic, get structured guidance and guardrails from Harvard’s LabXchange team, and walk out with a working prototype in 60 minutes. No coding required—just pedagogical thinking and willingness to experiment. Whether you\'re a practitioner wanting to test ideas faster or a leader curious what modern learning design looks like in practice, you\'ll see how quickly good ideas can become real experiences.', speakers: 'Ruth Steyn', tag: 'Upskill Lab' },
+    { title: 'The Full Stack Learning Designer: Hands-On Workshop', img: 'assets/sessions/808514_2b088b108e4e4d69b04b335911205894~mv2.png', desc: 'Ever wanted to build an interactive learning experience but got stuck on the technical execution? This hands-on workshop puts you in the role of a full stack learning experience designer. Choose your own topic, get structured guidance and guardrails from Harvard’s LabXchange team, and walk out with a working prototype in 60 minutes. No coding required—just pedagogical thinking and willingness to experiment. Whether you\'re a practitioner wanting to test ideas faster or a leader curious what modern learning design looks like in practice, you\'ll see how quickly good ideas can become real experiences.', speakers: 'Ruth Steyn', tag: 'Upskilling Lab' },
     { title: 'Will AI Tutors Improve Learning or Make It Worse?', img: 'assets/sessions/808514_5a496ae94b55406ca10b751277840297~mv2.png', desc: 'AI-powered tutoring tools are rapidly entering K to 12 classrooms, yet both schools and innovators are making high-stakes decisions with limited guidance on what actually drives impact. In this 60-minute session, three researchers studying how AI shapes learning in children will present key factors that influence the effectiveness of these technologies, followed by a panel discussion and Q and A. Dr. Ola Ozernov-Palchik will share emerging findings from studies of AI-supported tutoring in early literacy, including ongoing work comparing AI-based and human tutoring and examining how students’ and educators’ perceptions of AI may shape its effectiveness. Dr. Kathleen Courvieu will present research on how children evaluate and decide whether to trust AI systems, and how these perceptions influence their engagement and learning. Dr. Ying Xu will present findings from studies comparing children’s interactions with AI and human partners, highlighting differences in communication, engagement, and emotional expression, and what these differences may mean for learning.', speakers: 'Ola Ozernov-Palchik, Kathleen Corriveau, Ying Xu', tag: 'Expert Session' },
-    { title: 'From Idea to App: A Hands-On Build Session for Educators Who Want to Make Things', img: 'assets/sessions/808514_8ed74b8cd09d42beb68d8c017b3c4841~mv2.png', desc: 'Most AI sessions show you a finished product. This one walks you through building one. Using TimeSaveAI as a case study, the session traces the arc from real educator pain point to working AI tool.  Then participants do it themselves, picking a problem from their own context, drafting a system prompt, and testing it live. No coding required, just a laptop and a problem worth solving.', speakers: 'Asher Scott', tag: 'Upskill Lab' },
+    { title: 'From Idea to App: A Hands-On Build Session for Educators Who Want to Make Things', img: 'assets/sessions/808514_8ed74b8cd09d42beb68d8c017b3c4841~mv2.png', desc: 'Most AI sessions show you a finished product. This one walks you through building one. Using TimeSaveAI as a case study, the session traces the arc from real educator pain point to working AI tool.  Then participants do it themselves, picking a problem from their own context, drafting a system prompt, and testing it live. No coding required, just a laptop and a problem worth solving.', speakers: 'Asher Scott', tag: 'Upskilling Lab' },
     { title: 'Navigating the Evidence Clearinghouses: How to Find and Use Research-Backed EdTech', img: 'assets/sessions/808514_dc19eecd423740c0a9f06d7cb4f152f1~mv2.png', desc: 'The conversation about AI in education often centers on tools and efficiency. This workshop shifts the focus to a deeper question: How can AI expand human potential and build durable skills that position young people for in-demand careers? Drawing on innovations at The Possible Zone, we will explore how AI can support competency-based learning and stronger teacher-tech-student collaboration. Participants will leave with concrete strategies for using AI to deepen learning.', speakers: 'Rachel Schechter, Sara Ines Halabi, Justin Cerenzia, Brent Conway', tag: 'Expert Session' },
-    { title: 'Teaching in the Age of AI: Human-Centered Learning x High Quality Tech for the Future of Work', img: 'assets/sessions/808514_fd171d38a2334fb1a2d2f9247bb49844~mv2.png', desc: 'The conversation about AI in education often centers on tools and efficiency. This workshop shifts the focus to a deeper question: How can AI expand human potential and build durable skills that position young people for in-demand careers? Drawing on innovations at The Possible Zone, we will explore how AI can support competency-based learning and stronger teacher-tech-student collaboration. Participants will leave with concrete strategies for using AI to deepen learning.', speakers: 'Meg Riordan', tag: 'Upskill Lab' },
+    { title: 'Teaching in the Age of AI: Human-Centered Learning x High Quality Tech for the Future of Work', img: 'assets/sessions/808514_fd171d38a2334fb1a2d2f9247bb49844~mv2.png', desc: 'The conversation about AI in education often centers on tools and efficiency. This workshop shifts the focus to a deeper question: How can AI expand human potential and build durable skills that position young people for in-demand careers? Drawing on innovations at The Possible Zone, we will explore how AI can support competency-based learning and stronger teacher-tech-student collaboration. Participants will leave with concrete strategies for using AI to deepen learning.', speakers: 'Meg Riordan', tag: 'Upskilling Lab' },
     { title: 'From Dependency to Empowerment: Navigating the Paradox of GenAI and Executive Function in K-12', img: 'assets/sessions/808514_f4a7b954c6f74097b93994367c0f2f6d~mv2.png', desc: 'This session explores the paradox of Generative AI in K-12 education: while these tools offer unprecedented efficiency, over-reliance on them for cognitive offloading risks eroding the executive function skills that drive self-directed learning, such as goal-setting, prioritizing, working memory, flexible thinking, and self-monitoring. The presenters propose a dual feedback loop framework in which the interaction between a student\'s executive function baseline and GenAI use can spiral either into dependency or toward empowerment and self-understanding. Attendees will leave with a clear grasp of the framework and a practical executive function strategy to ensure AI strengthens rather than weakens developing minds in the classroom.', speakers: 'Laurel Black, Christian Carmody, Vinnie Wengert', tag: 'Expert Session' },
     { title: 'From Card Catalogs to AI Agents: Your Librarian Was the Original AI Architect', img: 'assets/sessions/808514_e9b93060d8374602956ad1559f894745~mv2.png', desc: 'The AI industry is spending billions solving a problem librarians figured out generations ago: organizing knowledge so people can find what they need and trust what they find. Classification hierarchies, controlled vocabularies, disambiguation — these keep showing up under new names like "context engineering," "semantic modeling," and "knowledge graphs." This session connects those familiar principles to the technical architecture underneath modern AI: how large language models process context, how retrieval systems decide what\'s relevant, and why structured knowledge representation is the difference between AI you can trust and AI that just sounds right. You may never look at your school\'s librarian the same way again.', speakers: 'Kishore Aradhya', tag: 'Expert Session' },
     { title: 'Entering The Pitt: Equipping Elementary Classrooms with AI That Works', img: 'assets/sessions/808514_a343bd5ac8614de893fb6b43b2b5f071~mv2.png', desc: 'Step into The Pitt—where high-stakes decisions, quick thinking, and heart define every moment. In today’s elementary classrooms, educators face similar pressures: meeting diverse student needs, managing limited time, and staying current with fast-evolving technology. This session explores how AI can become a trusted partner in the chaos, not a complication.', speakers: 'Rayna Freedman', tag: 'Expert Session' },
-    { title: 'Build It to Believe It: AI-Powered Rapid Prototyping for Educators', img: 'assets/sessions/808514_29ec1b2ba0de46cb804a73d4dd799ed6~mv2.png', desc: 'What if turning a teaching idea into a student-ready interactive tool took minutes, not? This hands-on workshop introduces educators to AI-powered rapid prototyping a process that lets anyone, regardless of technical background, transform a teaching concept into a clickable, working prototype using freely available tools. No coding experience required.', speakers: 'Cole Collins & Alex Laraia', tag: 'Upskill Lab' },
-    { title: 'Design, Build, Deploy: AI Tools for Real Problems in Education', img: 'assets/sessions/808514_8b5debe73474441691eb9ad526622d35~mv2.png', desc: 'What if you could walk into a session with a real challenge — and walk out with an AI-powered tool built to address it? In this 90-minute hands-on workshop, participants identify a problem of practice in their school, program, or institution, then design and build a working AI application using Playlab — a platform built by and for educators. No coding required. You\'ll leave with a functional tool grounded in your context, access to a global community of 25,000+ educators building and sharing AI applications, and a clear understanding of what responsible, effective AI use looks like in education.', speakers: 'Nate Kellogg', tag: 'Upskill Lab' },
-    { title: 'Real Educators Learning AI in Real-Time', img: 'assets/sessions/808514_41717a2dc7984f4d86f585f69c3f37cf~mv2.png', desc: 'Educators today are doing something unprecedented — learning a rapidly evolving, transformational set of skills in real time, on the job, without a hard-and-fast roadmap to follow. In this practitioner-led panel, K-12 educators, education leaders, and higher education faculty share how they are actively building AI fluency for a range of purposes. Panelists will reflect on their own learning process — what approaches have worked, and what hasn\'t — and draw on those individual experiences to surface insights about what it might take for schools and systems to build collective AI fluency at scale.', speakers: 'Kippy Smith, Akesha Horton, Yousuf Marvi, Anne Fensie', tag: 'Upskill Lab' },
+    { title: 'Build It to Believe It: AI-Powered Rapid Prototyping for Educators', img: 'assets/sessions/808514_29ec1b2ba0de46cb804a73d4dd799ed6~mv2.png', desc: 'What if turning a teaching idea into a student-ready interactive tool took minutes, not? This hands-on workshop introduces educators to AI-powered rapid prototyping a process that lets anyone, regardless of technical background, transform a teaching concept into a clickable, working prototype using freely available tools. No coding experience required.', speakers: 'Cole Collins & Alex Laraia', tag: 'Upskilling Lab' },
+    { title: 'Design, Build, Deploy: AI Tools for Real Problems in Education', img: 'assets/sessions/808514_8b5debe73474441691eb9ad526622d35~mv2.png', desc: 'What if you could walk into a session with a real challenge — and walk out with an AI-powered tool built to address it? In this 90-minute hands-on workshop, participants identify a problem of practice in their school, program, or institution, then design and build a working AI application using Playlab — a platform built by and for educators. No coding required. You\'ll leave with a functional tool grounded in your context, access to a global community of 25,000+ educators building and sharing AI applications, and a clear understanding of what responsible, effective AI use looks like in education.', speakers: 'Nate Kellogg', tag: 'Upskilling Lab' },
+    { title: 'Real Educators Learning AI in Real-Time', img: 'assets/sessions/808514_41717a2dc7984f4d86f585f69c3f37cf~mv2.png', desc: 'Educators today are doing something unprecedented — learning a rapidly evolving, transformational set of skills in real time, on the job, without a hard-and-fast roadmap to follow. In this practitioner-led panel, K-12 educators, education leaders, and higher education faculty share how they are actively building AI fluency for a range of purposes. Panelists will reflect on their own learning process — what approaches have worked, and what hasn\'t — and draw on those individual experiences to surface insights about what it might take for schools and systems to build collective AI fluency at scale.', speakers: 'Kippy Smith, Akesha Horton, Yousuf Marvi, Anne Fensie', tag: 'Upskilling Lab' },
     { title: 'Computational Action in the Age of AI', img: 'assets/sessions/808514_06150fbe14f04982b636a1cf87a3f962~mv2.png', desc: 'The AI challenge to education is unavoidable; it demands new means of assessment to validate student learning; it requires empowering teachers to compromise, diverge, and iterate; while recognizing that digital mimicry cannot substitute for the vital teacher-student relationship. This discussion will approach the "wicked problem" of AI not as an existential crisis, but as a profound opportunity for the evolution of education.', speakers: 'David Petty', tag: 'Expert Session' },
   ];
 
   const grid = document.getElementById('sessionGrid');
-  grid.innerHTML = SESSIONS.map(s => `
-    <div class="session-card" data-search="${(s.title + ' ' + s.speakers + ' ' + s.tag + ' ' + s.desc).toLowerCase().replace(/"/g, '')}">
-      <img class="session-photo" src="${s.img}" alt="${s.title.replace(/"/g, '&quot;')}" loading="lazy"
-           onclick="openLightbox(this.src)" />
+  grid.innerHTML = SESSIONS.map((s, i) => `
+    <div class="session-card" data-tag="${s.tag}" data-search="${(s.title + ' ' + s.speakers + ' ' + s.tag + ' ' + s.desc).toLowerCase().replace(/"/g, '')}" onclick="openSessionModal(${i})">
+      <img class="session-photo" src="${s.img}" alt="${s.title.replace(/"/g, '&quot;')}" loading="lazy" />
       <div class="session-body">
-        <span class="session-tag ${s.tag === 'Upskill Lab' ? 'lab' : 'expert'}">${s.tag}</span>
+        <span class="session-tag ${s.tag === 'Upskilling Lab' ? 'lab' : 'expert'}">${s.tag}</span>
         <div class="session-title">${s.title}</div>
-        <div class="session-desc">${s.desc}</div>
-        <div class="session-more" onclick="toggleDesc(this)">Read more ↓</div>
         <div class="session-speakers">${s.speakers}</div>
       </div>
     </div>`).join('');
 
-  function toggleDesc(el) {
-    const card = el.closest('.session-card');
-    const open = card.classList.toggle('expanded');
-    el.textContent = open ? 'Show less ↑' : 'Read more ↓';
+  // ── session detail popup ──
+  function openSessionModal(i) {
+    const s = SESSIONS[i];
+    document.getElementById('smPhoto').src = s.img;
+    document.getElementById('smPhoto').alt = s.title;
+    const tag = document.getElementById('smTag');
+    tag.textContent = s.tag;
+    tag.className = 'modal-tag ' + (s.tag === 'Upskilling Lab' ? 'lab' : 'expert');
+    document.getElementById('smTitle').textContent = s.title;
+    document.getElementById('smSpeakers').textContent = s.speakers;
+    document.getElementById('smDesc').textContent = s.desc;
+    document.getElementById('sessionModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
-
-  function openLightbox(src) {
-    document.getElementById('lightboxImg').src = src;
-    document.getElementById('lightbox').classList.add('open');
+  function closeSessionModal() {
+    document.getElementById('sessionModal').classList.remove('open');
+    document.body.style.overflow = '';
   }
+  document.getElementById('sessionModal').addEventListener('click', e => { if (e.target.id === 'sessionModal') closeSessionModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSessionModal(); });
 
-  document.getElementById('sessionSearch').addEventListener('input', function () {
-    const q = this.value.trim().toLowerCase();
+  // ── filter chips + search (combined) ──
+  let activeTag = 'all';
+  function applyFilters() {
+    const q = document.getElementById('sessionSearch').value.trim().toLowerCase();
     let visible = 0;
     document.querySelectorAll('#sessionGrid .session-card').forEach(card => {
-      const show = !q || card.dataset.search.includes(q);
+      const okTag = activeTag === 'all' || card.dataset.tag === activeTag;
+      const okQ = !q || card.dataset.search.includes(q);
+      const show = okTag && okQ;
       card.style.display = show ? '' : 'none';
       if (show) visible++;
     });
     document.getElementById('sessionEmpty').style.display = visible ? 'none' : 'block';
+  }
+  document.getElementById('sessionSearch').addEventListener('input', applyFilters);
+  document.querySelectorAll('#sessionFilters .filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#sessionFilters .filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeTag = chip.dataset.filter;
+      applyFilters();
+    });
   });
+
+  // ── hero rotating gallery (PLACEHOLDER photos — swap when final Connect folder arrives) ──
+  const GALLERY = [
+    'assets/photos/events-web/ev-03.jpg', 'assets/photos/events-web/ev-10.jpg',
+    'assets/photos/events-web/ev-18.jpg', 'assets/photos/events-web/ev-25.jpg',
+    'assets/photos/events-web/ev-32.jpg'
+  ];
+  const gEl = document.getElementById('heroGallery');
+  gEl.innerHTML = GALLERY.map((src, i) => `<img src="${src}" alt="AIxEd Connect scene" class="${i === 0 ? 'active' : ''}" loading="lazy" />`).join('');
+  const gimgs = gEl.querySelectorAll('img'); let gi = 0;
+  if (gimgs.length > 1) setInterval(() => {
+    gimgs[gi].classList.remove('active'); gi = (gi + 1) % gimgs.length; gimgs[gi].classList.add('active');
+  }, 3500);
 </script>
 </body>
 </html>
