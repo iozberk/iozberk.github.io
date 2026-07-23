@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workforce Summit 2026 — AIxEd</title>
+  <meta name="description" content="AIxEd Workforce Summit 2026 on November 10, 2026 at Boston University. Explore speakers, sessions, keynotes, and the pipeline from education to careers in the AI era." />
+  <link rel="icon" type="image/png" href="assets/logos/aixed-x.png" />
+  <link rel="apple-touch-icon" href="assets/logos/aixed-x.png" />
+  <meta name="theme-color" content="#1E1A6E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+
+<!-- ── ANNOUNCEMENT BAR ── -->
+<a class="announce-bar" href="https://luma.com/9dv2pace" target="_blank" rel="noopener">
+  🎟 Use code <strong>NOV2026</strong> to save <strong>20%</strong> on Workforce Summit tickets (valid until July 31). <span class="announce-cta">Register now →</span>
+</a>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/logos/aixed-x.png" alt="AIxEd" />AIx<span class="x">Ed</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="workforcesummit2026.html">Workforce Summit</a></li>
+    <li><a href="index.html#strategy">Strategy Collaborative</a></li>
+    <li class="nav-dropdown">
+      <a href="connect2026.html" class="nav-dropdown-toggle">AIxEd 2026 <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="workforcesummit2026.html">Workforce Summit 2026</a></li>
+        <li><a href="connect.html">Connect Program</a></li>
+        <li><a href="leadershipsummit2026.html">Leadership Summit</a></li>
+        <li><a href="2026speakers.html">May 2026 Speakers</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">AIxEd 2025 <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="2025.html">AIxEd November 2025</a></li>
+        <li><a href="2025speakers.html">2025 Speakers</a></li>
+        <li><a href="2025gallery.html">Gallery</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="about.html" class="nav-dropdown-toggle">About <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="about.html">About AIxEd</a></li>
+        <li><a href="founder.html">Founder</a></li>
+        <li><a href="advisory-board.html">Advisory Board</a></li>
+      </ul>
+    </li>
+    <li><a href="https://luma.com/9dv2pace" target="_blank" rel="noopener" class="nav-cta">Register</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="workforcesummit2026.html" onclick="closeMenu()">Workforce Summit</a>
+  <a href="index.html#strategy" onclick="closeMenu()">Strategy Collaborative</a>
+  <p class="mobile-menu-group">AIxEd 2026</p>
+  <a href="workforcesummit2026.html" class="mobile-menu-sub" onclick="closeMenu()">Workforce Summit 2026</a>
+  <a href="connect.html" class="mobile-menu-sub" onclick="closeMenu()">Connect Program</a>
+  <a href="leadershipsummit2026.html" class="mobile-menu-sub" onclick="closeMenu()">Leadership Summit</a>
+  <a href="2026speakers.html" class="mobile-menu-sub" onclick="closeMenu()">May 2026 Speakers</a>
+  <p class="mobile-menu-group">AIxEd 2025</p>
+  <a href="2025.html" class="mobile-menu-sub" onclick="closeMenu()">AIxEd November 2025</a>
+  <a href="2025speakers.html" class="mobile-menu-sub" onclick="closeMenu()">2025 Speakers</a>
+  <a href="2025gallery.html" class="mobile-menu-sub" onclick="closeMenu()">Gallery</a>
+  <p class="mobile-menu-group">About</p>
+  <a href="about.html" class="mobile-menu-sub" onclick="closeMenu()">About AIxEd</a>
+  <a href="founder.html" class="mobile-menu-sub" onclick="closeMenu()">Founder</a>
+  <a href="advisory-board.html" class="mobile-menu-sub" onclick="closeMenu()">Advisory Board</a>
+  <a href="https://luma.com/9dv2pace" class="mobile-menu-cta" target="_blank" rel="noopener" onclick="closeMenu()">Register</a>
+</div>
+<div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+
+<!-- ── HERO ── -->
+<section class="subpage-hero">
+  <div class="eyebrow">Workforce Summit 2026 &nbsp;·&nbsp; November 10, 2026</div>
+  <h1>AIxEd Workforce <em>Summit 2026</em></h1>
+  <p>Connecting education, industry, and government leaders on how we prepare people for work in the age of AI. Hosted by Boston University.</p>
+</section>
+
+<!-- ── SPEAKERS & SESSIONS LINEUP ── -->
+<section class="content-section alt" style="padding-top:40px;">
+  <div class="section-eyebrow">Speaker &amp; Session Lineup</div>
+  <h2 class="section-heading">Keynotes, Panels &amp; Fireside Discussions</h2>
+  
+  <div class="filter-row" id="summitFilters" style="margin-top:1.4rem;">
+    <button class="filter-chip active" data-filter="all">All Sessions</button>
+    <button class="filter-chip" data-filter="Opening">Opening</button>
+    <button class="filter-chip" data-filter="Fireside Chat">Fireside Chat</button>
+    <button class="filter-chip" data-filter="Panel">Panels</button>
+    <button class="filter-chip" data-filter="Summit">Keynotes</button>
+  </div>
+
+  <div class="search-wrap" style="margin-top:1.2rem;">
+    <input type="search" class="search-input" id="summitSearch"
+           placeholder="Search speakers by name, title, company, or session..." autocomplete="off" />
+  </div>
+
+  <div class="track-grid" id="summitGrid" style="margin-top: 2rem;">
+    <!-- Filled dynamically by script -->
+  </div>
+  <p class="search-empty" id="summitEmpty">No sessions match your search.</p>
+</section>
+
+<!-- ── VENUE DETAILS ── -->
+<section class="content-section">
+  <div class="section-eyebrow">Venue &amp; Location</div>
+  <h2 class="section-heading">Boston University Center for Computing &amp; Data Sciences</h2>
+  <p class="section-lead">
+    Join us at 775 Commonwealth Ave, Boston, MA 02215. The venue provides state-of-the-art facilities for high-level keynotes, collaborative panel discussions, and executive networking.
+  </p>
+  <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+    <a href="https://luma.com/9dv2pace" target="_blank" rel="noopener" class="btn-indigo">Register for Workforce Summit</a>
+    <a href="https://maps.google.com/?q=775+Commonwealth+Ave,+Boston,+MA+02215" target="_blank" rel="noopener" class="btn-ghost-indigo">Open in Google Maps →</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand-block">
+    <div class="footer-logo-main"><img src="assets/logos/aixed-x.png" alt="AIxEd" />AIx<span class="x">Ed</span></div>
+    <div class="footer-logo-bracket">AIxEd[ Workforce Summit 2026 ]</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="workforcesummit2026.html">Workforce Summit</a></li>
+    <li><a href="connect2026.html">May 2026</a></li>
+    <li><a href="2025.html">November 2025</a></li>
+    <li><a href="about.html">About AIxEd</a></li>
+    <li><a href="advisory-board.html">Advisory Board</a></li>
+    <li><a href="https://www.linkedin.com/company/aixed" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="mailto:hello@aixed.org">Contact</a></li>
+  </ul>
+  <p class="footer-copy">©2026 AIxED — All rights reserved</p>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script>
+  const SUMMIT_SPEAKERS = [
+    { name: 'Wendy Colby', title: 'Vice President & Associate Provost', org: 'Boston University', session: 'Opening', cat: 'Opening', initials: 'WC', linkedin: 'https://www.linkedin.com/in/wendycolby/', bio: 'Wendy Colby is Vice President & Associate Provost for Boston University Virtual, leading university-wide digital learning and workforce innovation.' },
+    { name: 'Tom Davenport', title: 'Distinguished Professor', org: 'Babson College', session: 'Fireside Chat', cat: 'Fireside Chat', initials: 'TD', linkedin: 'https://www.linkedin.com/in/davenporttom/', bio: 'Tom Davenport is President\'s Distinguished Professor of Information Technology and Management at Babson College, Fellow of the MIT Initiative on the Digital Economy, and author of 20+ books on AI and analytics.' },
+    { name: 'Jessica Beidelman', title: 'Associate Director, Skilling & BCG U', org: 'BCG (Boston Consulting Group)', session: 'Panel', cat: 'Panel', initials: 'JB', linkedin: 'https://www.linkedin.com/in/jessicabeidelman/', bio: 'Jessica Beidelman leads workforce skilling initiatives at BCG U, partnering with enterprise clients to build AI fluency, reskilling frameworks, and future-ready talent pipelines.' },
+    { name: 'Jeffrey Schoonover', title: 'Superintendent', org: 'Somerset Public Schools', session: 'Panel', cat: 'Panel', initials: 'JS', linkedin: 'https://www.linkedin.com/in/jeffreyschoonover/', bio: 'Jeffrey Schoonover is Superintendent of Somerset Public Schools, leading K-12 innovation, curriculum modernization, and AI literacy across public school systems.' },
+    { name: 'Trang Nguyen', title: 'VP of Data Science', org: 'Prudential', session: 'Summit', cat: 'Summit', initials: 'TN', linkedin: 'https://www.linkedin.com/in/trangnguyen/', bio: 'Trang Nguyen is VP of Data Science at Prudential, overseeing machine learning, data engineering, and talent analytics.' }
+  ];
+
+  function renderSummitGrid(list) {
+    const grid = document.getElementById('summitGrid');
+    const empty = document.getElementById('summitEmpty');
+    if (!grid) return;
+    if (list.length === 0) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+    grid.innerHTML = list.map(item => `
+      <div class="track-card" style="position:relative;">
+        <span class="track-badge ${item.cat === 'Opening' ? 'free' : item.cat === 'Fireside Chat' ? 'paid' : ''}">${item.session}</span>
+        <div style="display:flex; align-items:center; gap:1rem; margin-top:0.5rem;">
+          <div style="width:58px; height:58px; border-radius:50%; background:var(--indigo-deep); color:var(--yellow); font-weight:900; font-size:1.15rem; display:flex; align-items:center; justify-content:center; border:2px solid var(--lavender-dark); flex-shrink:0;">
+            ${item.initials}
+          </div>
+          <div>
+            <h3 style="font-size:1.3rem; margin:0;">${item.name}</h3>
+            <div style="color:var(--magenta); font-size:0.88rem; font-weight:700;">${item.title}</div>
+            <div style="color:var(--gray-700); font-size:0.82rem;">${item.org}</div>
+          </div>
+        </div>
+        <p style="font-size:0.9rem; margin-top:0.8rem; line-height:1.65; color:var(--gray-700);">${item.bio}</p>
+        <div class="track-cta-row" style="margin-top:1.2rem;">
+          <a href="${item.linkedin}" target="_blank" rel="noopener" class="btn-ghost-indigo" style="font-size:0.82rem; padding:0.6rem 1rem;">LinkedIn Profile →</a>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Initial render
+  renderSummitGrid(SUMMIT_SPEAKERS);
+
+  // Search & Filter
+  const searchInput = document.getElementById('summitSearch');
+  const filterChips = document.querySelectorAll('#summitFilters .filter-chip');
+  let activeFilter = 'all';
+
+  function filterSpeakers() {
+    const query = searchInput.value.toLowerCase().trim();
+    const filtered = SUMMIT_SPEAKERS.filter(s => {
+      const matchesFilter = activeFilter === 'all' || s.cat === activeFilter;
+      const matchesQuery = !query || 
+        s.name.toLowerCase().includes(query) ||
+        s.title.toLowerCase().includes(query) ||
+        s.org.toLowerCase().includes(query) ||
+        s.session.toLowerCase().includes(query);
+      return matchesFilter && matchesQuery;
+    });
+    renderSummitGrid(filtered);
+  }
+
+  filterChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      filterChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilter = chip.getAttribute('data-filter');
+      filterSpeakers();
+    });
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', filterSpeakers);
+  }
+</script>
+</body>
+</html>
